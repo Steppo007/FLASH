@@ -1,0 +1,33 @@
+# Elevations
+
+<blockquote style={{backgroundColor: '#eaf2ff', paddingTop: 'var(--space-2)', paddingBottom: 'var(--space-2)', borderColor: '#357de8', borderRadius: '4px'}}>
+Elevations are used to create depth, hierarchy, and focus within the interface. They define how elements visually appear layered in the UI, ensuring clear separation between interactive and non-interactive elements.
+</blockquote>
+
+<blockquote style={{backgroundColor: '#f7eeff', paddingTop: 'var(--space-2)', paddingBottom: 'var(--space-2)', borderColor: '#ab5ae4', borderRadius: '4px'}}>
+The system utilizes **predefined CSS variables** to manage box shadows, ensuring **consistency across light and dark modes**. Elevation levels adjust opacity in dark mode to maintain visibility.
+</blockquote>
+
+## Elevation Levels
+
+Krones uses a structured approach to box shadows, categorized into different levels of elevation. Each level is designed to suit specific use cases, from subtle depth to prominent focus.
+
+<figure>
+  <img src="images/elevations/elevation-colors.png" style={{margin: 'auto'}}/>
+  <figcaption style={{textAlign: 'center'}}>Elevation Colors</figcaption>
+</figure>
+
+<hr/>
+
+## When to Use Elevation
+
+Elevation should be used intentionally to:
+
+- **Differentiate layers** (e.g., modals, dropdowns, and floating panels).
+- **Indicate interactive elements** that require user attention.
+- **Enhance readability** by lifting content from the background.
+
+### Best Practices
+-   **Use minimal shadows for clarity:** Avoid excessive depth that makes the UI appear cluttered.
+-   **Maintain contrast:** Shadows should remain visible in both light and dark themes.
+-   **Follow hierarchy:** Higher elevations should be reserved for elements that require more emphasis.

@@ -1,0 +1,40 @@
+@layer krones-library {
+  .kro-ksidemenu {
+    min-width: var(--space-56);
+    max-width: var(--space-80);
+
+    [data-pc-section='menu'] {
+      /* the vertical list of tab items */
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    [data-pc-section='menuitem'] {
+      /* each tab item */
+      border-radius: var(--size-1_5);
+      transition: background-color, 0.1s;
+    }
+
+    [data-pc-section='action'] {
+      /* clickable action inside tab item */
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2_5) var(--space-7) var(--space-2_5) var(--space-5);
+      -webkit-user-drag: none;
+      text-decoration: none;
+      user-select: none;
+      border-radius: var(--size-1_5);
+      transition: outline-color 0.2s;
+
+      svg {
+        flex-shrink: 0;
+      }
+    }
+
+    [data-pc-section='inkbar'] {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,91 @@
+@layer krones-library {
+  [data-theme='light'] .kro-ktoast {
+    --toast-message-surface: #ffffffdd;
+  }
+
+  [data-theme='dark'] .kro-ktoast {
+    --toast-message-surface: #282b2fdd;
+  }
+
+  .kro-ktoast {
+    & > div {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    [data-pc-name='toast'] {
+      padding: var(--space-2);
+      border-style: solid;
+      border-left-width: var(--size-1_5);
+
+      border-radius: var(--size-1_5);
+      background-color: var(--toast-message-surface);
+      backdrop-filter: blur(6px);
+
+      box-shadow: var(--box-shadow-thick);
+
+      &.p-toast-message-success {
+        color: var(--content-success-default);
+        border-color: var(--border-success-default);
+        [data-pc-section='closebutton']:hover {
+          background-color: var(--surface-success-default);
+        }
+      }
+
+      &.p-toast-message-info {
+        color: var(--content-brand-default);
+        border-color: var(--border-brand-default);
+        [data-pc-section='closebutton']:hover {
+          background-color: var(--surface-brand-default);
+        }
+      }
+
+      &.p-toast-message-warn {
+        color: var(--content-warning-default);
+        border-color: var(--border-warning-default);
+        [data-pc-section='closebutton']:hover {
+          background-color: var(--surface-warning-default);
+        }
+      }
+
+      &.p-toast-message-error {
+        color: var(--content-critical-default);
+        border-color: var(--border-critical-default);
+        [data-pc-section='closebutton']:hover {
+          background-color: var(--surface-critical-default);
+        }
+      }
+    }
+
+    [data-pc-section='summary'] {
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 140%;
+    }
+
+    [data-pc-section='detail'] {
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 130%;
+    }
+
+    [data-pc-section='content'] {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-2);
+    }
+
+    [data-pc-section='icon'] {
+      width: var(--size-6);
+      height: var(--size-6);
+      margin: var(--space-2);
+    }
+
+    [data-pc-section='closebutton'] {
+      border-radius: 100%;
+      padding: var(--space-2);
+      transition: background-color 0.2s;
+    }
+  }
+}

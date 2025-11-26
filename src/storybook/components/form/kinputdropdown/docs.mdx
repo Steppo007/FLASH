@@ -1,0 +1,111 @@
+import { Meta, Canvas, Controls, Story, Title } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import { Example } from './example.tsx';
+import { VirtualScrollExample } from './virtualScrollExample.tsx';
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Uses: [PrimeReact Dropdown](https://primereact.org/dropdown)
+
+The Input Dropdown is used to select an item from a list of options.
+
+<Canvas of={metaData.Story} />
+
+Experiment with changing the attributes below. Some of them are custom attributes, and some come directly from PrimeReact.
+
+<Controls />
+
+## Example Usage with PrimeReact
+
+The KInputDropdown should be used exactly as recommended in the Primereact [documentation](https://primereact.org/dropdown). 
+Select 'New York' in the example below to see how the error state and helper text can be used.
+
+<Example/>
+
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KInputDropdown } from '@flash/ui-components/form/kinputdropdown';
+import { KText } from '@flash/ui-components/misc/ktext';
+import { ExampleWrapper } from '@sbook/utils';
+import { useState } from 'react';
+
+export function Example() {
+  interface City {
+    name: string;
+    code: string;
+  }
+  const [selectedCity, setSelectedCity] = useState<City | null>(null);
+  const cities = [
+    { name: 'New York', code: 'NY' },
+    { name: 'Rome', code: 'RM' },
+    { name: 'London', code: 'LDN' },
+    { name: 'Istanbul', code: 'IST' },
+    { name: 'Paris', code: 'PRS' },
+  ];
+
+  const selectedCityName = selectedCity ? selectedCity.name : '';
+  const isCityNewYork = selectedCityName === 'New York';
+
+  return (
+    <ExampleWrapper className="flex flex-col items-center gap-8">
+      <KInputDropdown
+        size={'default'}
+        invalid={isCityNewYork}
+        helperText={isCityNewYork ? 'Invalid choice' : undefined}
+        value={selectedCity}
+        placeholder="Select a City"
+        onChange={(e) => setSelectedCity(e.value)}
+        options={cities}
+        optionLabel="name"
+        className="w-48"
+      />
+      <KText type="text">{`Selected City: ${selectedCityName}`}</KText>
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## VirtualScrollExample
+
+<VirtualScrollExample/>
+
+[comment]: # (START WRITE ./virtualScrollExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import KInputDropdown from '@flash/ui-components/form/kinputdropdown';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import { useState } from 'react';
+
+export function VirtualScrollExample() {
+  interface City {
+    name: string;
+    code: string;
+  }
+  const [selectedCity, setSelectedCity] = useState<City | null>(null);
+  const cities: City[] = Array.from({ length: 1000 }).map((_value, index) => ({
+    name: `City ${index}`,
+    code: index.toString(),
+  }));
+
+  return (
+    <ExampleWrapper className="flex items-center gap-8">
+      <KInputDropdown
+        size={'default'}
+        value={selectedCity}
+        placeholder="Select a City"
+        onChange={(e) => setSelectedCity(e.value)}
+        options={cities}
+        optionLabel="name"
+        className="w-96"
+        virtualScrollerOptions={{ itemSize: 40 }}
+        filter
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

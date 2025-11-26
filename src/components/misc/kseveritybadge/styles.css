@@ -1,0 +1,27 @@
+@layer krones-library {
+  .kro-kseveritybadge {
+    .kro-indicator-mask {
+      fill: transparent;
+    }
+
+    &.kro-severity-error {
+      color: var(--surface-critical-accented);
+    }
+
+    &.kro-severity-warn {
+      color: var(--surface-warning-accented);
+    }
+
+    &.kro-severity-info {
+      color: var(--surface-brand-accented);
+      svg {
+        transform: scale(-1);
+      }
+    }
+
+    svg {
+      width: var(--size-6);
+      height: var(--size-6);
+    }
+  }
+}

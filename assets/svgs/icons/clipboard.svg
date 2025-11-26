@@ -1,0 +1,18 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  id="Layer_2"
+  viewBox="0 0 32 32"
+  fill="currentColor"
+>
+    <g id="icons">
+        <g id="Organization">
+            <g id="File">
+                <path
+          class="cls-2"
+          d="m28,10v18H10V10h18m0-2H10c-1.1,0-2,.9-2,2v18c0,1.1.9,2,2,2h18c1.1,0,2-.9,2-2V10c0-1.1-.9-2-2-2h0Z"
+        />
+                <path class="cls-2" d="m4,18h-2V4c0-1.1.9-2,2-2h14v2H4v14Z" />
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,51 @@
+import { Meta, Title, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories'; 
+import Example from './example'
+
+<Meta of={metaData} />
+
+<Title/>
+
+<Canvas of={metaData.Story} />
+<Controls />
+
+<Example/>
+
+## Example Usage 
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import KListItem from '@flash/ui-components/data/klistitem';
+import { ExampleWrapper } from '@sbook/utils';
+import writersJson from './writer.json';
+import AccountFigureIcon from '@flash/ui-components/assets/svgs/icons/accountFigure.svg?react';
+import ArrowRightIcon from '@flash/ui-components/assets/svgs/icons/arrowRight.svg?react';
+import { KAvatar } from '@flash/ui-components/misc/kavatar';
+
+export default function Example() {
+  return (
+    <ExampleWrapper className="flex items-center justify-center">
+      <div className="flex h-160 w-80 flex-col overflow-auto">
+        {writersJson.map((writer, index) => (
+          <KListItem
+            disabled={index % 3 === 0}
+            key={writer.id}
+            headline={writer.name}
+            overline={writer.id}
+            supportingText={writer.country}
+            leadingItem={
+              <KAvatar
+                className={index % 3 === 0 ? 'bg-surface-disabled!' : ''}
+              >
+                <AccountFigureIcon />
+              </KAvatar>
+            }
+            trailingItem={<ArrowRightIcon className="h-6 w-6" />}
+          />
+        ))}
+      </div>
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

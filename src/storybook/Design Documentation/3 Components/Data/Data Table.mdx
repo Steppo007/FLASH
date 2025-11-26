@@ -1,0 +1,103 @@
+## Data Table
+
+### Overview
+
+The **Data Table** component displays data in a tabular format, allowing users to easily view, sort, and interact with large datasets. It is designed to be flexible and customizable, supporting various data types and user interactions.
+
+* * * * *
+
+### When to Use It
+
+-   When you need to present large amounts of data in a structured and easily readable format.
+
+-   When users need to compare data across multiple rows and columns.
+
+-   When you want to provide features like sorting, filtering, and selection to enhance data interaction.
+
+#### **Avoid using a table when:**
+
+-   When the dataset is small and can be presented more effectively using simpler components like lists or cards.
+
+-   When the data does not require complex interactions or comparisons.
+
+-   When a more visual representation, such as charts or graphs, would be more appropriate for the data.
+
+* * * * *
+
+### Live Preview
+
+#### **[Try this component out here](/docs/components-data-kdatatable--docs)**
+
+* * * * *
+
+### Features
+
+-   **Show Gridlines:** Whether to show vertical grid lines between cells, enhancing the visual separation of data.
+
+-   **Sort Mode:** Defines how sorting should be handled. When set to "multiple," you can select multiple columns by pressing the meta key (ctrl or similar). The "sortable" attribute needs to be applied to the desired columns.
+
+-   **Selection Mode:** Defines if rows can be selected, and how. Options include single selection, multiple selection, and none.
+
+-   **Removable Sort:** When enabled, columns can be restored to their default state after being sorted.
+
+-   **MetaKey Selection:** When enabled, holding down the meta key (ctrl or similar) is required to perform certain operations, like selecting multiple rows or clicking to deselect a row.
+
+-   **Scrollable:** Whether or not the header is sticky while scrolling, ensuring column headers remain visible as users scroll through the data.
+
+* * * * *
+
+### Variants
+
+Each column or cell can be exchanged between 13 types:
+
+-   **Text:** Displays plain text.
+
+-   **Inputfield:** Allows users to input text directly into the cell.
+
+-   **Dropdown Input:** Provides a dropdown menu for selecting options.
+
+-   **Tag:** Displays tags or labels.
+
+-   **Status LED:** Shows status indicators using colored LEDs.
+
+-   **Checkbox:** Allows users to select or deselect items using checkboxes.
+
+-   **Radiobutton:** Provides radio buttons for selecting a single option from a group.
+
+-   **Toggle:** Allows users to switch between two states using a toggle switch.
+
+-   **Button:** Displays a button for triggering actions.
+
+-   **Icon Button:** Shows a button with an icon for quick actions.
+
+-   **Text Link:** Provides clickable text links.
+
+-   **Action Items:** Displays a set of action items or buttons.
+
+-   **Image:** Shows images within the cell.
+
+-   **Empty:** Leaves the cell empty for custom content or spacing.
+
+* * * * *
+
+### Behavior
+
+-   **Default State:** The standard appearance and functionality of the data table.
+
+-   **Active State:** Indicates the selected or focused state of rows. This should only be used row-based, so that entire rows are selected and not singular cells.
+
+* * * * *
+
+### Dos and Don'ts
+
+#### **Dos:**
+
+✔ Use clear and concise column headers to ensure users understand the data being presented.\
+✔ Enable sorting and filtering to help users find and organize data more efficiently.\
+✔ Ensure the table is responsive and works well on different devices and screen sizes.
+
+#### **Don'ts:**
+
+✘ Overload the table with too many columns or rows, which can make it difficult to navigate and understand.\
+✘ Use the data table for small datasets that do not require complex interactions.\
+✘ Neglect to provide accessibility features, such as keyboard navigation and screen reader support.

@@ -1,0 +1,125 @@
+@layer krones-library {
+  /* see stackoverflow.com/questions/3338680 */
+  [class^='kro-'],
+  [class*=' kro-'] {
+    font-family: Roboto;
+    font-style: normal;
+    box-sizing: border-box;
+
+    ul {
+      list-style: none;
+      padding: var(--space-0);
+      margin: var(--space-0);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    &:is(button),
+    &:is([role='button']) {
+      cursor: pointer;
+    }
+
+    button,
+    [role='button'] {
+      cursor: pointer;
+    }
+  }
+
+  [class^='kro-line-clamp-'],
+  [class*=' kro-line-clamp-'] {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+
+  .kro-line-clamp-1 {
+    -webkit-line-clamp: 1;
+  }
+
+  .kro-line-clamp-2 {
+    -webkit-line-clamp: 2;
+  }
+
+  .kro-line-clamp-5 {
+    -webkit-line-clamp: 5;
+  }
+
+  .kro-cursor-when-enabled {
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+  }
+
+  .kro-outline-when-focused {
+    outline: var(--size-0_75) solid transparent;
+
+    &:not([data-p-focus]):focus,
+    &:not([data-p-focused]):focus,
+    &[data-p-focus='true'],
+    &[data-p-focused='true'] {
+      z-index: 1000;
+      outline-color: var(--outline-focus);
+    }
+  }
+
+  .kro-outline-when-focus-visible {
+    outline: var(--size-0_75) solid transparent;
+
+    &:focus-visible {
+      z-index: 1000;
+      outline-color: var(--outline-focus);
+    }
+  }
+
+  [data-theme] {
+    /* Box Shadows */
+    --box-shadow-thin: var(--size-0) var(--size-px) var(--size-1) var(--size-0)
+      rgb(0, 0, 0, 0.04);
+    --box-shadow-thick: var(--size-0) var(--size-1) var(--size-6) var(--size-0)
+      rgba(0, 0, 0, 0.06);
+  }
+
+  .kro-size-small {
+    font-size: 0.75rem;
+
+    svg {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+  }
+
+  .kro-size-default {
+    font-size: 0.875rem;
+
+    svg {
+      width: 0.625rem;
+      height: 0.625rem;
+    }
+  }
+
+  .kro-size-large {
+    font-size: 1rem;
+
+    svg {
+      width: 0.75rem;
+      height: 0.75rem;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: var(--size-1);
+    height: var(--size-1);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--input-content-default-disabled);
+    border-radius: var(--size-1);
+  }
+}

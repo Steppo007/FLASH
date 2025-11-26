@@ -1,0 +1,275 @@
+import { Meta, Title, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';    
+import BasicExample from './basicExample'
+import HighlightExample from './highlightExample'
+import PopupExample from './popupExample'
+import CustomExample from './customExample'
+
+<Meta of={metaData} />
+
+<Title/>
+### Uses: [PrimeReact Menu](https://primereact.org/menu)
+
+The KMenu is a component for navigation and commands. Below we present some ways to use the KMenu. Also see the documentation of the underlying [PrimeReact Menu](https://primereact.org/menu).
+
+## Example: Basic 
+
+To make a basic menu, you need to construct a menu model. You include headers as well as subitems, with labels, icons, and commands.
+
+<BasicExample/>
+
+[comment]: # (START WRITE ./basicExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KMenu } from '@flash/ui-components/menu/kmenu';
+import { ExampleWrapper } from '@sbook/utils';
+import { MenuItem } from 'primereact/menuitem';
+import PlusSign from '@flash/ui-components/assets/svgs/icons/plusSign.svg?react';
+import InfoOutlined from '@flash/ui-components/assets/svgs/icons/infoOutlined.svg?react';
+import OutlinedSettingsGear from '@flash/ui-components/assets/svgs/icons/outlinedSettingsGear.svg?react';
+import LogoutArrow from '@flash/ui-components/assets/svgs/icons/logoutArrow.svg?react';
+import { useRef } from 'react';
+import { Toast } from 'primereact/toast';
+import { KToast } from '@flash/ui-components/message/ktoast';
+
+export default function BasicExample() {
+  const toastRef = useRef<Toast>(null);
+
+  const showToastMessage = (text: string) => {
+    toastRef.current?.show({
+      severity: 'success',
+      summary: 'Menu Item Clicked',
+      detail: text,
+      sticky: true,
+    });
+  };
+
+  const model: MenuItem[] = [
+    {
+      label: 'Documents',
+      items: [
+        {
+          label: 'New',
+          icon: <PlusSign />,
+          command: () => {
+            showToastMessage('New document requested.');
+          },
+        },
+        {
+          label: 'Info',
+          icon: <InfoOutlined />,
+          command: () => {
+            showToastMessage('Info requested.');
+          },
+        },
+      ],
+    },
+    {
+      label: 'Profile',
+      items: [
+        {
+          label: 'Settings',
+          icon: <OutlinedSettingsGear />,
+          command: () => {
+            showToastMessage('Settings requested.');
+          },
+        },
+        {
+          label: 'Logout',
+          icon: <LogoutArrow />,
+          command: () => {
+            showToastMessage('Logout requested.');
+          },
+        },
+      ],
+    },
+  ];
+
+  return (
+    <ExampleWrapper className="relative flex min-w-96 items-center justify-center">
+      <KMenu model={model} className="min-w-36" />
+      <KToast position="top-right" ref={toastRef} className="!absolute" />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## Example: Highlighted Menu items
+
+If you provide the class name "kro-highlighted" to an item, it will appear highlighted. You can
+use this to keep track of a "currently selected" item.
+
+<HighlightExample/>
+
+[comment]: # (START WRITE ./highlightExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import KMenu from '@flash/ui-components/menu/kmenu';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import { MenuItem } from 'primereact/menuitem';
+import { classNames } from 'primereact/utils';
+import { useState } from 'react';
+
+export default function HighlightExample() {
+  const [theme, setTheme] = useState('light');
+
+  const model: MenuItem[] = [
+    {
+      label: 'Theme',
+      items: [
+        {
+          label: 'Light',
+          command: () => {
+            setTheme('light');
+          },
+          className: classNames({ 'kro-highlighted': theme === 'light' }),
+        },
+        {
+          label: 'Dark',
+          command: () => {
+            setTheme('dark');
+          },
+          className: classNames({ 'kro-highlighted': theme === 'dark' }),
+        },
+      ],
+    },
+  ];
+
+  return (
+    <ExampleWrapper className="flex justify-center">
+      <KMenu model={model} className="w-48" />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## Example: Popup Menu With Critical Item
+
+The menu can also be used as a popup. Additionally, if you provide the class name "kro-critical" to 
+a menu item, it will appear red. 
+
+<PopupExample/>
+
+[comment]: # (START WRITE ./popupExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import KMenu from '@flash/ui-components/menu/kmenu';
+import { KInteractiveIcon } from '@flash/ui-components/misc/kinteractiveicon';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import { MenuItem } from 'primereact/menuitem';
+import MarkUnread from '@flash/ui-components/assets/svgs/icons/markUnread.svg?react';
+import Delete from '@flash/ui-components/assets/svgs/icons/delete.svg?react';
+import Check from '@flash/ui-components/assets/svgs/icons/check.svg?react';
+import DotsVertical from '@flash/ui-components/assets/svgs/icons/dotsVertical.svg?react';
+
+import { useRef, useState } from 'react';
+import { Menu } from 'primereact/menu';
+import { Toast } from 'primereact/toast';
+import { KToast } from '@flash/ui-components/message/ktoast';
+
+export default function PopupExample() {
+  const [isRead, setIsRead] = useState(false);
+  const menuRef = useRef<Menu>(null);
+  const toastRef = useRef<Toast>(null);
+
+  const showDeleteMessage = () => {
+    toastRef.current?.show({
+      severity: 'success',
+      summary: 'Item deleted.',
+      detail: 'The item was successfully deleted.',
+      sticky: true,
+    });
+  };
+
+  const showMarkedReadMessage = (read: boolean) => {
+    toastRef.current?.show({
+      severity: 'success',
+      summary: 'Item updated.',
+      detail: `The item was marked as ${read ? 'read' : 'unread'}`,
+      sticky: true,
+    });
+  };
+
+  const model: MenuItem[] = [
+    {
+      className: 'kro-no-label',
+      items: [
+        {
+          label: isRead ? 'Mark As Unread' : 'Mark As Read',
+          icon: isRead ? <MarkUnread /> : <Check />,
+          command: () => {
+            setIsRead((x) => !x);
+            showMarkedReadMessage(!isRead);
+          },
+        },
+        {
+          label: 'Delete',
+          icon: <Delete />,
+          className: 'kro-critical',
+          command: showDeleteMessage,
+        },
+      ],
+    },
+  ];
+  return (
+    <ExampleWrapper className="relative flex h-64 min-w-96 justify-center">
+      <div>
+        <KInteractiveIcon
+          icon={<DotsVertical />}
+          onClick={(e) => {
+            menuRef.current?.toggle(e);
+          }}
+        />
+      </div>
+      <KMenu
+        model={model}
+        className="mt-4 min-w-48"
+        popup
+        ref={menuRef}
+        popupAlignment="right"
+      />
+      <KToast position="top-right" className="!absolute" ref={toastRef} />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## Example: Customised 
+
+You can customise the menu with class names, for example by providing a maximum width, or adding a border.
+
+
+<CustomExample/>
+[comment]: # (START WRITE ./customExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import KMenu from '@flash/ui-components/menu/kmenu';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import { MenuItem } from 'primereact/menuitem';
+
+export default function CustomExample() {
+  const model: MenuItem[] = [
+    {
+      label: 'A Very Long Header Bla Bla Bla Bla',
+      items: [
+        {
+          label:
+            'A Very Long Label Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla',
+        },
+        {
+          label: 'A Reasonable Label',
+        },
+      ],
+    },
+  ];
+  return (
+    <ExampleWrapper className="flex justify-center">
+      <KMenu model={model} className="border-border-default max-w-48 border" />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

@@ -1,0 +1,37 @@
+import { Meta, Title, Subtitle, Description, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import Demo from './demo';
+
+<Meta of={metaData} />
+
+<Title />
+### Custom Component
+
+KTiles are used to display information or represent content in a tile or list
+format. They can contain various types of content, including text, images
+or icons. They serve as an organized and visually appealing way to present
+data, links, or actions to users.
+
+<Canvas of={metaData.Story} />
+<Controls />
+
+## Example Usage
+
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KTile } from '@flash/ui-components/misc/ktile';
+
+export function Example() {
+  return (
+    <KTile label="Krones Product" view="tile">
+      <svg> ... </svg>
+    </KTile>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+# Demonstration
+
+<Demo />

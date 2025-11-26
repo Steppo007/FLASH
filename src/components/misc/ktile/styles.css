@@ -1,0 +1,89 @@
+@layer krones-library {
+  .kro-ktile {
+    display: flex;
+    align-items: center;
+
+    .kro-ktile-content {
+      background-color: var(--surface-layer);
+      color: var(--content-interactive-default);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-radius: var(--size-1_5);
+      box-shadow: var(--box-shadow-thin);
+      flex-shrink: 0;
+
+      img {
+        object-fit: cover;
+      }
+    }
+
+    &.kro-ktile-grey,
+    &.kro-ktile-grey:hover {
+      .kro-ktile-content {
+        background-color: var(--surface-neutral-disabled);
+        color: var(--content-interactive-subdued-disabled);
+      }
+
+      .kro-ktext {
+        color: var(--content-interactive-subdued-disabled);
+      }
+    }
+
+    .kro-ktext {
+      color: var(--content-interactive-subdued-default);
+      user-select: none;
+    }
+
+    &:hover > .kro-ktile-content {
+      color: var(--content-interactive-hover);
+    }
+
+    &:hover > .kro-ktext {
+      color: var(--content-interactive-subdued-hover);
+    }
+
+    &.view-list {
+      flex-direction: row;
+      gap: var(--space-4);
+      height: var(--size-12);
+      width: var(--size-64);
+
+      .kro-ktile-content {
+        width: var(--size-12);
+        height: 100%;
+
+        svg {
+          height: var(--size-8);
+          width: var(--size-8);
+        }
+      }
+
+      .kro-ktext {
+        text-align: left;
+      }
+    }
+
+    &.view-tile {
+      flex-direction: column;
+      gap: var(--space-5);
+      height: fit-content;
+      width: var(--size-28);
+
+      .kro-ktile-content {
+        width: 100%;
+        height: var(--size-28);
+
+        svg {
+          height: var(--size-14);
+          width: var(--size-14);
+        }
+      }
+
+      .kro-ktext {
+        text-align: center;
+      }
+    }
+  }
+}

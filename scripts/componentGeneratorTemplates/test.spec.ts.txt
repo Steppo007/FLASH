@@ -1,0 +1,14 @@
+import { test } from '@playwright/test';
+import { takeScreenshots } from '../../storybook-screenshotter';
+import { $SBcomponent } from '../../storybook-components';
+
+test.describe('$component', async () => {
+ 
+  // TODO: implement real test
+  test('component renders correctly', async ({ browser }) => {
+    const componentInstances = [{label: "A"}, {label: "B"}];
+    await takeScreenshots(browser, $SBcomponent, {
+      componentInstances,
+    });
+  });
+});

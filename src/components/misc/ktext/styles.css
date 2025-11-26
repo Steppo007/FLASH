@@ -1,0 +1,105 @@
+@layer krones-library {
+  .kro-ktext {
+    font-family: Roboto;
+    font-style: normal;
+    margin: var(--space-0);
+    padding: var(--space-0);
+
+    &.type-h1,
+    &.type-h2,
+    &.type-h3,
+    &.type-h4 {
+      color: var(--content-title);
+      line-height: 120%;
+    }
+
+    &.type-text,
+    &.type-div,
+    &.type-text-sm,
+    &.type-text-xs {
+      color: var(--content-bodytext);
+      line-height: 130%;
+    }
+
+    &.type-lead {
+      color: var(--content-bodytext);
+      line-height: 120%;
+    }
+
+    &.type-h1 {
+      font-size: 1.75rem;
+      font-weight: 500;
+    }
+
+    &.type-h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+
+    &.type-h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    &.type-h4 {
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    &.type-lead {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    &.type-text,
+    &.type-div {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    &.type-text-sm {
+      font-size: 0.875rem;
+      font-weight: 400;
+    }
+
+    &.type-text-xs {
+      font-size: 0.75rem;
+      font-weight: 400;
+    }
+
+    &.type-link,
+    &.type-link-sm {
+      color: var(--content-interactive-default);
+      text-decoration-line: underline;
+      font-weight: 400;
+      line-height: 130%;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--content-interactive-hover);
+      }
+
+      &:active {
+        color: var(--content-interactive-active);
+      }
+
+      &:visited {
+        color: var(--content-interactive-visited);
+      }
+    }
+
+    &.type-link {
+      font-size: 1rem;
+    }
+
+    &.type-link-sm {
+      font-size: 0.875rem;
+    }
+  }
+
+  .kro-ktext-inverse {
+    &.kro-ktext {
+      color: var(--content-inverse-default);
+    }
+  }
+}

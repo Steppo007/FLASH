@@ -1,0 +1,112 @@
+@layer krones-library {
+  .kro-kactionselector {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+    background: var(--surface-layer);
+  }
+
+  .kro-kactionselector-boundary-styling {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+    border-radius: var(--size-1_5);
+  }
+
+  .kro-kactionselector-header {
+    height: var(--size-12);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--content-bold);
+    border-bottom: 1px solid var(--border-subdued);
+
+    .label {
+      font-size: var(--size-3_5);
+      font-weight: 500;
+      line-height: 130%;
+    }
+  }
+
+  .kro-kactionselector-button-container {
+    height: var(--size-16);
+    padding: var(--space-4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  a.kro-kactionselector-button {
+    width: 100%;
+    height: var(--size-8);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--size-1_5);
+    border: 1px solid var(--button-border-default-default);
+    background: var(--button-surface-default-default);
+    color: var(--button-content-default-default);
+    font-weight: 500;
+
+    &:hover {
+      border-color: var(--button-border-default-hover);
+      background: var(--button-surface-default-hover);
+      color: var(--button-content-default-hover);
+    }
+  }
+
+  .kro-kactionselector-button.is-disabled {
+    color: var(--content-disabled);
+    background: var(--button-surface-default-disabled);
+    border-color: var(--button-border-default-disabled);
+    cursor: not-allowed;
+
+    &:hover {
+      color: var(--content-disabled);
+      background: var(--button-surface-default-disabled);
+      border-color: var(--button-border-default-disabled);
+    }
+  }
+
+  /* Sidebar */
+  .kro-kactionselector-sidebar {
+    background: var(--surface-flyout);
+    border-radius: var(--size-3);
+    height: fit-content;
+    max-height: 80vh;
+  }
+
+  .kro-kactionselector-sidebar-closebutton {
+    width: var(--size-7);
+    height: var(--size-7);
+    border-radius: 50%;
+    background: var(--button-surface-default-default);
+    color: var(--button-content-default-default);
+
+    &:hover {
+      background: var(--button-surface-default-hover);
+    }
+  }
+
+  .kro-kactionselector-sidebar-header {
+    height: 75px;
+    padding: var(--space-4);
+
+    .header-text {
+      display: flex;
+      flex-direction: column;
+
+      .type-lead {
+        font-weight: 400;
+      }
+    }
+  }
+
+  .kro-kactionselector-sidebar-content {
+    padding: var(--space-4);
+    background: var(--surface-accented);
+  }
+
+  .kro-kactionselector-mask {
+    background: rgba(0, 0, 0, 0.15);
+  }
+}

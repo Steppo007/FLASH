@@ -1,0 +1,83 @@
+@layer krones-library {
+  .kro-kprogressspinner {
+    position: relative;
+    margin: 0 auto;
+    display: inline-block;
+
+    &::before {
+      content: '';
+      display: block;
+      padding-top: 100%;
+    }
+
+    &.kro-size-xsmall {
+      width: var(--size-4);
+      height: var(--size-4);
+
+      [data-pc-section='spinner'] {
+        width: var(--size-4);
+        height: var(--size-4);
+      }
+    }
+
+    &.kro-size-small {
+      width: var(--size-6);
+      height: var(--size-6);
+
+      [data-pc-section='spinner'] {
+        width: var(--size-6);
+        height: var(--size-6);
+      }
+    }
+
+    &.kro-size-default {
+      width: var(--size-8);
+      height: var(--size-8);
+
+      [data-pc-section='spinner'] {
+        width: var(--size-8);
+        height: var(--size-8);
+      }
+    }
+
+    &.kro-size-large {
+      width: var(--size-10);
+      height: var(--size-10);
+
+      [data-pc-section='spinner'] {
+        width: var(--size-10);
+        height: var(--size-10);
+      }
+    }
+
+    &.kro-size-xlarge {
+      width: var(--size-12);
+      height: var(--size-12);
+
+      [data-pc-section='spinner'] {
+        width: var(--size-12);
+        height: var(--size-12);
+      }
+    }
+
+    [data-pc-section='circle'] {
+      stroke: var(--surface-brand-accented);
+      animation: kro-progress-spinner-dash 1.5s ease-in-out infinite;
+    }
+
+    @keyframes kro-progress-spinner-dash {
+      0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+      }
+      50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+      }
+      100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+      }
+    }
+  }
+}

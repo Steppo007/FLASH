@@ -1,0 +1,9 @@
+
+export const $SBcomponent: StorybookComponent = {
+  category: '$category',
+  name: '$component',
+  defaultProps: {
+    // TODO: configure default props for testing
+    label: "Krones"
+  },
+};

@@ -1,0 +1,122 @@
+import { Meta, Description, Canvas, Controls, Story, Title } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import { TextExample } from './textExample'
+import { IconExample } from './iconExample'
+import { MixedExample } from './mixedExample'
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Uses: [PrimeReact Select Button](https://primereact.org/selectbutton)
+
+The KSelectButton is used to choose single or multiple items from a list using buttons.
+
+## Example Usage
+
+Use the KSelectButton exactly as one uses the PrimeReact [Select Button](https://primereact.org/selectbutton). 
+
+### Using Text Labels
+<TextExample/>
+
+[comment]: # (START WRITE ./textExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KSelectButton } from '@flash/ui-components/form/kselectbutton';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import { useState } from 'react';
+
+export function TextExample() {
+  const textOptions = [
+    { label: 'Small', value: 'sm' },
+    { label: 'Medium', value: 'md' },
+    { label: 'Large', value: 'lg' },
+  ];
+
+  const [value, setValue] = useState(textOptions[0].value);
+
+  return (
+    <ExampleWrapper className="flex justify-center">
+      <KSelectButton
+        allowEmpty={false}
+        value={value}
+        onChange={(e) => setValue(e.value)}
+        options={textOptions}
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+### Using Icon Labels
+
+<IconExample/>
+
+[comment]: # (START WRITE ./iconExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KSelectButton } from '@flash/ui-components/form/kselectbutton';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import { useState } from 'react';
+
+// the following imports work with vite-plugin-svgr
+import Check from '@flash/ui-components/assets/svgs/icons/check.svg?react';
+import Close from '@flash/ui-components/assets/svgs/icons/close.svg?react';
+
+export function IconExample() {
+  const iconOptions = [
+    { icon: <Check />, value: 'yes' },
+    { icon: <Close />, value: 'no' },
+  ];
+  const [value, setValue] = useState(iconOptions[0].value);
+
+  return (
+    <ExampleWrapper className="flex justify-center">
+      <KSelectButton
+        allowEmpty={false}
+        value={value}
+        onChange={(e) => setValue(e.value)}
+        options={iconOptions}
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+### Mixing both
+
+<MixedExample />
+
+[comment]: # (START WRITE ./mixedExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KSelectButton } from '@flash/ui-components/form/kselectbutton';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import { useState } from 'react';
+
+// the following imports work with vite-plugin-svgr
+import Check from '@flash/ui-components/assets/svgs/icons/check.svg?react';
+import Close from '@flash/ui-components/assets/svgs/icons/close.svg?react';
+
+export function MixedExample() {
+  const iconOptions = [
+    { label: 'Accept', icon: <Check />, value: 'yes' },
+    { label: 'Reject', icon: <Close />, value: 'no' },
+  ];
+  const [value, setValue] = useState(iconOptions[0].value);
+
+  return (
+    <ExampleWrapper className="flex justify-center">
+      <KSelectButton
+        allowEmpty={false}
+        value={value}
+        onChange={(e) => setValue(e.value)}
+        options={iconOptions}
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

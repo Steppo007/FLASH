@@ -1,0 +1,32 @@
+import { Meta, Canvas, Controls, Story, Title } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Custom Component
+
+The link button component displays a single, less important action a user can take.
+
+<Canvas of={metaData.Story} />
+<Controls />
+
+## Example Usage
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KLinkButton } from '@flash/ui-components/button/klinkbutton';
+
+export default function Example() {
+  return (
+    <KLinkButton
+      label="Krones"
+      disabled={false}
+      size="small"
+      showArrow={true}
+    />
+  );
+}
+```
+[comment]: # (END WRITE)

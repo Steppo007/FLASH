@@ -1,0 +1,62 @@
+@layer krones-library {
+  .kro-ktooltip {
+    /* layout and shape */
+    border-radius: var(--size-1_5);
+    max-width: var(--size-48);
+    padding: 0;
+
+    /* color */
+    background-color: var(--surface-neutral-highlight);
+    border: var(--size-px) solid var(--surface-neutral-highlight);
+
+    /* tooltip text */
+    [data-pc-section='text'] {
+      padding: var(--space-3);
+    }
+
+    /* move tooltip slightly away from target */
+    &.p-tooltip-top {
+      transform: translate(0, -0.5rem);
+    }
+
+    &.p-tooltip-bottom {
+      transform: translate(0, 0.5rem);
+    }
+
+    &.p-tooltip-left {
+      transform: translate(-0.5rem, 0);
+    }
+
+    &.p-tooltip-right {
+      transform: translate(0.5rem, 0);
+    }
+
+    /* tooltip arrow */
+    [data-pc-section='arrow'] {
+      background-color: var(--surface-neutral-highlight);
+      width: var(--size-2);
+      height: var(--size-2);
+    }
+
+    [data-pc-section='text'] {
+      background-color: var(--surface-neutral-highlight);
+      border-radius: var(--size-1_5);
+    }
+
+    &.p-tooltip-top [data-pc-section='arrow'] {
+      transform: translate(0, 50%) rotate(45deg);
+    }
+
+    &.p-tooltip-left [data-pc-section='arrow'] {
+      transform: translate(50%, 0) rotate(45deg);
+    }
+
+    &.p-tooltip-right [data-pc-section='arrow'] {
+      transform: translate(-50%, 0) rotate(45deg);
+    }
+
+    &.p-tooltip-bottom [data-pc-section='arrow'] {
+      transform: translate(0, -50%) rotate(45deg);
+    }
+  }
+}

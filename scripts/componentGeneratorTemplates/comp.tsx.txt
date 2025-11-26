@@ -1,0 +1,12 @@
+// defines the component itself
+
+import { $ComponentProps } from '.'
+
+export function $Component(props: $ComponentProps) {
+    // TODO: implement real component
+    return (
+        <div className="$classname">
+            {props.label}
+        </div>
+    )
+}

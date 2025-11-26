@@ -1,0 +1,48 @@
+import { Meta, Description, Canvas, Controls, Story, Title } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import Demo from './demo';
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Custom Component
+
+The avatar component uses text, images, or icons to represent individuals or account profiles.
+
+<Canvas of={metaData.Story} />
+
+Note: when using the controls, images take precedence 
+over text labels, which take precedence over icons.
+
+<Controls />
+
+## Example Usage
+
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KAvatar } from '@flash/ui-components/misc/kavatar';
+import { KBadge } from '@flash/ui-components/misc/kbadge';
+
+export function Example() {
+  // priority: image > labels > icons
+  // badge is optional
+  return (
+    <KAvatar
+      size="normal"
+      imageUrl="/user.png"
+      label="XY"
+      icon={<svg> ... </svg>}
+    >
+      <KBadge label="1" severity="danger" size="small" variant="filled" />
+    </KAvatar>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+
+## Demonstration
+
+<Demo />

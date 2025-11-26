@@ -1,0 +1,35 @@
+import { Meta, Title, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories'; 
+import Example from './example'
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Custom Component
+
+The KSeverityBadge component can be used to display an icon for different severities.
+
+<Canvas of={metaData.Story} />
+<Controls />
+
+<Example/>
+
+## Example Usage 
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KSeverityBadge } from '@flash/ui-components/misc/kseveritybadge';
+import { ExampleWrapper } from '@sbook/utils';
+
+export default function Example() {
+  return (
+    <ExampleWrapper className="flex items-center justify-center gap-4">
+      <KSeverityBadge severity="info" />
+      <KSeverityBadge severity="warn" />
+      <KSeverityBadge severity="error" />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

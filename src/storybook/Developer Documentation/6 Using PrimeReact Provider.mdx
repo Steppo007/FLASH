@@ -1,0 +1,58 @@
+# PrimeReact Context Provider 
+
+This page is only relevant for those developing applications to be run inside the FLASH.
+
+For the localization of PrimeReact-based components please refer to [this PR](https://pd.bitbucket.syskron.com/projects/KOP_APP_SHELL/repos/sample-service/pull-requests/103/overview).
+
+PrimeReact uses a global context provider for certain 
+[configurations](https://primereact.org/configuration/). Two important
+configurations are
+
+- `appendTo`: this controls where overlays (e.g. dropdown panels, dialogs) 
+are appended in the DOM. The default value is `document.body`
+- `styleContainer`: this controls where component CSS is injected in the DOM. 
+The default value is `document.head`.
+
+
+Given that FLASH services are supposed to be Shadow DOM encapsulated, you 
+want to make sure that overlays and CSS appear __inside__ the 
+shadow DOM. 
+
+The following stripped-down example demonstrates how one can use the PrimeReact Provider
+inside one's web component. As always, you can find a full example in the [sample service](https://pd.bitbucket.syskron.com/projects/KOP_APP_SHELL/repos/sample-service/browse/frontend/todo-ui/src/bootstrap.tsx).
+
+```jsx
+import React from 'react';
+import { Root, createRoot } from 'react-dom/client';
+import { PrimeReactProvider } from 'primereact/api';
+import App from './App'
+
+class FlashService extends HTMLElement {
+ 
+    readonly shadowRoot: ShadowRoot;
+    readonly mountPoint: HTMLElement;
+    readonly reactRoot: Root;
+
+    constructor() {
+        super();
+        this.shadowRoot = this.attachShadow({mode: 'closed'})
+        this.mountPoint = this.shadowRoot.appendChild(document.createElement('div'))
+        this.reactRoot = createRoot(this.mountPoint)
+    }
+
+    connectedCallback(): void {
+        this.reactRoot.render(
+            <React.StrictMode>
+                <PrimeReactProvider
+                    value={{
+                        styleContainer: this.shadowRoot,
+                        appendTo: this.mountPoint,
+                    }}
+                >
+                    <App />
+                </PrimeReactProvider>
+            </React.StrictMode>
+        );
+    }
+}
+```

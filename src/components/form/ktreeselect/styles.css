@@ -1,0 +1,76 @@
+@layer krones-library {
+  .kro-ktreeselect {
+    [data-pc-section='clearicon'] {
+      position: relative;
+      top: 0;
+      margin-top: 0;
+    }
+  }
+
+  .kro-ktreeselect-panel {
+    color: var(--content-interactive-subdued-default);
+
+    &.p-connected-overlay-enter-active,
+    &.p-connected-overlay-enter-done {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    > [data-pc-section='header']:not(:has([data-pc-section='filtercontainer'])),
+    [data-pc-section='closebutton'] {
+      display: none;
+    }
+
+    [data-pc-section='filter'] {
+      background-color: var(--input-surface-default-default);
+    }
+
+    [data-pc-section='filter']:focus-visible,
+    [data-pc-section='container']:focus-visible,
+    [data-pc-section='node']:focus-visible {
+      outline: none;
+
+      > [data-pc-section='content'] {
+        outline: solid var(--space-0_75) var(--outline-focus);
+        border-radius: var(--size-1_5);
+      }
+    }
+
+    [data-pc-section='filtericon'] {
+      position: static;
+      margin-top: 0;
+    }
+
+    ul ul {
+      padding-left: var(--space-4);
+    }
+
+    [data-pc-section='content'] {
+      display: flex;
+      padding: var(--space-2_5) var(--space-4);
+      align-items: center;
+      gap: var(--space-2);
+      border-radius: var(--size-1_5);
+      cursor: pointer;
+
+      &[data-p-highlight='true'] {
+        color: var(--content-interactive-subdued-active);
+        background-color: var(--surface-interactive-active);
+      }
+
+      &:hover.p-treenode-selectable {
+        color: var(--content-interactive-subdued-hover);
+        background-color: var(--surface-interactive-hover);
+      }
+    }
+
+    .p-treenode-leaf [data-pc-section='toggler'] {
+      visibility: hidden;
+    }
+
+    [data-pc-section='toggler'] > svg {
+      width: var(--size-2_5);
+      height: var(--size-2_5);
+    }
+  }
+}

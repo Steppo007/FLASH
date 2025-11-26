@@ -1,0 +1,32 @@
+# Using Krones Components
+
+To use a Krones React component, simply import the component from `@flash/ui-components/[category]/[component]`.
+For example, to use the [KButton](/docs/components-button-kbutton--docs):
+
+```jsx
+import { KButton } from '@flash/ui-components/button/kbutton';
+
+<KButton 
+  label="Krones" 
+  disabled={false} 
+  icon={<svg> ... </svg>} 
+  iconPos="left" 
+  size="small" 
+  variant="primary" 
+/>;
+```
+
+More information specific to each component, such as the supported properties, can be found on the corresponding documentation pages. 
+
+### Usage of PrimeReact 
+
+Many components, especially those which have some degree of complexity, make use of the library [PrimeReact](https://primereact.org).
+One example is the [KInputDropdown](/docs/components-form-kinputdropdown--docs).
+In such cases, we explicitly state this in the documentation, making reference to the exact primereact component being used. Whenever 
+PrimeReact components are being used under the hood, the component properties will resemble those of the PrimeReact component, and we will
+therefore point you to the PrimeReact documentation to understand how to use those properties. Still, the idea is that the Krones
+Component Library provides some layer of abstraction over PrimeReact.
+
+### What's Next?
+
+Continue through the set-up guide. Next up: [Using Colors](/docs/general-3-using-colors--docs).

@@ -1,0 +1,103 @@
+@layer krones-library {
+  /* kro-kfloatlabel should only be used as a descendant of kro-kinputcontainer */
+
+  .kro-kinputcontainer {
+    .kro-kfloatlabel {
+      /* vertically centered inside input */
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      left: var(--size-2);
+      line-height: 130%;
+      margin-right: var(--size-3);
+      padding: 0 var(--size-1);
+      pointer-events: none;
+      transition:
+        top 0.2s ease,
+        font-size 0.2s ease,
+        background-position 1ms 0.1s;
+      /*
+      This gradient should not be affected by the safari bug, since it contains only a 'hard edge' 
+      and no real gradient. If strange behaviour still occurs, refer to:
+      https://stackoverflow.com/questions/55594942/transparent-gradient-not-working-in-safari
+      */
+      background: linear-gradient(
+        to top,
+        var(--surface-default) 55%,
+        transparent 55%
+      );
+    }
+    .kro-kfloatlabel-ksearchinputdropdown {
+      left: var(--size-6);
+    }
+    textarea ~ .kro-kfloatlabel {
+      top: var(--space-5);
+    }
+
+    /* Colors based on invalid/disabled states */
+    .kro-kfloatlabel {
+      color: var(--content-bodytext);
+    }
+
+    &:has(.kro-disabled) .kro-kfloatlabel {
+      color: var(--content-disabled);
+    }
+
+    &:has(.kro-invalid) .kro-kfloatlabel {
+      color: var(--content-critical-default);
+    }
+
+    &:has(.kro-disabled.kro-invalid) .kro-kfloatlabel {
+      color: var(--content-critical-disabled);
+    }
+
+    /* when input is focused */
+    &:has(input:focus),
+    &:has(textarea:focus),
+    &:has([data-p-focus='true']) {
+      .kro-kfloatlabel {
+        background-position: 0 -0.1875rem;
+        transition:
+          all 0.2s ease,
+          background-position 1ms;
+      }
+    }
+
+    &:has(.kro-size-small) .kro-kfloatlabel {
+      font-size: 0.75rem;
+    }
+
+    &:has(.kro-size-default) .kro-kfloatlabel {
+      font-size: 0.875rem;
+    }
+
+    &:has(.kro-size-large) .kro-kfloatlabel {
+      font-size: 1rem;
+    }
+
+    /* when the label is on top */
+    &:has(input:focus),
+    &:has(textarea:focus),
+    &:has([data-p-focus='true']),
+    &:has(.kro-filled) {
+      .kro-kfloatlabel {
+        top: 0;
+      }
+      .kro-kfloatlabel-ksearchinputdropdown {
+        top: 0;
+        left: var(--size-2);
+      }
+      &:has(.kro-size-small) .kro-kfloatlabel {
+        font-size: 0.625rem;
+      }
+
+      &:has(.kro-size-default) .kro-kfloatlabel {
+        font-size: 0.75rem;
+      }
+
+      &:has(.kro-size-large) .kro-kfloatlabel {
+        font-size: 0.875rem;
+      }
+    }
+  }
+}

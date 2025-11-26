@@ -1,0 +1,57 @@
+## Pagination
+
+### Overview
+
+**Pagination** is a navigation component that allows users to navigate through large sets of content by dividing them into multiple pages. It provides a structured way to browse data-heavy interfaces efficiently, improving usability and performance.
+
+* * * * *
+
+### When to Use It
+
+-   When a large amount of content needs to be displayed in a structured manner.
+
+-   When users need to move between pages of data, search results, or lists.
+
+-   When loading all content at once would impact performance.
+
+#### **Avoid using Pagination when:**
+
+-   The content can be displayed using infinite scrolling for a more seamless experience.
+
+-   The data set is small enough to be shown on a single page.
+
+* * * * *
+
+### Live Preview
+
+#### **[Try this component out here](/docs/components-misc-kpaginator--docs)**
+
+* * * * *
+
+### Component Features
+
+-   **Pagination Items:** The component displays two or more numbered pages for navigation.
+
+-   **Previous & Next Controls:** Buttons that allow users to move forward or backward between pages.
+
+-   **First & Last Page Buttons (Optional):** Direct links to the first and last pages for quicker navigation.
+
+-   **Ellipsis (...) for Large Sets:** When many pages exist, ellipses (`...`) are shown to condense the view.
+
+-   **Content Amount Dropdown (Optional):** Users can select how many items to display per page (e.g., 10, 25, 50, 100).
+
+* * * * *
+
+### Dos and Don'ts
+
+#### **Dos:**
+
+✔ Use pagination when displaying large amounts of data that need structured navigation.\
+✔ Provide previous/next buttons for accessibility and ease of navigation.\
+✔ Show the current page number clearly to indicate the user's position.\
+✔ Offer a dropdown for content per page when applicable.
+
+#### **Don'ts:**
+
+✘ Don't overload the user with too many numbered pages---use ellipses (`...`) for large datasets.\
+✘ Don't remove navigation buttons (Next, Previous) even if they are disabled.

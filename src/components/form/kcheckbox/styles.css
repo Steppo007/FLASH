@@ -1,0 +1,11 @@
+@layer krones-library {
+  .kro-kcheckbox {
+    &.kro-size-small .kro-kcheckable-box {
+      border-radius: var(--space-1);
+    }
+
+    &.kro-size-default .kro-kcheckable-box {
+      border-radius: var(--space-1_5);
+    }
+  }
+}

@@ -1,0 +1,44 @@
+@layer krones-library {
+  .kro-kselectlist {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+
+    .kro-select-list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-right: var(--space-4);
+      height: var(--size-12);
+
+      .kro-ktext {
+        color: var(--content-interactive-default);
+      }
+    }
+
+    .kro-select-list-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+
+      .kro-klistitem {
+        height: var(--size-12);
+
+        &:first-child {
+          border-top-left-radius: var(--size-1_5);
+          border-top-right-radius: var(--size-1_5);
+        }
+        &:last-child {
+          border-bottom-left-radius: var(--size-1_5);
+          border-bottom-right-radius: var(--size-1_5);
+        }
+
+        .kro-text-container .kro-headline {
+          color: var(--content-interactive-default);
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}

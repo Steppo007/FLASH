@@ -1,0 +1,202 @@
+import { Meta, Description, Canvas, Controls, Story, Title } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import ExampleBasic from './exampleBasic';
+import ExampleControlled from './exampleControlled'
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Uses: [PrimeReact Dialog](https://primereact.org/dialog)
+
+The Multi-Page Dialog is used to display a dialog in which the user
+can navigate through multiple pages.
+
+## Basic Example 
+
+In this example, the state of the active page is controlled internally.
+
+<ExampleBasic/>
+
+[comment]: # (START WRITE ./exampleBasic.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+// these svg imports work with vite and vite-plugin-svgr
+import AccountFigure from '@flash/ui-components/assets/svgs/icons/accountFigure.svg?react';
+import LanguageGlobe from '@flash/ui-components/assets/svgs/icons/languageGlobe.svg?react';
+import ThemePalette from '@flash/ui-components/assets/svgs/icons/themePalette.svg?react';
+import MailOutline from '@flash/ui-components/assets/svgs/icons/mailOutline.svg?react';
+import NotificationBell from '@flash/ui-components/assets/svgs/icons/notificationBell.svg?react';
+
+import { KButton } from '@flash/ui-components/button/kbutton';
+import {
+  KMultiPageDialog,
+  KDialogPage,
+} from '@flash/ui-components/overlay/kmultipagedialog';
+import { useState } from 'react';
+import { KText } from '@flash/ui-components/misc/ktext';
+import { ExampleWrapper } from '@sbook/utils';
+
+const ContentPage = (props: { pageId: string }) => {
+  return (
+    <div className="flex h-full items-center justify-center p-12 text-center">
+      <KText type="text">
+        Add content here for page with id: <br></br>
+        {props.pageId}
+      </KText>
+    </div>
+  );
+};
+
+export const model: KDialogPage[] = [
+  {
+    label: 'Account',
+    icon: <AccountFigure />,
+    id: 'account',
+    content: <ContentPage pageId="account" />,
+  },
+  {
+    label: 'Theme',
+    icon: <ThemePalette />,
+    id: 'theme',
+    content: <ContentPage pageId="theme" />,
+  },
+  {
+    label: 'Language',
+    icon: <LanguageGlobe />,
+    id: 'language',
+    content: <ContentPage pageId="language" />,
+  },
+  {
+    label: 'Contact',
+    icon: <MailOutline />,
+    id: 'contact',
+    content: <ContentPage pageId="contact" />,
+  },
+  {
+    label: 'Notifications',
+    icon: <NotificationBell />,
+    id: 'notifications',
+    content: <ContentPage pageId="notifications" />,
+  },
+];
+
+export default function ExampleBasic() {
+  const [isVisible, setIsVisible] = useState(false);
+  const showDialog = () => {
+    setIsVisible(true);
+  };
+  const hideDialog = () => {
+    setIsVisible(false);
+  };
+
+  return (
+    <ExampleWrapper className="flex items-center justify-center">
+      <KButton label="Show Dialog" onClick={showDialog} />
+      <KMultiPageDialog
+        visible={isVisible}
+        model={model}
+        onHide={hideDialog}
+        header={'Settings'}
+        footer={
+          <>
+            <KButton label="Primary Action" />
+            <KButton label="Secondary Action" variant="outlined" />
+          </>
+        }
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## Controlled Example 
+
+In this example, the state of the active page is controlled outside of the component, so you have "full" control over which page to show.
+See how you can set the initial page to not be the first one.
+This can be useful, when you want to orient the user to a specific section of the dialog.
+
+<ExampleControlled/>
+
+[comment]: # (START WRITE ./exampleControlled.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+// these svg imports work with vite and vite-plugin-svgr
+import AccountFigure from '@flash/ui-components/assets/svgs/icons/accountFigure.svg?react';
+import MailOutline from '@flash/ui-components/assets/svgs/icons/mailOutline.svg?react';
+import NotificationBell from '@flash/ui-components/assets/svgs/icons/notificationBell.svg?react';
+
+import { KButton } from '@flash/ui-components/button/kbutton';
+import {
+  KMultiPageDialog,
+  KDialogPage,
+} from '@flash/ui-components/overlay/kmultipagedialog';
+import { useState } from 'react';
+import { KText } from '@flash/ui-components/misc/ktext';
+import { ExampleWrapper } from '@sbook/utils';
+
+const ContentPage = (props: { pageId: string }) => {
+  return (
+    <div className="flex min-h-40 min-w-96 items-center justify-center p-12 text-center">
+      <KText type="text">
+        Add content here for page with id: <br></br>
+        {props.pageId}
+      </KText>
+    </div>
+  );
+};
+
+export const model: KDialogPage[] = [
+  {
+    label: 'Account',
+    icon: <AccountFigure />,
+    id: 'account',
+    content: <ContentPage pageId="account" />,
+  },
+  {
+    label: 'Contact',
+    icon: <MailOutline />,
+    id: 'contact',
+    content: <ContentPage pageId="contact" />,
+  },
+  {
+    label: 'Notifications',
+    icon: <NotificationBell />,
+    id: 'notifications',
+    content: <ContentPage pageId="notifications" />,
+  },
+];
+
+export default function ExampleControlled() {
+  const [activePage, setActivePage] = useState(model[2].id);
+  const [isVisible, setIsVisible] = useState(false);
+  const showDialog = () => {
+    setIsVisible(true);
+  };
+  const hideDialog = () => {
+    setIsVisible(false);
+  };
+
+  return (
+    <ExampleWrapper className="flex items-center justify-center">
+      <KButton label="Show Dialog" onClick={showDialog} />
+      <KMultiPageDialog
+        visible={isVisible}
+        model={model}
+        activePageId={activePage}
+        onPageChange={setActivePage}
+        onHide={hideDialog}
+        header={'Settings'}
+        footer={
+          <>
+            <KButton label="Primary Action" />
+            <KButton label="Secondary Action" variant="outlined" />
+          </>
+        }
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

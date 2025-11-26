@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "authors": [
+      {
+        "name": "krones.digital CDA"
+      }
+    ],
+    "supplier": {
+      "name": "krones.digital CDA"
+    },
+    "properties": [
+      {
+        "name": "krones:uid",
+        "value": ""
+      }
+    ],
+    "component": {}
+  }
+}

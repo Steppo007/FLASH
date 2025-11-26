@@ -1,0 +1,76 @@
+@layer krones-library {
+  .kro-kselectbutton {
+    display: flex;
+    border-radius: var(--size-1_5);
+
+    & > [data-pc-section='button'] {
+      height: var(--size-8);
+      padding: var(--space-2) var(--space-4);
+      border-width: var(--size-px);
+      border-style: solid;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:first-child {
+        border-top-left-radius: var(--size-1_5);
+        border-bottom-left-radius: var(--size-1_5);
+      }
+
+      &:not(:last-child) {
+        border-right-width: var(--size-0);
+      }
+
+      &:last-child {
+        border-top-right-radius: var(--size-1_5);
+        border-bottom-right-radius: var(--size-1_5);
+      }
+
+      &.selected {
+        background-color: var(--surface-interactive-primary-default);
+        border-color: var(--border-interactive-selected-default);
+        color: var(--button-content-primary-default);
+
+        &:hover {
+          background-color: var(--surface-interactive-primary-hover);
+          color: var(--button-content-primary-hover);
+        }
+      }
+
+      &:not(.selected) {
+        background-color: var(--surface-interactive-default);
+        border-color: var(--border-interactive-default);
+        color: var(--content-interactive-subdued-default);
+
+        &:hover {
+          background-color: var(--surface-interactive-hover);
+          color: var(--content-interactive-subdued-hover);
+        }
+      }
+
+      & > [data-pc-section='label'] {
+        svg {
+          height: var(--size-4);
+          width: var(--size-4);
+        }
+
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 130%;
+      }
+    }
+  }
+
+  .kro-kselectbutton-button-container {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-1);
+    align-items: center;
+
+    svg {
+      height: var(--size-4);
+      width: var(--size-4);
+      flex-shrink: 0;
+    }
+  }
+}

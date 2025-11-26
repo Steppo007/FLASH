@@ -1,0 +1,62 @@
+@layer krones-library {
+  .kro-kpassword {
+    width: 100%;
+    position: relative;
+
+    &::placeholder {
+      color: var(--input-content-default-default);
+    }
+
+    &.kro-disabled::placeholder {
+      color: var(--input-content-default-disabled);
+    }
+
+    [data-pc-name='iconfield'] {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .p-input-icon {
+      position: static;
+      margin-top: 0;
+    }
+
+    .p-inputtext:enabled:focus {
+      border: none;
+      box-shadow: none;
+      outline: none;
+    }
+
+    .p-password-input {
+      width: 100%;
+      padding-right: var(--size-1);
+      background-color: var(--input-surface-default-default);
+    }
+
+    &.kro-size-small {
+      .p-password-show-icon,
+      .p-password-hide-icon {
+        width: var(--size-3);
+        height: var(--size-3);
+      }
+    }
+
+    &.kro-size-default {
+      .p-password-show-icon,
+      .p-password-hide-icon {
+        width: var(--size-4);
+        height: var(--size-4);
+      }
+    }
+
+    &.kro-size-large {
+      .p-password-show-icon,
+      .p-password-hide-icon {
+        width: var(--size-4_5);
+        height: var(--size-4_5);
+      }
+    }
+  }
+}

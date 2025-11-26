@@ -1,0 +1,173 @@
+import {
+  Meta,
+  Description,
+  Canvas,
+  Controls,
+  Story,
+  Title,
+} from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import { BasicExample } from './basicExample';
+import { AdvancedExample } from './advancedExample';
+import { VirtualScrollingExample } from './virtualScrollingExample';
+
+<Meta of={metaData} />
+
+<Title />
+
+### Uses: [PrimeReact AutoComplete](https://primereact.org/autocomplete)
+
+The KInputSearch component is used to search for the entered text. It can give the user suggestions with a dropdown and gives feedback on the feasibility of the content with error states.
+
+<Canvas of={metaData.Story} />
+
+Experiment with changing the attributes below. Some of them are custom attributes, and some come directly from PrimeReact.
+
+<Controls />
+
+## Example Usage with PrimeReact
+
+The KInputSearch should be used exactly as recommended in the Primereact [documentation](https://primereact.org/autocomplete).
+
+**Note: Not the entire functionality of the PrimeReact AutoComplete component is supported, e.g. multiple selections and manual toggling of the dropdown.**
+
+## Example: Basic
+
+<BasicExample />
+
+[comment]: # (START WRITE ./basicExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import KInputSearch from '@flash/ui-components/form/kinputsearch';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import { AutoCompleteCompleteEvent } from 'primereact/autocomplete';
+import { useState } from 'react';
+
+export function BasicExample() {
+  const [value, setValue] = useState('');
+  const [items, setItems] = useState<string[]>([]);
+
+  const search = (event: AutoCompleteCompleteEvent) => {
+    setItems([...Array(10).keys()].map((item) => event.query + '-' + item));
+  };
+
+  return (
+    <ExampleWrapper className="flex justify-center">
+      <KInputSearch
+        value={value}
+        suggestions={items}
+        completeMethod={search}
+        onChange={(event) => setValue(event.value)}
+        placeholder="type something"
+        className="w-72"
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## Example: Advanced
+
+<AdvancedExample />
+
+[comment]: # (START WRITE ./advancedExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import KInputSearch from '@flash/ui-components/form/kinputsearch';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import { AutoCompleteCompleteEvent } from 'primereact/autocomplete';
+import { useState } from 'react';
+
+const users = [
+  { label: 'Alice Johnson', value: 'alice_johnson' },
+  { label: 'Bob Smith', value: 'bob_smith' },
+  { label: 'Charlie Brown', value: 'charlie_brown' },
+  { label: 'David Wilson', value: 'david_wilson' },
+  { label: 'Eva Green', value: 'eva_green' },
+  { label: 'Frank White', value: 'frank_white' },
+  { label: 'Grace Lee', value: 'grace_lee' },
+  { label: 'Hannah Scott', value: 'hannah_scott' },
+  { label: 'Ian Clark', value: 'ian_clark' },
+];
+
+export function AdvancedExample() {
+  const [selectedUser, setSelectedUser] = useState<(typeof users)[0] | null>(
+    null
+  );
+  const [filteredUsers, setFilteredUsers] = useState<typeof users>([]);
+  const valid = !selectedUser;
+
+  const search = (event: AutoCompleteCompleteEvent) => {
+    setFilteredUsers(
+      users.filter((u) =>
+        u.label.toLowerCase().includes(event.query.toLowerCase())
+      )
+    );
+  };
+
+  return (
+    <ExampleWrapper className="flex justify-center">
+      <KInputSearch
+        field="label"
+        value={selectedUser}
+        suggestions={filteredUsers}
+        completeMethod={search}
+        onChange={(event) => setSelectedUser(event.value)}
+        floatLabel="Username"
+        helperText="Helper text"
+        invalid={valid}
+        className="w-72"
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## Example: Virtual Scrolling
+
+<VirtualScrollingExample />
+
+[comment]: # (START WRITE ./virtualScrollingExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import KInputSearch from '@flash/ui-components/form/kinputsearch';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import { AutoCompleteCompleteEvent } from 'primereact/autocomplete';
+import { useState } from 'react';
+
+const items = Array.from({ length: 100000 }).map((_, i) => ({
+  label: `Item #${i}`,
+  value: i,
+}));
+
+export function VirtualScrollingExample() {
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [filteredItems, setFilteredItems] = useState<unknown[]>([]);
+
+  const searchItems = (event: AutoCompleteCompleteEvent) => {
+    setFilteredItems(
+      items.filter((item) =>
+        item.label.toLowerCase().startsWith(event.query.toLowerCase())
+      )
+    );
+  };
+
+  return (
+    <ExampleWrapper className="flex justify-center">
+      <KInputSearch
+        field="label"
+        value={selectedItem}
+        suggestions={filteredItems}
+        completeMethod={searchItems}
+        virtualScrollerOptions={{ itemSize: 38 }}
+        onChange={(event) => setSelectedItem(event.value)}
+        floatLabel="Virtual scrolling"
+        className="w-72"
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

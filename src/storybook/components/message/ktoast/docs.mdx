@@ -1,0 +1,156 @@
+import { Meta, Description, Canvas, Controls, Story, Title } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import { Example } from './example';
+import { ExampleWithProvider } from './exampleWithProvider';
+
+<Meta of={metaData} />
+
+<Title />
+
+### Uses: [PrimeReact Toast](https://primereact.org/toast)
+
+The KToast is used to display messages in an overlay.
+
+<Example />
+
+## Example Usage
+
+Use the KToast as one uses the PrimeReact [Toast component](https://primereact.org/toast). Simply 
+replace usages of `Toast` with `KToast`.
+
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KButton } from '@flash/ui-components/button/kbutton';
+import { KToast } from '@flash/ui-components/message/ktoast';
+import { ExampleWrapper } from '@sbook/utils';
+import { Toast } from 'primereact/toast';
+import { useRef } from 'react';
+
+export function Example() {
+  const toast = useRef<Toast>(null);
+
+  const show = () => {
+    toast.current?.show({
+      severity: 'success',
+      summary: 'Response Submitted',
+      detail: 'Your submission was successful.',
+    });
+  };
+
+  return (
+    <ExampleWrapper className="relative flex h-96 items-center justify-center">
+      <KButton label="Submit" onClick={show} />
+      <KToast position="top-right" ref={toast} className="!absolute" />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## Example: With Provider
+
+It is recommended to use a global toast object to make sure toasts behave well throughout the application.
+
+For example, if multiple sources trigger a toast, the toasts should be rendered by the same component to
+make sure they are shown in the correct order and do not overlap.
+
+<ExampleWithProvider />
+
+[comment]: # (START WRITE ./exampleWithProvider.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KButton } from '@flash/ui-components/button/kbutton';
+import { KToast } from '@flash/ui-components/message/ktoast';
+import KText from '@flash/ui-components/misc/ktext';
+import { KDialog } from '@flash/ui-components/overlay/kdialog';
+import { Toast } from 'primereact/toast';
+import { createContext, RefObject, useContext, useRef, useState } from 'react';
+
+import { ExampleWrapper } from '@sbook/utils';
+
+interface ToastContextValue {
+  toastRef: RefObject<Toast | null>;
+}
+
+const defaultValue: ToastContextValue = {
+  toastRef: { current: null },
+};
+
+const ToastContext = createContext<ToastContextValue>(defaultValue);
+
+const useToast = () => {
+  return useContext(ToastContext);
+};
+
+function ToastProvider(props: { children: React.ReactNode }) {
+  const toastRef = useRef<Toast>(null);
+
+  return (
+    <ToastContext.Provider value={{ toastRef }}>
+      {props.children}
+      <KToast position="top-right" ref={toastRef} />
+    </ToastContext.Provider>
+  );
+}
+
+function App() {
+  const [visible, setVisible] = useState(false);
+  const { toastRef } = useToast();
+
+  return (
+    <>
+      <KButton
+        label="Open Dialog"
+        onClick={() => {
+          setVisible(true);
+        }}
+      ></KButton>
+      <KDialog
+        visible={visible}
+        onHide={() => {
+          setVisible(false);
+        }}
+        footer={
+          <div className="flex w-full items-center justify-end p-4 text-center">
+            <KButton
+              label="Show Toast"
+              onClick={() => {
+                toastRef.current?.show({
+                  severity: 'success',
+                  summary: 'A toast message!',
+                  detail: 'This is a sticky toast.',
+                  sticky: true,
+                });
+              }}
+            />
+          </div>
+        }
+      >
+        <div className="flex max-w-[500px] flex-col gap-4 p-4">
+          <KText>
+            Using a global toast component via a provider makes sure toasts
+            behave correctly, for example when there are modals involved.
+          </KText>
+          <KText>
+            Another advantage of using a shared toast component is that toasts
+            from different sources are not placed on top of each other, but are
+            interleaved correctly.
+          </KText>
+        </div>
+      </KDialog>
+    </>
+  );
+}
+
+export function ExampleWithProvider() {
+  return (
+    <ExampleWrapper className="relative flex h-96 items-center justify-center">
+      <ToastProvider>
+        <App />
+      </ToastProvider>
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

@@ -1,0 +1,54 @@
+@layer krones-library {
+  .kro-ktag {
+    display: flex;
+    height: var(--size-6);
+    padding: var(--size-0_75) var(--size-2_5);
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-1);
+
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 130%;
+    color: var(--content-inverse-default);
+
+    &.kro-ktag-rounded {
+      border-radius: var(--size-4);
+    }
+
+    &.kro-ktag-square {
+      border-radius: var(--size-0);
+    }
+
+    &.kro-ktag-success {
+      background-color: var(--surface-success-accented);
+    }
+
+    &.kro-ktag-warning {
+      background-color: var(--surface-warning-accented);
+    }
+
+    &.kro-ktag-danger {
+      background-color: var(--surface-critical-accented);
+    }
+
+    &.kro-ktag-info {
+      background-color: var(--surface-brand-accented);
+    }
+
+    &.kro-ktag-neutral {
+      background-color: var(--surface-neutral-default);
+      color: var(--content-bold);
+    }
+
+    &.kro-ktag-value {
+      font-size: 0.75rem;
+      font-weight: 600;
+      line-height: 130%;
+    }
+
+    span:empty {
+      display: none;
+    }
+  }
+}

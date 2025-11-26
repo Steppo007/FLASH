@@ -1,0 +1,46 @@
+@layer krones-library {
+  .kro-kseverityicon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--size-12);
+    height: var(--size-12);
+    border-radius: var(--size-1_5);
+    border: var(--size-px) solid var(--border-default);
+    background: var(--surface-layer);
+
+    &.kro-size-default {
+      transform: scale(calc(14 / 12));
+    }
+
+    &.kro-size-large {
+      transform: scale(calc(16 / 12));
+    }
+
+    .kro-kseveritybadge {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      transform: translate(25%, 25%);
+
+      .kro-indicator-mask {
+        fill: var(--surface-layer);
+      }
+    }
+
+    .kro-icon {
+      position: relative;
+      color: var(--surface-brand-accented);
+    }
+
+    .kro-icon > svg:first-child {
+      width: var(--size-8);
+      height: var(--size-8);
+    }
+
+    .kro-kseveritybadge svg {
+      width: var(--size-4);
+      height: var(--size-4);
+    }
+  }
+}

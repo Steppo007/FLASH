@@ -1,0 +1,6 @@
+/* defines styles specific to this component */
+
+.$classname {
+    /* TODO: implement styles */
+    color: var(--content-bodytext);
+}

@@ -1,0 +1,96 @@
+@layer krones-library {
+  .kro-ktabmenu {
+    font-weight: 400;
+    line-height: 130%;
+    height: fit-content;
+
+    &.size-small {
+      font-size: 0.75rem;
+
+      svg {
+        width: var(--size-3_5);
+        height: var(--size-3_5);
+      }
+
+      [data-pc-section='action'] {
+        padding: var(--space-3) var(--space-4);
+      }
+    }
+
+    &.size-default {
+      font-size: 0.875rem;
+
+      svg {
+        width: var(--size-4);
+        height: var(--size-4);
+      }
+
+      [data-pc-section='action'] {
+        padding: var(--space-4);
+      }
+    }
+
+    [data-pc-section='menu'] {
+      display: flex;
+      align-items: center;
+    }
+
+    [data-pc-section='action'] {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-2);
+      align-self: stretch;
+      transition: outline-color 0.2s;
+      border-radius: var(--space-1_5);
+    }
+
+    [data-pc-section='menuitem'] {
+      flex-grow: 1;
+      justify-content: center;
+      border-bottom: var(--size-0_5) solid var(--border-interactive-default);
+      color: var(--content-interactive-subdued-default);
+      transition:
+        color 0.1s,
+        border-color 0.1s;
+
+      &:hover {
+        border-bottom-color: var(--border-interactive-hover);
+        color: var(--content-interactive-subdued-hover);
+      }
+
+      &[data-p-disabled='true'] {
+        border-bottom-color: var(--border-interactive-disabled);
+        color: var(--content-interactive-subdued-disabled);
+
+        [data-pc-section='action'] {
+          cursor: default;
+        }
+      }
+
+      &.isActive {
+        border-bottom-color: var(--border-interactive-active);
+        color: var(--content-interactive-subdued-active);
+      }
+    }
+
+    [data-pc-section='inkbar'] {
+      display: none;
+    }
+  }
+
+  /* the following styles are adjustments to provide support for badges */
+  .kro-ktabmenu {
+    [data-pc-section='menuitem'] {
+      display: flex;
+      align-items: center;
+
+      .kro-kbadge {
+        flex-shrink: 0;
+        flex-grow: 0;
+        margin-left: calc(-1 * var(--space-2));
+        margin-right: var(--space-2);
+      }
+    }
+  }
+}

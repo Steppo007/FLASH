@@ -1,0 +1,3 @@
+@import './tailwind.ui-library-theme.autogen.css';
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));

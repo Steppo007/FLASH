@@ -1,0 +1,47 @@
+@layer krones-library {
+  .kro-kpaginator {
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: var(--size-6);
+      width: var(--size-6);
+      border-radius: 100%;
+
+      font-size: 0.75rem;
+      font-weight: 400;
+      line-height: 130%;
+
+      color: var(--content-interactive-subdued-default);
+
+      &:hover {
+        color: var(--content-interactive-subdued-hover);
+        background-color: var(--surface-interactive-hover);
+      }
+
+      &:disabled {
+        &,
+        &:hover {
+          color: var(--content-interactive-subdued-disabled);
+          background-color: transparent;
+        }
+      }
+
+      &[aria-current='true'] {
+        color: var(--content-interactive-primary-active);
+        background-color: var(--surface-interactive-selected-default);
+      }
+    }
+
+    &,
+    & > [data-pc-section='pages'] {
+      display: flex;
+      gap: var(--space-3);
+      align-items: center;
+    }
+
+    .kro-kinputdropdown {
+      margin-left: var(--space-6);
+    }
+  }
+}

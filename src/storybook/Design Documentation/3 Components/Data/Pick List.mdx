@@ -1,0 +1,77 @@
+## Pick List
+
+### Overview
+
+The **Pick List** component allows users to select an ordered sublist of elements from a larger list. It provides an intuitive interface for moving items between two lists, typically referred to as the source list and the target list. This component is useful for scenarios where users need to create a custom selection or prioritize items from a broader set.
+
+* * * * *
+
+### When to Use It
+
+-   When users need to select and order a subset of items from a larger list.
+
+-   When you want to provide a clear and interactive way for users to manage selections and priorities.
+
+-   When the selection process requires filtering, sorting, or editing capabilities.
+
+#### **Avoid using a pick list when:**
+
+-   When the list of items is very small and can be managed with simpler selection controls.
+
+-   When the selection process does not require ordering or prioritization.
+
+-   When a different component, such as checkboxes or dropdowns, would be more appropriate for the selection task.
+
+* * * * *
+
+### Live Preview
+
+#### **[Try this component out here](/docs/components-data-kpicklist--docs)**
+
+* * * * *
+
+### Features
+
+-   **Filter By:** When specified, displays an input field to filter the items based on the given field (accepts multiple fields with a comma). This helps users quickly find items in large lists.
+
+-   **Source Header:** The header for the source list, providing context for the items available for selection.
+
+-   **Target Header:** The header for the target list, providing context for the items that have been selected.
+
+-   **Show Source Controls:** When enabled, provides controls for editing the source list, such as reordering items.
+
+-   **Show Target Controls:** When enabled, provides controls for editing the target list, such as reordering or removing selected items.
+
+* * * * *
+
+### Variants
+
+-   **Sort List:** A variant where the items can be sorted within the source or target lists.
+
+-   **Pick List:** The standard variant where users can move items between the source and target lists.
+
+* * * * *
+
+### Behavior
+
+-   **Default State:** The standard appearance and functionality of the pick list when it is first loaded, with items in their initial positions.
+
+-   **Hover State:** The visual changes that occur when a user hovers over an item, such as highlighting or color changes.
+
+-   **Active State:** Indicates the selected or focused state of items, visually distinct to show they are active or being interacted with.
+
+* * * * *
+
+### Dos and Don'ts
+
+#### **Dos:**
+
+✔ Use clear and concise headers for the source and target lists to ensure users understand the context of the items.\
+✔ Provide filtering options to help users quickly find items in large lists.\
+✔ Ensure the component is accessible, providing keyboard and screen reader support for all interactions.
+
+#### **Don'ts:**
+
+✘ Overload the pick list with too many items, which can make it difficult to navigate and manage selections.\
+✘ Use the pick list for simple selections that do not require ordering or prioritization.\
+✘ Neglect to test the component's responsiveness and appearance on different devices and screen sizes.

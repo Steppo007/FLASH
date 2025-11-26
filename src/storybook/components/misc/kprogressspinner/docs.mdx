@@ -1,0 +1,43 @@
+import { Meta, Title, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories'; 
+import Example from './example'
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Uses: [PrimeReact ProgressSpinner](https://primereact.org/progressspinner/)
+
+The KProgressSpinner is a process status indicator. It can be used while you are fetching something in the background (ongoing HTTP call, database query)
+
+<Canvas of={metaData.Story} />
+<Controls />
+
+<Example/>
+
+## Example Usage 
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KProgressSpinner } from '@flash/ui-components/misc/kprogressspinner';
+import { kroSizes } from '@flash/ui-components/utils/kroClassNames';
+import { ExampleWrapper } from '@sbook/utils';
+
+export default function Example() {
+  return (
+    <ExampleWrapper className="flex items-center justify-center">
+      {kroSizes.map((size) => {
+        return (
+          <KProgressSpinner
+            key={size}
+            size={size}
+            strokeWidth={6}
+            animationDurationMillis={1500}
+          />
+        );
+      })}
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

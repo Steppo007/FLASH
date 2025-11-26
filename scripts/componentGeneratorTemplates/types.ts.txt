@@ -1,0 +1,9 @@
+// defines types for this component
+
+// TODO: implement actual props
+export interface $ComponentProps {
+    /**
+     * the label of the component
+     */
+    label?: string;
+}

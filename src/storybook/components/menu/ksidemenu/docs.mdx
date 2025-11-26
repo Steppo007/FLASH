@@ -1,0 +1,88 @@
+import { Meta, Description, Canvas, Controls, Story, Title } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import Example from './example';
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Uses: [PrimeReact Tab Menu](https://primereact.org/tabmenu)
+
+The Side Menu is a non-nested side-navigation tab menu used to switch between different content-views.
+
+
+<Canvas of={metaData.Story} />
+
+# Example Usage 
+
+You should use the `KSideMenu` exactly as suggested in the documentation for the [PrimeReact Tab Menu](https://primereact.org/tabmenu). 
+
+<Example/>
+
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+// these svg imports work with vite and vite-plugin-svgr
+import AccountFigure from '@flash/ui-components/assets/svgs/icons/accountFigure.svg?react';
+import LanguageGlobe from '@flash/ui-components/assets/svgs/icons/languageGlobe.svg?react';
+import ThemePalette from '@flash/ui-components/assets/svgs/icons/themePalette.svg?react';
+import MailOutline from '@flash/ui-components/assets/svgs/icons/mailOutline.svg?react';
+import NotificationBell from '@flash/ui-components/assets/svgs/icons/notificationBell.svg?react';
+import { KSideMenu } from '@flash/ui-components/menu/ksidemenu';
+import { MenuItem } from 'primereact/menuitem';
+import { useState } from 'react';
+import { KText } from '@flash/ui-components/misc/ktext';
+import { ExampleWrapper } from '@sbook/utils';
+
+export const model: MenuItem[] = [
+  {
+    label: 'Account',
+    icon: <AccountFigure />,
+    id: 'account',
+  },
+  {
+    label: 'Theme',
+    icon: <ThemePalette />,
+    id: 'theme',
+  },
+  {
+    label: 'Language',
+    icon: <LanguageGlobe />,
+    id: 'language',
+  },
+  {
+    label: 'Contact',
+    icon: <MailOutline />,
+    id: 'contact',
+  },
+  {
+    label: 'Notifications',
+    icon: <NotificationBell />,
+    id: 'notification',
+  },
+];
+
+export default function Example() {
+  const [activeId, setActiveId] = useState('');
+  return (
+    <ExampleWrapper className="flex justify-center gap-4">
+      <div className="bg-surface-sidebar p-2">
+        <KSideMenu
+          model={model}
+          activeIndex={model.findIndex((x) => x.id === activeId)}
+          onTabChange={(e) => {
+            setActiveId(e.value.id ?? '');
+          }}
+        />
+      </div>
+      <div className="border-content-bodytext flex w-52 items-center justify-center border p-1">
+        <KText type="text" className="text-center">
+          Active id: <br></br>
+          {activeId}
+        </KText>
+      </div>
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

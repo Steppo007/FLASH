@@ -1,0 +1,22 @@
+@layer krones-library {
+  .kro-kskeleton {
+    background-color: var(--colors-neutral-200);
+  }
+
+  [data-theme='light'] .kro-kskeleton {
+    --skeleton-highlight: #ffffff77;
+  }
+
+  [data-theme='dark'] .kro-kskeleton {
+    --skeleton-highlight: #ffffffff;
+  }
+
+  .kro-kskeleton:after {
+    background: linear-gradient(
+      90deg,
+      #ffffff00,
+      var(--skeleton-highlight),
+      #ffffff00
+    );
+  }
+}

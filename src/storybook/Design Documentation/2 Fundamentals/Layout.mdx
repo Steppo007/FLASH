@@ -1,0 +1,88 @@
+<blockquote style={{backgroundColor: 'var(--surface-layer)', paddingTop: 'var(--space-2)', paddingBottom: 'var(--space-2)', borderColor: '#357de8'}}>
+**A layout is a structural template that supports consistency across applications by defining visual grids, spacing, and sections.**
+</blockquote>
+
+<blockquote style={{backgroundColor: 'var(--surface-layer)', paddingTop: 'var(--space-2)', paddingBottom: 'var(--space-2)', borderColor: '#e06c00'}}>
+**Before selecting a layout, review these guidelines:**
+- **Know your use case.** Understand how the information on the page will be used.
+- **Prioritize your content.** Organize your content to highlight the most important information.
+- **Group related content together.** Make it efficient for users to work with the content.
+</blockquote>
+
+[comment]: <> (START OF TABLE OF CONTENTS. PLS LINK TO ANCHORED SECTION IF POSSIBLE) 
+- [General Layout Rules](#general-layout-rules)
+- [Data Layouts (Part of Main Content area)](#data-layouts-part-of-main-content-area)
+  - [Table Layouts](#table-layouts)
+  - [Dashboard / Board Layouts](#dashboard--board-layouts)
+  - [Master Detail Layouts](#master-detail-layouts)
+
+
+## General Layout Rules
+
+In a UI layout, users expect to find certain types of content in certain areas. We call these areas *screen regions*. It is especially important for these zones to be consistent across devices and adapt across breakpoints.
+
+Applications within the KRONES.digital ecosystem consist of following layout regions:
+
+<ol style={{listStyleType: 'decimal'}}>
+  <li>App Shell Bar</li>
+  <li>Side Navigation (In-Product-Navigation)</li>
+  <li>Main Content</li>
+  <li>Drawer (Hidden by Default)</li>
+</ol>
+
+![](images/layout/general_layout_side.webp)
+
+![](images/layout/general_layout_main_content.webp)
+
+## Data Layouts (Part of Main Content area)
+
+A data layout consists of a simple page header and body that allows users to switch between predefined lists of items. Common controls include sorting, filtering, charting, and actions for the item type. Users can also switch between list layouts using the "Display" menu.
+
+Choose the types of list layout that best supports your use case:
+
+-   **Table**: Best for managing large sets of data and comparing values
+
+-   **Board**: Use to monitor a workflow or milestones where users can drag cards between stages to indicate progress
+
+-   **Master-Detail**: Allows users to see and edit the details of an item on one screen
+
+### Table Layouts
+
+Use a table layout for flexibly viewing and managing large sets of data. The layout uses 100% of the viewport. Items are displayed as rows with their fields organized in columns.
+
+The columns are fixed width and use as much horizontal space as necessary. Columns do not resize when the window changes width. Users can choose which columns to show and how wide each column is. If the grid is wider than the viewport, users horizontally scroll to see more data.
+
+The table can be of infinite length. Data is loaded as the user scrolls. This lets your users access their data most efficiently. Avoid using manual pagination controls, which reduce efficiency.
+
+<img src="images/layout/table_layout.webp" style={{maxHeight: '500px', margin: 'auto'}}/>
+
+### Dashboard / Board Layouts
+
+Use a board layout for items that are advancing through a linear workflow, such as a sales process, because it allows users to quickly move items between stages.
+
+The layout displays items in columns that are based on a picklist field on the object being viewed; a good example is the Stage field on a list of opportunities. Items are displayed as stacked cards in each column and can be moved between columns. Each column can optionally display an aggregate of any numerical data from that column's items, such as the total monetary value of a column of Opportunities.
+
+The minimum column width is 12rem, and the maximum is 25rem to ensure that cards are legible. If the columns don't fit in the viewport, users scroll horizontally to see more data.
+
+If the columns don't fill the viewport, they are expanded to their maximum width, and the area to the right of the last column remains empty.
+
+<img src="images/layout/board_layout.webp" style={{maxHeight: '500px', margin: 'auto'}}/>
+
+### Master Detail Layouts
+
+A master-detail layout is ideal for working through a queue of items because it allows the user to stay on the same screen while viewing and editing multiple items.
+
+The layout groups together two layout views with a one-to-many relationship. Selecting an item from the master view (which contains a list) causes the details of that item to be populated in the detail view, using a condensed reference or workspace layout.
+
+<img src="images/layout/master_detail_layout.webp" style={{maxHeight: '500px', margin: 'auto'}}/>
+
+A master-detail layout is also useful for exploring a deeply nested tree, like a file system, by displaying a tree component on the left and a table component on the right. This allows users to jump between nodes in the tree and to simultaneously view the full contents of each node as a list.
+
+<img src="images/layout/master_detail_layout_2.webp" style={{maxHeight: '500px', margin: 'auto'}}/>
+
+Master detail layouts work best on a larger screen (minimum of 1024px). If the screen is smaller, the two layout views should be defined as separate pages.
+
+<div style={{display: 'flex', justifyContent: 'space-around', gap: 'var(--space-4)', flexWrap: 'wrap'}}>
+  <img src="/images/layout/master_detail_small_1.webp" style={{height: '550px'}} />
+  <img src="/images/layout/master_detail_small_2.webp" style={{height: '550px'}} />
+</div>

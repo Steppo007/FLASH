@@ -1,0 +1,95 @@
+@layer krones-library {
+  .kro-kinputgroup {
+    display: flex;
+    align-items: stretch;
+    border-radius: 0.375rem;
+    border: var(--size-px) solid var(--formcontrol-border-default-default);
+    background-color: var(--input-surface-default-default);
+    transition: border-color 0.2s;
+
+    &.kro-invalid {
+      border-color: var(--input-border-error-default);
+
+      .kro-kinputcontainer,
+      .kro-kinputcontainer * {
+        border: none;
+        outline: none;
+      }
+    }
+
+    &:has(.kro-kinput:focus) {
+      border: var(--size-0_75) solid var(--outline-focus);
+    }
+
+    .kro-kinput:focus {
+      outline: none;
+      border: none;
+    }
+  }
+
+  .kro-kinputgroup:focus-within {
+    border-color: var(--formcontrol-border-default-default);
+  }
+
+  .kro-kinputgroup-prepend,
+  .kro-kinputgroup-append {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--space-2, 0.5rem);
+    background-color: var(--surface-neutral-default);
+    color: var(--input-content-default-default);
+    border-color: var(--formcontrol-border-default-default);
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .kro-kinputgroup-prepend.kro-size-small,
+  .kro-kinputgroup-append.kro-size-small {
+    font-size: 0.75rem;
+    height: var(--size-8);
+  }
+
+  .kro-kinputgroup-prepend.kro-size-default,
+  .kro-kinputgroup-append.kro-size-default {
+    font-size: 0.875rem;
+    height: var(--size-10);
+  }
+
+  .kro-kinputgroup-prepend.kro-size-large,
+  .kro-kinputgroup-append.kro-size-large {
+    font-size: 1rem;
+    height: var(--size-12);
+  }
+
+  .kro-kinputgroup-prepend {
+    border-radius: 0.3rem 0 0 0.3rem;
+    border-style: solid;
+    border-right-width: 0px;
+  }
+
+  .kro-kinputgroup-append {
+    border-radius: 0 0.3rem 0.3rem 0;
+    border-style: solid;
+    border-left-width: 0px;
+  }
+
+  .kro-kinputgroup-input-append .kro-kinputtext {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border: none;
+  }
+
+  .kro-kinputgroup-input-prepend .kro-kinputtext {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+  }
+
+  .kro-kinputgroup-prepend[style*='--input-border-error-default'] {
+    border-right: none;
+  }
+
+  .kro-kinputgroup-append[style*='--input-border-error-default'] {
+    border-left: none;
+  }
+}

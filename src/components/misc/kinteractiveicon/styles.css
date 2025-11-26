@@ -1,0 +1,41 @@
+@layer krones-library {
+  .kro-kinteractiveicon {
+    color: var(--content-interactive-subdued-default);
+    border-radius: var(--size-0_5);
+    transition: outline-color, 0.2s;
+
+    &:hover {
+      color: var(--content-interactive-subdued-hover);
+    }
+
+    &:focus {
+      color: var(--content-interactive-subdued-focus);
+    }
+
+    &:disabled {
+      color: var(--content-interactive-subdued-disabled);
+    }
+
+    &.size-small svg {
+      width: var(--size-4);
+      height: var(--size-4);
+    }
+
+    &.size-default svg {
+      width: var(--size-5);
+      height: var(--size-5);
+    }
+
+    &.size-large svg {
+      width: var(--size-6);
+      height: var(--size-6);
+    }
+  }
+
+  .kro-kinputcontainer > .kro-kinteractiveicon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

@@ -1,0 +1,507 @@
+import { Meta, Description, Title, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import { PaginatorExample } from './examples/paginator.tsx'
+import { BasicExample } from './examples/basic.tsx'
+import { CustomContentExample } from './examples/customContent.tsx'
+import { VirtualScrollExample } from './examples/virtualScroll.tsx'
+import { LazyScrollExample } from './examples/lazyScroll.tsx'
+import { FiltersExample } from './examples/filters.tsx'
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Uses: [PrimeReact Data Table](https://primereact.org/datatable)
+
+The KDataTable displays data in a tabular format.
+
+<Canvas of={metaData.Story} />
+<Controls/>
+
+## Example: Basic
+
+Use the KDataTable as recommended in the PrimeReact [documentation](https://primereact.org/datatable). 
+Replace usages of `DataTable` with `KDataTable` and usages of `Column` with `KColumn`. 
+
+<BasicExample/>
+
+[comment]: # (START WRITE ./examples/basic.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KColumn, KDataTable } from '@flash/ui-components/data/kdatatable';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import booksJson from './books.json';
+
+export interface Book {
+  author: string;
+  pages: number;
+  title: string;
+  year: number;
+}
+
+export const yearMapper = (book: Book) => {
+  if (book.year < 0) return (-book.year).toString() + ' B.C.';
+  else return book.year;
+};
+
+export const books = booksJson as Book[];
+
+export function BasicExample() {
+  return (
+    <ExampleWrapper>
+      <KDataTable
+        value={books}
+        scrollable
+        scrollHeight="30rem"
+        tableStyle={{ minWidth: '50rem' }}
+      >
+        <KColumn header="Title" field="title" />
+        <KColumn header="Author" field="author" />
+        <KColumn header="Year Published" field="year" body={yearMapper} />
+        <KColumn header="Number of Pages" field="pages" />
+      </KDataTable>
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## Example: Custom Content
+
+You can also put whatever custom content you like inside the table entries, making 
+use of the plethora of other components in the library.
+
+<CustomContentExample/>
+
+[comment]: # (START WRITE ./examples/customContent.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KColumn, KDataTable } from '@flash/ui-components/data/kdatatable';
+import KSeverityBadge from '@flash/ui-components/misc/kseveritybadge';
+import { KSeverity } from '@flash/ui-components/misc/kseverityicon';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+
+import Delete from '@flash/ui-components/assets/svgs/icons/delete.svg?react';
+import Edit from '@flash/ui-components/assets/svgs/icons/edit.svg?react';
+import Check from '@flash/ui-components/assets/svgs/icons/check.svg?react';
+
+import { KInteractiveIcon } from '@flash/ui-components/misc/kinteractiveicon';
+import { useState } from 'react';
+import KInputText from '@flash/ui-components/form/kinputtext';
+import KText from '@flash/ui-components/misc/ktext';
+import KInputDropdown from '@flash/ui-components/form/kinputdropdown';
+
+interface Entry {
+  id: string;
+  severity: KSeverity;
+  item: string;
+  category: string;
+  editing: boolean;
+}
+
+export function CustomContentExample() {
+  const initialEntries: Entry[] = [
+    {
+      id: '1',
+      item: 'Item 1',
+      category: 'A',
+      severity: 'error',
+      editing: false,
+    },
+    {
+      id: '2',
+      item: 'Item 2',
+      category: 'A',
+      severity: 'info',
+      editing: false,
+    },
+    {
+      id: '3',
+      item: 'Item 3',
+      category: 'B',
+      severity: 'error',
+      editing: false,
+    },
+    {
+      id: '4',
+      item: 'Item 4',
+      category: 'A',
+      severity: 'warn',
+      editing: false,
+    },
+    {
+      id: '5',
+      item: 'Item 5',
+      category: 'B',
+      severity: 'info',
+      editing: false,
+    },
+  ];
+
+  const [entries, setEntries] = useState<Entry[]>(initialEntries);
+
+  const updateEntry = (newEntry: Entry) => {
+    setEntries((x) =>
+      x.map((oldEntry) => {
+        return oldEntry.id === newEntry.id ? newEntry : oldEntry;
+      })
+    );
+  };
+
+  const deleteEntry = (entry: Entry) => {
+    setEntries((x) => x.filter((y) => y.id !== entry.id));
+  };
+
+  const severityTemplate = (entry: Entry) => (
+    <KSeverityBadge severity={entry.severity} />
+  );
+
+  const ItemTemplate = (entry: Entry) => {
+    return entry.editing ? (
+      <KInputText
+        value={entry.item}
+        onChange={(e) => updateEntry({ ...entry, item: e.target.value })}
+      />
+    ) : (
+      <KText>{entry.item}</KText>
+    );
+  };
+
+  const CategoryTemplate = (entry: Entry) => {
+    return entry.editing ? (
+      <KInputDropdown
+        options={['A', 'B']}
+        value={entry.category}
+        onChange={(e) => updateEntry({ ...entry, category: e.target.value })}
+      />
+    ) : (
+      <KText>{entry.category}</KText>
+    );
+  };
+
+  const actionsTemplate = (entry: Entry) => {
+    const onStartEditing = () => {
+      updateEntry({ ...entry, editing: true });
+    };
+
+    const onSave = () => {
+      updateEntry({ ...entry, editing: false });
+    };
+
+    const onDelete = () => deleteEntry(entry);
+
+    return (
+      <div className="flex gap-6">
+        {entry.editing ? (
+          <KInteractiveIcon
+            tooltipLabel="Save"
+            icon={<Check />}
+            onClick={onSave}
+          />
+        ) : (
+          <KInteractiveIcon
+            tooltipLabel="Edit"
+            icon={<Edit />}
+            onClick={onStartEditing}
+          />
+        )}
+        <KInteractiveIcon
+          tooltipLabel="Delete"
+          icon={<Delete />}
+          onClick={onDelete}
+        />
+      </div>
+    );
+  };
+
+  return (
+    <ExampleWrapper>
+      <KDataTable value={entries}>
+        <KColumn header="Item" body={ItemTemplate} />
+        <KColumn header="Category" body={CategoryTemplate} />
+        <KColumn header="Severity" body={severityTemplate} />
+        <KColumn header="Actions" body={actionsTemplate} />
+      </KDataTable>
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## Example: Paginator
+<PaginatorExample/>
+
+[comment]: # (START WRITE ./examples/paginator.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KColumn, KDataTable } from '@flash/ui-components/data/kdatatable';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import { books, yearMapper } from './basic';
+
+export function PaginatorExample() {
+  return (
+    <ExampleWrapper>
+      <KDataTable
+        value={books}
+        paginator
+        rows={5}
+        rowsPerPageOptions={[5, 10, 15, 20]}
+        tableStyle={{ minWidth: '50rem' }}
+      >
+        <KColumn header="Title" field="title" />
+        <KColumn header="Author" field="author" />
+        <KColumn header="Year Published" field="year" body={yearMapper} />
+        <KColumn header="Number of Pages" field="pages" />
+      </KDataTable>
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+
+## Example: Filters
+
+<FiltersExample/>
+
+[comment]: # (START WRITE ./examples/filters.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KColumn, KDataTable } from '@flash/ui-components/data/kdatatable';
+import { DataTableFilterMeta } from 'primereact/datatable';
+import { useState } from 'react';
+import { books, yearMapper } from './basic';
+import { FilterMatchMode } from 'primereact/api';
+import { ColumnFilterElementTemplateOptions } from 'primereact/column';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import KInputText from '@flash/ui-components/form/kinputtext';
+import KInputDropdown from '@flash/ui-components/form/kinputdropdown';
+
+export function FiltersExample() {
+  // Each filter field has a value and a "match mode"
+  const [filters, setFilters] = useState<DataTableFilterMeta>({
+    global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    title: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    author: { value: null, matchMode: FilterMatchMode.EQUALS },
+  });
+
+  // helper function to update the value of a filter field
+  const updateFilterField = (field: string, value: string) => {
+    setFilters((oldFilters) => ({
+      ...oldFilters,
+      [field]: { ...oldFilters[field], value },
+    }));
+  };
+
+  // input text field for the title column
+  const titleFilter = (options: ColumnFilterElementTemplateOptions) => {
+    return (
+      <KInputText
+        value={options.value ?? ''}
+        onChange={(e) => options.filterApplyCallback(e.target.value)}
+      />
+    );
+  };
+
+  // dropdown for the author column
+  const authorFilter = (options: ColumnFilterElementTemplateOptions) => {
+    const dropdownOptions = [
+      'William Shakespeare',
+      'William Faulkner',
+      'Virginia Woolf',
+      'Leo Tolstoy',
+      'Homer',
+      'Fyodor Dostoevsky',
+      'Gabriel García Márquez',
+      'Franz Kafka',
+    ];
+
+    return (
+      <KInputDropdown
+        options={dropdownOptions}
+        value={options.value ?? ''}
+        onChange={(e) => options.filterApplyCallback(e.target.value)}
+        className="w-36"
+      />
+    );
+  };
+
+  // header containing input for global filter
+  const header = () => {
+    const value = (filters.global as { value: string }).value ?? '';
+    return (
+      <div className="flex items-center justify-end p-4">
+        <KInputText
+          value={value}
+          onChange={(e) => updateFilterField('global', e.target.value)}
+        />
+      </div>
+    );
+  };
+
+  return (
+    <ExampleWrapper>
+      <KDataTable
+        value={books}
+        scrollHeight="30rem"
+        scrollable
+        filterDisplay="row"
+        filterDelay={0}
+        globalFilterFields={['title', 'author']}
+        emptyMessage="No books to display."
+        filters={filters}
+        header={header}
+      >
+        <KColumn
+          header="Title"
+          field="title"
+          filter
+          filterElement={titleFilter}
+          showFilterMenu={false}
+          style={{ minWidth: '10rem' }}
+        />
+        <KColumn
+          header="Author"
+          field="author"
+          filter
+          filterElement={authorFilter}
+          showFilterMenu={false}
+          style={{ minWidth: '15rem' }}
+        />
+        <KColumn
+          header="Year Published"
+          field="year"
+          body={yearMapper}
+          style={{ minWidth: '10rem' }}
+        />
+        <KColumn
+          header="Number of Pages"
+          field="pages"
+          style={{ minWidth: '10rem' }}
+        />
+      </KDataTable>
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+
+
+## Example: Virtual Scroll
+<VirtualScrollExample/>
+
+
+[comment]: # (START WRITE ./examples/virtualScroll.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KColumn, KDataTable } from '@flash/ui-components/data/kdatatable';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+
+export interface Product {
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+}
+
+export const products: Product[] = Array.from({ length: 1000 }).map((_, i) => ({
+  id: i,
+  name: `Product ${i}`,
+  category: `Category ${i % 5}`,
+  price: Math.floor(Math.random() * 1000),
+}));
+
+export function VirtualScrollExample() {
+  return (
+    <ExampleWrapper>
+      <KDataTable
+        value={products}
+        scrollHeight="25rem"
+        scrollable
+        stripedRows
+        tableStyle={{ width: '100%' }}
+        virtualScrollerOptions={{ itemSize: 40 }}
+      >
+        <KColumn field="id" header="ID" style={{ minWidth: '10rem' }} />
+        <KColumn field="name" header="Name" style={{ minWidth: '10rem' }} />
+        <KColumn
+          field="category"
+          header="Category"
+          style={{ minWidth: '10rem' }}
+        />
+        <KColumn field="price" header="Price" style={{ minWidth: '10rem' }} />
+      </KDataTable>
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## Example: Lazy Scroll
+<LazyScrollExample/>
+
+
+[comment]: # (START WRITE ./examples/lazyScroll.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { useState } from 'react';
+import { Product, products } from './virtualScroll';
+import {
+  VirtualScrollerLazyEvent,
+  VirtualScrollerProps,
+} from 'primereact/virtualscroller';
+import { KColumn, KDataTable } from '@flash/ui-components/data/kdatatable';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+
+export function LazyScrollExample() {
+  const [data, setData] = useState<Product[]>(Array.from({ length: 1000 }));
+  const virtualScrollerOptions: VirtualScrollerProps = {
+    lazy: true,
+    itemSize: 52,
+    onLazyLoad: (event: VirtualScrollerLazyEvent) => {
+      const first = event.first as number;
+      const last = event.last as number;
+
+      // don't need to do anything if all of these have been loaded already
+      if (data.slice(first, last).every((x) => !!x)) return;
+
+      // artificial delay to mimic loading of that section of the table
+      setTimeout(
+        () => {
+          setData((data) => {
+            const newData = [...data];
+            const loadedProducts = products.slice(first, last);
+            newData.splice(first, last - first, ...loadedProducts);
+            return newData;
+          });
+        },
+        Math.random() * 1000 + 250
+      );
+    },
+  };
+
+  return (
+    <ExampleWrapper>
+      <KDataTable
+        value={data}
+        tableStyle={{ minWidth: '50rem' }}
+        scrollHeight="25rem"
+        stripedRows
+        scrollable
+        virtualScrollerOptions={virtualScrollerOptions}
+      >
+        <KColumn field="id" header="ID" style={{ minWidth: '10rem' }} />
+        <KColumn field="name" header="Name" style={{ minWidth: '10rem' }} />
+        <KColumn
+          field="category"
+          header="Category"
+          style={{ minWidth: '10rem' }}
+        />
+        <KColumn field="price" header="Price" style={{ minWidth: '10rem' }} />
+      </KDataTable>
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

@@ -1,0 +1,19 @@
+/* 
+An example demonstrating how the component can be used. 
+This is currently rendered in docs.mdx. 
+
+TODO: run "npm run sync:docs" to see this appear as 
+an example code-snippet in docs.mdx. 
+*/
+
+import { $Component } from '@complib/$category/$component';
+import { ExampleWrapper } from '@sbook/utils';
+
+export default function Example() {
+  // TODO: implement real example
+  return (
+    <ExampleWrapper className="flex justify-center items-center">
+      <$Component label="Here is an example."/>
+    </ExampleWrapper>
+  );
+}

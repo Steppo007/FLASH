@@ -1,0 +1,59 @@
+@layer krones-library {
+  .kro-klinkbutton {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    text-align: center;
+    background-color: transparent;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    border: none;
+    border-radius: var(--size-1_5);
+    letter-spacing: 0.0125rem;
+    font-weight: 500;
+    padding: 0 var(--space-1);
+    height: var(--size-5);
+    transition: outline-color 0.2s;
+
+    &.kro-hasicon {
+      padding-left: 0;
+    }
+
+    color: var(--content-interactive-default);
+
+    &:hover {
+      color: var(--content-interactive-hover);
+    }
+
+    &:focus {
+      color: var(--content-interactive-focus);
+    }
+
+    &:disabled {
+      &,
+      &:hover,
+      &:focus {
+        color: var(--content-interactive-disabled);
+      }
+    }
+
+    &.kro-size-small {
+      font-size: 0.75rem;
+
+      svg {
+        width: var(--size-4);
+        height: var(--size-4);
+      }
+    }
+
+    &.kro-size-default {
+      font-size: 0.875rem;
+
+      svg {
+        width: var(--size-5);
+        height: var(--size-5);
+      }
+    }
+  }
+}

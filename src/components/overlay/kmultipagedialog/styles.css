@@ -1,0 +1,56 @@
+@layer krones-library {
+  /*
+  Apart for the content and footer, all the styles
+  for the multi-page dialog come from kdialog
+  */
+  .kro-kmultipagedialog {
+    max-width: 100%;
+    width: 100%;
+
+    @media (min-width: 640px) {
+      width: initial;
+    }
+
+    & > [data-pc-section='content'] {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+
+      @media (min-width: 640px) {
+        flex-direction: row;
+      }
+
+      border-top: solid 1px var(--border-interactive-default);
+
+      .kro-ksidemenu {
+        width: 100%;
+        max-width: 100%;
+        border-bottom: solid var(--border-interactive-default) var(--size-px);
+        overflow-y: scroll;
+
+        @media (min-width: 640px) {
+          width: var(--size-48);
+          max-width: none;
+          border-bottom: none;
+          border-right: solid var(--border-interactive-default) var(--size-px);
+        }
+
+        padding: var(--space-2);
+      }
+
+      .kro-kmultipagedialog-page {
+        width: 100%;
+        overflow: scroll;
+      }
+    }
+
+    & > [data-pc-section='footer'] {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      padding: var(--space-4);
+      gap: var(--space-2);
+      border-top: var(--size-px) solid var(--border-interactive-default);
+    }
+  }
+}

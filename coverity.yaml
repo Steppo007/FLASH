@@ -1,0 +1,6 @@
+capture:
+  build:
+    # Black duck actually runs this. Build outputs are present
+    # in working directory aftertwards. So scan can be run instead
+    # of actual build part of cicd
+    build-command: npm run build

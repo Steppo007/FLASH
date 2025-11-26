@@ -1,0 +1,5 @@
+# Run ticket key validation first
+node .husky/commit-msg.mjs "$1"
+
+# If ticket validation passes, run commitlint
+npx --no -- commitlint --edit ${1}

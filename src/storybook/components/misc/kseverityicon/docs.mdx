@@ -1,0 +1,33 @@
+import { Meta, Description, Canvas, Controls, Story, Title } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import Demo from './demo'
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Custom Component
+
+The KSeverityIcon component can combine the icon of a product and a severity indicator.
+When the severity is set to "info", the severity icon is not shown.
+
+<Canvas of={metaData.Story} />
+<Controls />
+
+## Example Usage
+
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import Connect from '@flash/ui-components/assets/svgs/products/connect.svg?react';
+import { KSeverityIcon } from '@flash/ui-components/misc/kseverityicon';
+
+export function Example() {
+  return <KSeverityIcon severity="error" size="large" icon={<Connect />} />;
+}
+```
+[comment]: # (END WRITE)
+
+## Demonstration
+
+<Demo />

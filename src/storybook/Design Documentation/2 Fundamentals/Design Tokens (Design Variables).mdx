@@ -1,0 +1,71 @@
+import { badgeStyles, ColorPalette, Table } from '../../utils';
+
+# Design Tokens (Design Variables)
+
+#### Table of contents
+> - [How Design Tokens are applied via themes throughout KRONES.digital products](#how-design-tokens-are-applied-via-themes-throughout-kronesdigital-products)
+> - [How to read design token names](#how-to-read-design-token-names)
+> - [Complete List of Color Design Variables](#complete-list-of-color-design-variables-verq1-2025)
+
+Design tokens are essentially variables that store information about the product design. This could include colors, fonts, spacing, and other design properties. By storing this information in variables, you can easily manage, update and scale UIs in real time and ensure that design is always up-to-date and consistent across different platforms. This is especially helpful when working with large teams or managing multiple projects.
+
+<blockquote style={{backgroundColor: 'var(--surface-layer)', paddingTop: 'var(--space-2)', paddingBottom: 'var(--space-2)', borderColor: '#357de8'}}>
+Thanks to design variables, we can remain variable regardless of changing requirements such as future screen resolutions, dark mode, accessibility standards, etc. At the same time, Design Token's centralized approach ensures consistency.
+</blockquote>
+
+<blockquote style={{backgroundColor: 'var(--surface-layer)', paddingTop: 'var(--space-2)', paddingBottom: 'var(--space-2)', borderColor: '#e06c00'}}>
+#### Well presented page for easily explaining the concept of Design Tokens:
+[<img src="https://framerusercontent.com/images/1WoLyCLIvGrwxsrOf899aWfSo88.png" style={{display: "inline", marginRight: "8px"}} width="20" height="20" />What are design tokens?](https://thedesignsystem.guide/what-are-design-tokens)
+</blockquote>
+
+## How Design Tokens are applied via themes throughout KRONES.digital products
+
+A theme is a collection of token values designed to achieve a certain look or style. Themes are how we switch color schemes and styles everywhere using a single set of tokens.
+
+Light mode, dark mode, and HMI mode are all examples of theming. Non-color, reduced motion or high-contrast themes are also possible.
+
+![Design Variables Themes](/images/design_tokens/token-themes.webp)
+
+## How to read design token names
+
+Knowing how to read token names will help you find the right token faster when working in designs and in code.
+
+A design token's name describes how it should be used, and each part communicates one piece of its usage.
+
+<blockquote style={{backgroundColor: 'var(--surface-layer)', paddingTop: 'var(--space-2)', paddingBottom: 'var(--space-2)', borderColor: '#e06c00'}}>
+### The system is based on how UI elements are styled with CSS:
+
+Via CSS you can apply colors in 4 different ways, according the 4 parts of an UI element, there are 4 color-properties <span style={{...badgeStyles, backgroundColor: '#8fb8f6'}}>Text / icon</span> <span style={{...badgeStyles, backgroundColor: '#b3df72'}}>background / fill</span> <span style={{...badgeStyles, backgroundColor: '#d8a0f7'}}>border</span> <span style={{...badgeStyles, backgroundColor: '#fd9891'}}>outline</span>
+
+With those 4 color-properties, you can style 100% of the UI's colors. So for colors we created a Token System based on those 4 categories:
+
+![Taxonomy Table](/images/design_tokens/taxonomy-table.webp)
+</blockquote>
+
+#### **So how do you read a Design Token?**
+
+<Table
+  headers={['Foundation (Block)', 'Property (Element)', 'Modifier (interactive?)', 'Modifier (context?)', 'Modifier (color variant?)',  'Modifier (state?)']}
+  rows={
+    [
+      ['color', 'surface', 'interactive', '', 'neutral', 'default'],
+      ['color', 'content', '', 'title', '', ''],
+      ['color', 'content', 'interactive', '', 'primary', 'hover'],
+      ['color', 'border', '', '', 'critical', 'default']
+    ]
+  }
+/>
+
+1.  **Foundation:** The type of visual design attribute or foundational style, such as color, elevation, or space.
+
+2.  **Property:** The UI element the token is being applied to, such as a border, background, shadow, or other property.
+
+3.  **Modifier:** Additional details about the token's purpose, such as its color role, emphasis, or interaction state. Not every token has a modifier. For example, `color.bodyText` is our default body text color.
+
+Note that token names might look different in different environments and tools:
+
+![Token Formats in environments](/images/design_tokens/token-formats.webp)
+
+## Complete List of Color Design Variables (verQ1-2025)
+
+<ColorPalette />

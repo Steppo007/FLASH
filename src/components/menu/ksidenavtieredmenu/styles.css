@@ -1,0 +1,133 @@
+@layer krones-library {
+  .kro-ksidenavtieredmenu {
+    [data-pc-section='menu'] {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      outline: none;
+    }
+
+    /* for all actions */
+    [data-pc-section='action'] {
+      display: flex;
+      align-items: center;
+      height: var(--space-9);
+      border-radius: var(--size-1_5);
+      max-width: var(--space-48);
+      text-wrap: nowrap;
+      outline: var(--space-0_75) solid transparent;
+      transition:
+        background-color 0.1s,
+        color 0.1s,
+        outline-color 0.2s;
+    }
+
+    /* for root level actions */
+    [data-pc-section='action'] {
+      min-width: var(--size-9);
+      width: var(--size-9);
+      padding: 0;
+      justify-content: center;
+    }
+
+    /* for non-root-level actions, overwriting above */
+    [data-pc-section='submenu'] [data-pc-section='action'] {
+      min-width: var(--space-36);
+      width: 100%;
+      padding: var(--space-2) var(--space-6);
+      justify-content: flex-start;
+    }
+
+    [data-pc-section='label'] {
+      line-height: 130%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    [data-pc-section='submenu'] {
+      margin-left: var(--space-1);
+      width: fit-content;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      background-color: var(--surface-sidebar);
+      box-shadow:
+        0 var(--size-1) var(--size-1) 0 rgba(0, 0, 0, 0.25),
+        0 var(--size-1) var(--size-1_5) 0 rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(7.5px);
+      border-radius: var(--space-1_5);
+      z-index: 9999;
+    }
+
+    /* padding for submenu items */
+    [data-pc-section='submenu'] > [data-pc-section='menuitem'] {
+      padding: 0 var(--space-2);
+
+      &:first-child {
+        padding-top: var(--space-2);
+      }
+
+      &:not(:first-child) {
+        padding-bottom: var(--space-1);
+      }
+
+      &:last-child {
+        padding-bottom: var(--space-2);
+      }
+    }
+
+    [data-pc-section='submenu']
+      > [data-pc-section='menuitem']:first-child
+      [data-pc-section='action'] {
+      font-weight: 700;
+    }
+
+    .bottom-right-arrow {
+      position: absolute;
+      bottom: var(--size-1);
+      right: var(--size-1);
+      width: var(--size-1_5);
+      height: var(--size-1_5);
+      border-bottom: var(--size-0_5) solid currentColor;
+      border-right: var(--size-0_5) solid currentColor;
+    }
+
+    /* colors of action item, for default, hover, active, 
+    focus states (important for keyboard interaction too!) */
+    [data-pc-section='action'] {
+      color: var(--content-interactive-subdued-default);
+      background-color: var(--surface-sidebar);
+    }
+
+    [data-pc-section='menu']
+      > [data-pc-section='menuitem']:not(.kro-active)
+      > [data-pc-section='content']
+      > [data-pc-section='action']:hover,
+    [data-pc-section='submenu']
+      > [data-pc-section='menuitem']:not(.kro-active):not(:first-child)
+      > [data-pc-section='content']
+      > [data-pc-section='action']:hover,
+    [data-pc-section='menuitem'].p-focus:not(.kro-active)
+      > [data-pc-section='content']
+      > [data-pc-section='action'],
+    [data-pc-section='menuitem'][aria-expanded='true']:not(.kro-active)
+      > [data-pc-section='content']
+      > [data-pc-section='action'] {
+      color: var(--content-interactive-subdued-hover);
+      background-color: var(--surface-interactive-hover);
+    }
+
+    [data-pc-section='menuitem'].kro-active
+      > [data-pc-section='content']
+      > [data-pc-section='action'] {
+      color: var(--content-interactive-subdued-active);
+      background-color: var(--surface-interactive-active);
+    }
+
+    [data-pc-section='menuitem'].p-focus.kro-active
+      > [data-pc-section='content']
+      > [data-pc-section='action'] {
+      outline-color: var(--outline-focus);
+    }
+  }
+}

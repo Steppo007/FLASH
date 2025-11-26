@@ -1,0 +1,16 @@
+@layer krones-library {
+  .kro-kradiobutton {
+    .kro-kcheckable-box {
+      border-radius: 100%;
+    }
+
+    .kro-kcheckable-icon {
+      border-radius: 100%;
+      border: none;
+    }
+
+    &[data-p-checked='true'] .kro-kcheckable-icon {
+      background-color: currentColor;
+    }
+  }
+}

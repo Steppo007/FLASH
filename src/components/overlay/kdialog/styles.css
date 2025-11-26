@@ -1,0 +1,54 @@
+@layer krones-library {
+  .kro-kdialog {
+    background-color: var(--surface-default);
+    border-radius: var(--size-1_5);
+
+    [data-pc-section='header'] {
+      display: flex;
+      padding: var(--space-0);
+      justify-content: space-between;
+      align-items: center;
+      margin: var(--space-5);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--content-title);
+      line-height: 120%;
+    }
+
+    [data-pc-section='headericons'] {
+      width: var(--size-6);
+      height: var(--size-6);
+      flex-shrink: 0;
+      align-self: center;
+      color: var(--content-interactive-subdued-default);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    [data-pc-section='closebutton'] {
+      padding: var(--space-1);
+      border-radius: var(--size-1_5);
+      transition: outline-color 0.2s;
+      outline: var(--size-0_75) solid transparent;
+
+      &:focus {
+        outline-color: var(--outline-focus);
+      }
+    }
+  }
+
+  /* background color of mask */
+  .kro-kdialog-mask {
+    transition: background-color 0.3s;
+
+    &:has(.p-dialog-enter-active),
+    &:has(.p-dialog-enter-done) {
+      background-color: #00000088;
+    }
+
+    &:has(.p-dialog-exit-active) {
+      background-color: transparent;
+    }
+  }
+}

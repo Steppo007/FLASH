@@ -1,0 +1,86 @@
+@layer krones-library {
+  /*
+  also used in ksidemenu, kmegamenu, and kinputdropdown
+  */
+  .kro-knavitem-colors,
+  .kro-knavitem {
+    color: var(--content-interactive-subdued-default);
+    background-color: var(--surface-interactive-default);
+
+    &:hover {
+      color: var(--content-interactive-subdued-hover);
+      background-color: var(--surface-interactive-hover);
+    }
+
+    &.is-highlighted,
+    &[data-p-highlight='true'],
+    &[aria-expanded='true'] {
+      &,
+      &:hover,
+      &:focus {
+        color: var(--content-interactive-subdued-active);
+        background-color: var(--surface-interactive-active);
+      }
+    }
+  }
+
+  /*
+  also used in ksidemenu and kmegamenu
+  */
+  .kro-knavitem-content-size,
+  .kro-knavitem {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 130%;
+    user-select: none;
+
+    svg {
+      width: var(--size-4);
+      height: var(--size-4);
+    }
+  }
+
+  .kro-knavitem {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    border-radius: var(--size-1_5);
+    min-height: var(--space-9);
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+    transition: outline-color, 0.2s;
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    &.has-no-label {
+      height: var(--space-9);
+      width: var(--space-9);
+      justify-content: center;
+      svg {
+        width: var(--size-5);
+        height: var(--size-5);
+      }
+    }
+
+    &.iconpos-left {
+      flex-direction: row;
+    }
+
+    &.iconpos-right {
+      flex-direction: row-reverse;
+    }
+
+    &.position-badge {
+      position: relative;
+
+      & > .kro-kbadge {
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: translate(40%, -40%);
+      }
+    }
+  }
+}

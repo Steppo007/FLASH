@@ -1,0 +1,79 @@
+import { Meta, Description, Canvas, Controls, Story, Title } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import Example from './example'
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Uses: [PrimeReact Tab Menu](https://primereact.org/tabmenu)
+
+The KTabMenu is a navigation component that displays menu items as tab headers.
+
+<Canvas of={metaData.Story} />
+<Controls />
+
+# Usage
+
+<Example/>
+
+The `KTabMenu`, like the `KSideMenu`, is derived from the PrimeReact `TabMenu`.
+The two components are therefore extremely similar. The only differences are:
+- The styling is different (for example, one is horizontal, the other vertical)
+- The `KTabMenu` has support for adding badges
+- The `KTabMenu` has support for `disabled` tabs
+- The `KTabMenu` also has a `size` attribute 
+
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+// these svg imports work with vite and vite-plugin-svgr
+import AccountFigure from '@flash/ui-components/assets/svgs/icons/accountFigure.svg?react';
+import LanguageGlobe from '@flash/ui-components/assets/svgs/icons/languageGlobe.svg?react';
+import ThemePalette from '@flash/ui-components/assets/svgs/icons/themePalette.svg?react';
+import { MenuItem } from 'primereact/menuitem';
+import { KBadge } from '@flash/ui-components/misc/kbadge';
+import { useState } from 'react';
+import { KTabMenu } from '@flash/ui-components/menu/ktabmenu';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+
+export const model: MenuItem[] = [
+  {
+    label: 'Account',
+    icon: <AccountFigure />,
+    id: 'account',
+    data: {
+      badge: <KBadge label="1" severity="danger" size="small" />,
+    },
+  },
+  {
+    label: 'Theme',
+    icon: <ThemePalette />,
+    id: 'theme',
+  },
+  {
+    label: 'Language',
+    icon: <LanguageGlobe />,
+    id: 'language',
+    disabled: true,
+  },
+];
+
+export default function Example() {
+  const [activeId, setActiveId] = useState('');
+  return (
+    <ExampleWrapper className="flex justify-center">
+      <KTabMenu
+        model={model}
+        activeIndex={model.findIndex((x) => x.id === activeId)}
+        onTabChange={(e) => {
+          setActiveId(e.value.id ?? '');
+        }}
+        size="default"
+        className="w-full"
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

@@ -1,0 +1,27 @@
+// configures meta data for component in storybook
+
+import type { Meta, StoryObj } from '@storybook/react';
+import { $Component } from '@complib/$category/$component';
+
+const metaData = {
+  title: 'Components/$Category/$Component',
+  component: $Component,
+  tags: [],
+  parameters: {
+    layout: 'centered',
+    design: {
+      type: 'figma',
+      url: '', // TODO: put figma URL
+    },
+  },
+} satisfies Meta<typeof $Component>;
+export default metaData;
+
+type Story = StoryObj<typeof metaData>;
+
+export const Story: Story = {
+  args: {
+    // TODO: add more arguments
+    label: 'Krones'
+  },
+};

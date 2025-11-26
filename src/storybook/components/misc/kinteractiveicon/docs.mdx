@@ -1,0 +1,56 @@
+import { Meta, Description, Canvas, Controls, Story, Title } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import { Example } from './example';
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Custom Component
+
+The Interactive Icon is a component which combines features of buttons, tooltips, and icons.
+
+<Canvas of={metaData.Story} />
+<Controls />
+
+## Example Usage
+
+<Example/>
+
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { useState } from 'react';
+import Clipboard from '@flash/ui-components/assets/svgs/icons/clipboard.svg?react';
+import Check from '@flash/ui-components/assets/svgs/icons/check.svg?react';
+import InfoOutlined from '@flash/ui-components/assets/svgs/icons/infoOutlined.svg?react';
+
+import { KInteractiveIcon } from '@flash/ui-components/misc/kinteractiveicon';
+import { ExampleWrapper } from '@sbook/utils';
+
+export function Example() {
+  const [isCopied, setIsCopied] = useState(false);
+  const icon = isCopied ? <Check /> : <Clipboard />;
+  const tooltipLabel = isCopied ? 'Copied!' : 'Copy to Clipboard';
+  return (
+    <ExampleWrapper className="flex items-center justify-center gap-3">
+      <KInteractiveIcon
+        icon={<InfoOutlined />}
+        tooltipLabel={
+          'Hover and click the other icon to see the behavior of the tooltip.'
+        }
+        tooltipPosition="top"
+      />
+      <KInteractiveIcon
+        icon={icon}
+        tooltipLabel={tooltipLabel}
+        tooltipPosition="top"
+        onClick={() => {
+          setIsCopied(true);
+        }}
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

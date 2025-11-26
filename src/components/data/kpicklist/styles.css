@@ -1,0 +1,61 @@
+@layer krones-library {
+  .kro-kpicklist {
+    gap: var(--space-4);
+
+    [data-pc-section='buttons'],
+    [data-pc-section='controls'] {
+      align-items: flex-start;
+      gap: var(--space-2);
+
+      .kro-kbutton {
+        width: var(--space-10);
+        min-width: var(--space-10);
+        height: var(--space-10);
+
+        [data-pc-section='label'] {
+          display: none;
+        }
+      }
+    }
+
+    [data-pc-section='listwrapper'] {
+      min-width: var(--size-60);
+      border-radius: var(--size-1_5);
+      border: var(--size-px) solid var(--border-default);
+      background: var(--surface-default);
+    }
+
+    [data-pc-section='header'] {
+      height: var(--space-12);
+      padding: var(--space-4);
+      border-top-left-radius: var(--size-1_5);
+      border-top-right-radius: var(--size-1_5);
+      border-bottom: var(--size-px) solid var(--border-default);
+      background: var(--surface-accented);
+
+      /* protect from overflow */
+      max-width: var(--space-96);
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      display: block;
+      overflow: hidden;
+    }
+
+    [data-pc-section='filtercontainer'] {
+      padding: var(--space-4);
+      border-bottom: var(--size-px) solid var(--border-default);
+    }
+
+    [data-pc-section='item'] {
+      &:hover,
+      &[data-p-focused='true'],
+      &[data-p-highlight='true'] {
+        background-color: var(--surface-interactive-hover);
+      }
+
+      &[aria-selected='true'] {
+        background-color: var(--surface-interactive-active);
+      }
+    }
+  }
+}

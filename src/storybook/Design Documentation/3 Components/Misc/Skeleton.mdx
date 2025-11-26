@@ -1,0 +1,67 @@
+## Skeleton
+
+### Overview
+
+A **Skeleton** component is used as a placeholder to indicate that content is loading. It provides a visual representation of the layout and structure of the content that will be displayed once the data has loaded. This helps improve the user experience by giving users an idea of what to expect while they wait.
+
+* * * * *
+
+### When to Use It
+
+-   When loading data from an API or server.
+
+-   When the content takes time to load and you want to provide a visual placeholder.
+
+-   To improve perceived performance and keep users engaged during loading times.
+
+#### **Avoid using Skeletons when:**
+
+-   The content loads almost instantly and a placeholder is not necessary.
+
+-   The skeleton component does not match the layout of the final content.
+
+-   The loading state can be better represented by a spinner or progress bar.
+
+* * * * *
+
+### Live Preview
+
+#### **[Try this component out here](/docs/components-misc-kskeleton--docs)**
+
+* * * * *
+
+### Variants
+
+-   **Text Skeleton**: Placeholder for text content, often displayed as lines or blocks.
+
+-   **Image Skeleton**: Placeholder for image content, often displayed as a gray box or blurred image.
+
+-   **Card Skeleton**: Placeholder for card components, often displayed as a combination of text and image skeletons.
+
+-   **List Skeleton**: Placeholder for list items, often displayed as repeated text and image skeletons.
+
+* * * * *
+
+### Behavior
+
+-   **Default**: The skeleton component displays a placeholder layout that mimics the structure of the final content.
+
+-   **Loading**: The skeleton component remains visible while the data is being fetched.
+
+-   **Loaded**: The skeleton component is replaced by the actual content once the data has loaded.
+
+* * * * *
+
+### Dos and Don'ts
+
+#### **Dos:**
+
+✔ Use skeleton components to provide a visual placeholder during data loading.\
+✔ Ensure the skeleton layout matches the structure of the final content.\
+✔ Use appropriate shapes and sizes to represent different types of content (e.g., text, images, cards).
+
+#### **Don'ts:**
+
+✘ Don't use skeleton components for content that loads almost instantly.\
+✘ Don't use skeletons that do not match the layout of the final content.\
+✘ Don't rely solely on skeletons for loading states --- consider using spinners or progress bars when appropriate.

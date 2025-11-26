@@ -1,0 +1,26 @@
+import { Meta, Description, Canvas, Controls, Story, Title } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Custom Component
+
+The badge component is a small status indicator for another element.
+
+<Canvas of={metaData.Story} />
+<Controls />
+
+## Example Usage
+
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KBadge } from '@flash/ui-components/misc/kbadge';
+
+export function Example() {
+  return <KBadge label="1" severity="danger" size="small" variant="filled" />;
+}
+```
+[comment]: # (END WRITE)

@@ -1,0 +1,82 @@
+import { SemanticColors, PrimitiveColors, Demo } from './colorsExample'
+
+# Using Colors In Tailwind
+
+Once you have set up Tailwind and you have imported our custom configuration, 
+you can refer to Krones color names in your tailwind classes. See the example below.
+
+### Important
+
+In order for components to use our theme, they need to appear in the DOM inside 
+an element that has the `data-theme` attribute (either `data-theme="light"` or `data-theme="dark"`). 
+This could either be the `body` element if you are developing a standalone application, or
+the root element in the shadow DOM, if you are developing a web component for the FLASH.
+
+## Example
+
+<Demo/>
+
+```jsx
+import { classNames } from 'primereact/utils' // utility class for merging class names
+
+<div className={classNames(
+    'text-content-bodytext bg-surface-active', 
+    'border-4 border-border-primary-accented', 
+    'p-4 h-40 w-40 flex justify-center items-center'
+)}>
+    <span className='text-center'>SOME TEXT</span>
+</div>
+```
+
+In the example above, we use the following tailwind class names
+- `text-content-bodytext`: sets the color of the text to `content-bodytext`
+- `bg-surface-active`: sets the color of the background to `surface-active`
+- `border-border-primary-accented`: sets the color of the border to `border-primary-accented`
+
+These color tokens map to different colors in different themes. Try switching from "light" to "dark" 
+mode to see the difference! Below you can browse through all the colors in the Krones Design System.
+
+
+## Which Color to Use?
+
+Developers should never need to make desicions regarding colors. This responsibility
+falls on the designers. Ideally developers will be working off of Figma mock-ups provided
+by the design team, where the colors are explicitly stated (make sure you have "dev-mode" enabled).
+The following logic should be used when adding Tailwind class names:
+
+- select component in Figma, and in the colors section, see something like `surface/brand/accented`
+- the color token will then be `surface-brand-accented`
+- if you are applying this color to the background of an element, the Tailwind class name will be `bg-surface-brand-accented`. 
+
+Note, the default Tailwind colors such as `blue-500` are not usable. Hence, class names such as `bg-blue-500` will not work.
+## Implementation of Theme Change
+
+The colors are only defined when inside a "theme scope." In particular, they are implemented in CSS using the following selectors:
+- `[data-theme=light] { /* ... */ }`
+- `[data-theme=dark] { /* ... */ }`
+
+That means, in your application, you should respond to theme change by 
+adding/updating the `data-theme` attribute in some root level element.
+Apps that are integrated in FLASH as a web-component can access the 
+currently selected theme via the `theme` attribute of the web component, 
+whose value is either `light` or `dark`.
+
+
+## Primitive Colors
+
+Primitive colors do NOT respond to theme change. Hence, they should never be used directly. Instead, 
+semantic colors should be used (see below).
+
+<PrimitiveColors/>
+
+## Semantic Colors
+
+Semantic colors map to primitive colors based on the current theme. Try switching the theme
+in Storybook to see the change.
+
+<SemanticColors/>
+
+
+## What's Next?
+
+Continue through the set-up guide. Next up: [Using Spacings](/docs/general-4-using-spacings--docs).

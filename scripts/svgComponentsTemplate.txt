@@ -1,0 +1,19 @@
+IMPORT_STATEMENTS
+
+export type SvgrReactFunctionComponent = React.FunctionComponent<
+    React.SVGProps<SVGSVGElement> & {
+        title?: string | undefined;
+    }
+>;
+
+type Map = Record<string, SvgrReactFunctionComponent | undefined>;
+ 
+const svgMap: Map = {COMPONENT_MAP}
+
+export function getSVG(name: string) : SvgrReactFunctionComponent | null {
+    const svgComp = svgMap[name];
+	if (!svgComp) return null
+	else return svgComp
+}
+
+SVG_LISTS

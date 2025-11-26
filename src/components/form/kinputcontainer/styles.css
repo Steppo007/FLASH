@@ -1,0 +1,6 @@
+@layer krones-library {
+  .kro-kinputcontainer {
+    display: block;
+    position: relative;
+  }
+}

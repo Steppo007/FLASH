@@ -1,0 +1,15 @@
+<svg
+  width="56"
+  height="56"
+  viewBox="0 0 56 56"
+  fill="currentColor"
+  xmlns="http://www.w3.org/2000/svg"
+>
+    <g id="bar-chart">
+        <path
+      id="Vector"
+      d="M11.6666 21.4667H18.6666V44.3333H11.6666V21.4667ZM24.7333 11.6667H31.2666V44.3333H24.7333V11.6667ZM37.8 30.3333H44.3333V44.3333H37.8V30.3333Z"
+      fill="currentColor"
+    />
+    </g>
+</svg>

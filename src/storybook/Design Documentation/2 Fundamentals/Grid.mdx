@@ -1,0 +1,177 @@
+import { badgeStyles, Table } from '../../utils';
+
+## Grid
+
+<blockquote style={{backgroundColor: 'var(--surface-layer)', paddingTop: 'var(--space-2)', paddingBottom: 'var(--space-2)', borderColor: '#357de8'}}>
+Grid is used to position content and create consistent page layouts.
+</blockquote>
+
+- [Grid anatomy](#grid-anatomy)
+- [Grid types](#grid-types)
+  - [Fluid](#fluid)
+  - [Fixed](#fixed)
+- [Responsive Breakpoints](#responsive-breakpoints)
+- [Column span and offset](#column-span-and-offset)
+  - [Column span](#column-span)
+  - [Column offset](#column-offset)
+- [Layout anatomy](#layout-anatomy)
+  - [Side navigation and drawer](#side-navigation-and-drawer)
+
+### Grid anatomy
+
+The layout grid structure has three elements:
+
+-   **Columns** divide the page into equal vertical sections, and are used to organize content.
+
+-   **Gutters** are the gaps between the columns, and separate content in a consistent way.
+
+-   **Margins** define the outer edges of the grid, and prevent content from spilling out over the viewable regions.
+
+
+![image](/images/grid/grid_anatomy.webp)
+
+This grid documentation is for design only. Engineering should refer to the [page layout](https://atlassian.design/components/page-layout/examples "https://atlassian.design/components/page-layout/examples") component.
+
+## Grid types
+
+There are two types of grid: fluid and fixed. Both grid types use breakpoints to determine whether the layout needs to change between viewport sizes.
+
+More guidance for [applying grid](https://atlassian.design/foundations/grid-beta/applying-grid/) in your designs.
+
+### Fluid
+
+The fluid grid stretches across the screen to fill all available space in the main content area. This means the columns and the content placed within them scale and resize to fill the available space.
+
+<div style={{display: 'flex', justifyContent: 'space-around', gap: 'var(--space-4)', flexWrap: 'wrap'}}>
+  <img src="/images/grid/fluid_small.webp" style={{height: '600px'}} />
+  <img src="/images/grid/fluid_medium.webp" style={{height: '600px'}} />
+  <img src="/images/grid/fluid_wide.webp" />
+</div>
+
+They are best used for information-dense pages, such as most of KRONES digital products. Here's how a fluid grid is applied in the AppShell:
+
+![image](/images/grid/fluid_example.webp)
+
+### Fixed
+
+The fixed grid applies the ideal maximum width to page containers according to the elements being displayed. There is both a fixed-narrow and fixed-wide grid, so content can be displayed using the most appropriate width.
+
+
+<div style={{display: 'flex', justifyContent: 'space-around', gap: 'var(--space-4)', flexWrap: 'wrap'}}>
+  <img src="/images/grid/fixed_grid_small.webp" style={{ maxHeight: '600px' }} />
+  <img src="/images/grid/fixed_grid_medium.webp" style={{ maxHeight: '600px' }} />
+  <img src="/images/grid/fixed_grid_large.webp" />
+</div>
+
+**Fixed-narrow** grids are best used for content-focused pages, such as blogs and articles, to limit line length and improve readability. Some internal elements, such as headers, may break out of the grid to span across the page.
+
+**Fixed-wide**grids are best used for content-dense pages, such as data tables, to balance screen real estate and readability. Internal table columns do not need to align to the grid. Here’s how a fixed-wide grid is applied in the AppShell:
+
+![image](/images/grid/fixed_wide_example.webp)
+
+## Responsive Breakpoints
+
+Each [breakpoint] is the threshold at which the website's layout changes, to ensure optimal user experience. In responsive design, a breakpoint range determines the most appropriate number of columns for that viewport size, plus recommended widths for margins and gutters.
+
+Our grid aligns to the 6 KRONES.digital Design System breakpoints:
+
+<Table
+  styles={{marginLeft: 'auto', marginRight: 'auto'}}
+  headers={['Breakpoint', 'Viewport', 'Columns', 'Gutters', 'Margins']}
+  rows={
+    [
+      ['xxs', '320 - 479px', 2, '12px', '16px'],
+      ['xs', '480 - 767px', 6, '12px', '16px'],
+      ['s', '768 - 1023px', 6, '12px', '16px'],
+      ['m', '1024 - 1439px', 12, '16px', '32px'],
+      ['l', '1440 - 1767px', 12, '16px', '32px'],
+      ['xl', '1768+px', 12, '16px', '32px']
+    ]
+  }
+/>
+
+![image](/images/grid/resolutions.webp)
+
+## Column span and offset
+
+### Column span
+
+Our grid has 12 columns for [aligning content](https://atlassian.design/foundations/grid-beta/applying-grid/#step-4-align-content-to-grid). Content should span across 3 or more columns, up to a maximum of 12. For flexibility, mix and match the number of columns used to unlock a variety of layouts across different breakpoints.
+
+![image](/images/grid/column_span.webp)
+
+### Column offset
+
+Content does not need to span across all 12 columns. It can span a smaller set of columns, resulting in a layout with content centered on a 12 column grid.
+
+![image](/images/grid/column_offset.webp)
+
+## Layout anatomy
+
+Layout regions are the building blocks for any web page. They are composed of elements and components that share similar functions. The layout grid starts below the top navigation, and provides structure to the main content.
+
+![image](/images/grid/layout_anatomy.webp)
+
+### Side navigation and drawer
+
+Use a drawer to display supporting content on a screen, such as help panels or secondary tasks. The layout grid typically fills the full width of the viewport, but when the side navigation or drawer is present, the grid should resize to fit the remaining area of the page.
+
+![image](/images/grid/side_navigation_drawer_grid_only.webp)
+
+![image](/images/grid/side_navigation_and_drawer_collapsed.webp)
+
+![image](/images/grid/side_navigation_and_drawer_expanded.webp)
+
+![image](/images/grid/side_navigation_and_drawer_drawer.webp)
+
+![image](/images/grid/side_navigation_and_drawer_both.webp)
+
+Some panels can be manually resized by users. Start with these standard sizes:
+
+<table style={{marginLeft: 'auto', marginRight: 'auto'}}>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Width</th>
+      <th>Suitable for</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colSpan={3}><b>Side navigation</b></td>
+    </tr>
+    <tr>
+      <td><code>collapsed</code></td>
+      <td>56px</td>
+      <td>768+px</td>
+    </tr>
+    <tr>
+      <td><code>default</code></td>
+      <td>320px</td>
+      <td>768+px</td>
+    </tr>
+    <tr>
+      <td colSpan={3}><b>Drawer</b></td>
+    </tr>
+    <tr>
+      <td><code>collapsed</code> <span style={{...badgeStyles, backgroundColor: '#f9c84e'}}>not yet defined</span></td>
+      <td>56px</td>
+      <td>1024+px</td>
+    </tr>
+    <tr>
+      <td><code>defaultSmall</code></td>
+      <td>320px</td>
+      <td>1024-1439px</td>
+    </tr>
+    <tr>
+      <td><code>default</code></td>
+      <td>400px</td>
+      <td>1440-1767px</td>
+    </tr>
+    <tr>
+      <td><code>defaultLarge</code></td>
+      <td>504px</td>
+      <td>1768+px</td>
+    </tr>
+  </tbody>
+</table>

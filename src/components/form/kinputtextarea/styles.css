@@ -1,0 +1,23 @@
+@layer krones-library {
+  .kro-kinputtextarea {
+    padding: var(--space-3);
+    resize: both;
+
+    &.kro-size-default {
+      height: unset;
+    }
+
+    &::placeholder {
+      color: var(--input-content-default-default);
+    }
+
+    &.kro-disabled,
+    &.kro-disabled.kro-invalid {
+      color: var(--input-content-default-default);
+
+      &::placeholder {
+        color: var(--input-content-default-disabled);
+      }
+    }
+  }
+}

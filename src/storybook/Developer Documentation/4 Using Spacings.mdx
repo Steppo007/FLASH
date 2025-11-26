@@ -1,0 +1,30 @@
+# Using Spacings In Tailwind
+
+Spacings in the Krones Design System are based on the [default Tailwind spacings](https://tailwindcss.com/docs/customizing-spacing). 
+This means, you can seamless translate Figma mockups into react code with Tailwind classes. 
+
+## Example
+
+In a Figma mock-up, you may see that the `gap` of a flex container has the value `space-6`:
+
+![Figma Spacing](/figma-spacing.png)
+
+This means that, in your code, you should use the Tailwind class name `gap-6`
+
+```jsx
+<div className="flex gap-6"> 
+    some content
+</div>
+```
+
+> Note, the Tailwind spacing token `6` corresponds to `1.5rem`
+
+Likewise, if in a Figma mock-up you see a container having a `width` of `size-12`, then you should use the Tailwind class name `w-12`. 
+
+```jsx
+<div className="w-12"> 
+    some content
+</div>
+```
+
+> Note, the Tailwind spacing token `12` corresponds to `3rem`

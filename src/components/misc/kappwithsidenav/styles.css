@@ -1,0 +1,17 @@
+@layer krones-library {
+  .kro-kappwithsidenav {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+
+    .kro-ksidebarmask {
+      position: absolute !important;
+    }
+
+    .kro-app-container {
+      flex-grow: 1;
+      height: 100%;
+      overflow: auto;
+    }
+  }
+}

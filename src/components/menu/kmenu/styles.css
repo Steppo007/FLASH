@@ -1,0 +1,106 @@
+@layer krones-library {
+  .kro-kmenu {
+    background-color: var(--surface-sidebar);
+    color: var(--content-interactive-subdued-default);
+    padding: var(--space-2);
+    border-radius: var(--space-1_5);
+
+    &.p-menu-overlay {
+      box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.04);
+      background-color: var(--surface-flyout);
+    }
+
+    [data-pc-section='menu'] {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+
+    [data-pc-section='submenuheader'] {
+      margin: var(--space-2_5) var(--space-4);
+      font-size: 0.875rem;
+      font-weight: 700;
+      line-height: 130%;
+
+      &.kro-no-label {
+        display: none;
+      }
+    }
+
+    [data-pc-section='action'] {
+      padding: var(--space-2) var(--space-4);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--space-2);
+      border-radius: var(--space-1_5);
+      transition:
+        outline-color 0.2s,
+        background-color 0.2s,
+        color 0.2s;
+
+      & > svg {
+        width: var(--size-4);
+        height: var(--size-4);
+        flex-shrink: 0;
+      }
+    }
+
+    [data-pc-section='label'] {
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 130%;
+      text-align: start;
+    }
+
+    /* colors of action elements */
+    /* when active */
+    [data-pc-section='menuitem'].kro-highlighted [data-pc-section='action'] {
+      &,
+      &:hover {
+        color: var(--content-interactive-subdued-active);
+        background-color: var(--surface-interactive-active);
+      }
+    }
+
+    /* when hovered, OR when focused in an overlay and not active */
+    /* not, for some reason, when items are in an overlay, they are focus-on-hover */
+    [data-pc-section='action']:hover,
+    &.p-menu-overlay
+      [data-pc-section='menuitem'][data-p-focused='true']:not(.kro-highlighted)
+      [data-pc-section='action'] {
+      color: var(--content-interactive-subdued-hover);
+      background-color: var(--surface-interactive-hover);
+    }
+
+    /* when critical */
+    [data-pc-section='menuitem'].kro-critical [data-pc-section='action'] {
+      color: var(--content-critical-default);
+    }
+
+    /* when critical and also either hovered, OR focused in an overlay */
+    [data-pc-section='menuitem'].kro-critical [data-pc-section='action']:hover,
+    &.p-menu-overlay
+      [data-pc-section='menuitem'][data-p-focused='true'].kro-critical
+      [data-pc-section='action'] {
+      color: var(--content-critical-default);
+      background-color: var(--surface-critical-default);
+    }
+
+    /* outline of action element */
+    [data-pc-section='action'] {
+      outline: solid var(--space-0_75) transparent;
+    }
+
+    /* only put focus outline when not in overlay */
+    &:not(.p-menu-overlay)
+      [data-pc-section='menuitem'][data-p-focused='true']
+      [data-pc-section='action'] {
+      outline-color: var(--outline-focus);
+    }
+  }
+}

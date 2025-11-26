@@ -1,0 +1,98 @@
+@layer krones-library {
+  .kro-kinputdropdown {
+    svg {
+      flex-shrink: 0;
+    }
+
+    /* input text area */
+    [data-pc-section='input'] {
+      flex-grow: 1;
+      min-width: 0;
+      background-color: transparent;
+      outline: none;
+      text-align: start;
+    }
+  }
+
+  .kro-kinputdropdown-panel {
+    box-shadow: var(--box-shadow-thick);
+    background-color: var(--surface-flyout);
+    border-radius: var(--space-1_5);
+
+    /* transition of the popup */
+    transition:
+      transform 0.2s,
+      opacity 0.2s;
+    transform: scale(1, 0);
+    opacity: 0;
+
+    &.enter-active,
+    &.enter-done {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    /* where the search filter appears */
+    & > [data-pc-section='header'] {
+      padding: var(--space-2) var(--space-4);
+      background-color: var(--surface-accented);
+      display: flex;
+
+      /* contains search input and icon */
+      & > [data-pc-section='filtercontainer'] {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        color: var(--input-content-default-default);
+        gap: var(--space-1_5);
+        background-color: var(--input-surface-default-default);
+        border: var(--input-border-default-default);
+        border-radius: var(--size-1_5);
+        padding: var(--space-2_5);
+
+        & > [data-pc-section='filterinput'] {
+          outline: none;
+          background-color: transparent;
+          width: 100%;
+
+          &::placeholder {
+            color: var(--input-content-default-default);
+          }
+        }
+      }
+    }
+
+    /* where the dropdown items appear */
+    & > [data-pc-section='wrapper'] {
+      padding: var(--space-2);
+      overflow-y: auto;
+      max-height: var(--size-56);
+    }
+
+    .p-virtualscroller-content {
+      padding: var(--space-2);
+    }
+
+    [data-pc-section='item'] {
+      border-radius: var(--size-1_5);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    [data-pc-section='emptymessage'] {
+      color: var(--input-content-default-default);
+    }
+
+    [data-pc-section='item'],
+    [data-pc-section='emptymessage'] {
+      user-select: none;
+      padding: var(--space-2_5) var(--space-4);
+    }
+  }
+
+  /* If appendTo="self" is set */
+  .kro-kinputdropdown .kro-kinputdropdown-panel {
+    width: 100%;
+  }
+}

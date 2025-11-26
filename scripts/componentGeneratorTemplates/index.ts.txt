@@ -1,0 +1,7 @@
+// entry point for this component 
+// TODO: nothing, except maybe delete this line
+
+export * from './comp';
+export * from './types';
+
+export { $Component as default } from './comp';

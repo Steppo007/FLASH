@@ -1,0 +1,60 @@
+@layer krones-library {
+  .kro-klistitem {
+    display: flex;
+    padding: var(--size-3) var(--size-4);
+    gap: var(--size-4);
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--surface-default);
+    color: var(--content-interactive-subdued-default);
+
+    .kro-text-container {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      flex-grow: 1;
+      text-align: start;
+
+      .kro-overline {
+        color: var(--content-interactive-default);
+      }
+
+      .kro-headline {
+        color: var(--content-title);
+      }
+    }
+
+    > *:not(.kro-text-container) {
+      flex-shrink: 0;
+    }
+  }
+
+  button.kro-klistitem {
+    width: 100%;
+
+    &:hover:not(:disabled) {
+      background-color: var(--surface-accented);
+    }
+
+    &:active:not(:disabled) {
+      background-color: var(--surface-active);
+    }
+
+    &:disabled {
+      /* background-color: var(--surface-disabled); looks strange -> clarify */
+      color: var(--content-interactive-subdued-disabled);
+
+      .kro-overline {
+        color: var(--content-interactive-disabled);
+      }
+
+      .kro-headline {
+        color: var(--content-disabled);
+      }
+
+      .kro-supporting-text {
+        color: var(--content-disabled);
+      }
+    }
+  }
+}

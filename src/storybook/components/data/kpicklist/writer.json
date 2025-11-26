@@ -1,0 +1,77 @@
+[
+  {
+    "id": "001",
+    "name": "George Orwell",
+    "country": "United Kingdom"
+  },
+  {
+    "id": "002",
+    "name": "Fyodor Dostoevsky",
+    "country": "Russia"
+  },
+  {
+    "id": "003",
+    "name": "Franz Kafka",
+    "country": "Czech Republic"
+  },
+  {
+    "id": "004",
+    "name": "Leo Tolstoy",
+    "country": "Russia"
+  },
+  {
+    "id": "005",
+    "name": "Virginia Woolf",
+    "country": "United Kingdom"
+  },
+  {
+    "id": "006",
+    "name": "Albert Camus",
+    "country": "France"
+  },
+  {
+    "id": "007",
+    "name": "Gabriel García Márquez",
+    "country": "Colombia"
+  },
+  {
+    "id": "008",
+    "name": "Hermann Hesse",
+    "country": "Germany"
+  },
+  {
+    "id": "009",
+    "name": "Samuel Beckett",
+    "country": "Ireland"
+  },
+  {
+    "id": "010",
+    "name": "J.R.R. Tolkien",
+    "country": "United Kingdom"
+  },
+  {
+    "id": "011",
+    "name": "Thomas Mann",
+    "country": "Germany"
+  },
+  {
+    "id": "012",
+    "name": "James Joyce",
+    "country": "Ireland"
+  },
+  {
+    "id": "013",
+    "name": "Jean-Paul Sartre",
+    "country": "France"
+  },
+  {
+    "id": "014",
+    "name": "Italo Calvino",
+    "country": "Italy"
+  },
+  {
+    "id": "015",
+    "name": "Milan Kundera",
+    "country": "Czech Republic"
+  }
+]

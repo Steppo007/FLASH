@@ -1,0 +1,217 @@
+@layer krones-library {
+  .kro-kcheckable-container {
+    &,
+    & > label {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .kro-ktext {
+      user-select: none;
+    }
+
+    /* anchor for absolutely positioned input */
+    & > label {
+      position: relative;
+    }
+  }
+
+  .kro-kcheckable {
+    /* input element designed to be invisible, hovering over box AND label */
+    .kro-kcheckable-input {
+      cursor: pointer;
+      appearance: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      opacity: 0;
+    }
+
+    &.kro-disabled .kro-kcheckable-input {
+      cursor: not-allowed;
+    }
+
+    .kro-kcheckable-box {
+      /* layout */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      /* border */
+      border-width: var(--size-0_5);
+      border-style: solid;
+      outline: var(--size-0_75) solid transparent;
+
+      /* color transitions */
+      transition:
+        outline-color 0.2s,
+        background-color 0.2s,
+        border-color 0.2s;
+    }
+
+    &:has(.kro-kcheckable-input:focus-visible) .kro-kcheckable-box {
+      outline-color: var(--outline-focus);
+    }
+
+    /*
+      size of checkbox and icon
+      */
+    &.kro-size-small {
+      .kro-kcheckable-box {
+        width: var(--size-4);
+        height: var(--size-4);
+      }
+
+      .kro-kcheckable-icon {
+        width: var(--size-2);
+        height: var(--size-2);
+      }
+    }
+
+    &.kro-size-default {
+      .kro-kcheckable-box {
+        width: var(--size-5);
+        height: var(--size-5);
+      }
+
+      .kro-kcheckable-icon {
+        width: var(--size-3);
+        height: var(--size-3);
+      }
+    }
+
+    /* 
+    1) border color, 
+    2) content color, and 
+    3) background color, depending on
+
+    1) if is invalid
+    2) if is disabled
+    3) if is currently checked (data-p-highlight/checked)
+    4) current state -> default, hover, focus
+  
+    */
+    .kro-kcheckable-box {
+      border-color: var(--formcontrol-border-default-default);
+      color: var(--formcontrol-content-default-default);
+      background-color: var(--formcontrol-surface-default-default);
+    }
+
+    &:has(.kro-kcheckable-input:hover) .kro-kcheckable-box {
+      border-color: var(--formcontrol-border-default-hover);
+      color: var(--formcontrol-content-default-hover);
+      background-color: var(--formcontrol-surface-default-hover);
+    }
+
+    &:has(.kro-kcheckable-input:focus-visible) .kro-kcheckable-box {
+      border-color: var(--formcontrol-border-default-focus);
+      color: var(--formcontrol-content-default-focus);
+      background-color: var(--formcontrol-surface-default-focus);
+    }
+
+    &[data-p-checked='true'],
+    &[data-p-highlight='true'] {
+      .kro-kcheckable-box {
+        border-color: var(--formcontrol-border-selected-default);
+        color: var(--formcontrol-content-selected-default);
+        background-color: var(--formcontrol-surface-selected-default);
+      }
+
+      &:has(.kro-kcheckable-input:hover) .kro-kcheckable-box {
+        border-color: var(--formcontrol-border-selected-hover);
+        color: var(--formcontrol-content-selected-hover);
+        background-color: var(--formcontrol-surface-selected-hover);
+      }
+
+      &:has(.kro-kcheckable-input:focus-visible) .kro-kcheckable-box {
+        border-color: var(--formcontrol-border-selected-focus);
+        color: var(--formcontrol-content-selected-focus);
+        background-color: var(--formcontrol-surface-selected-focus);
+      }
+    }
+
+    &.kro-invalid {
+      .kro-kcheckable-box {
+        border-color: var(--formcontrol-border-default-error-default);
+        color: var(--formcontrol-content-default-error-default);
+        background-color: var(--formcontrol-surface-default-error-default);
+      }
+
+      &:has(.kro-kcheckable-input:hover) .kro-kcheckable-box {
+        border-color: var(--formcontrol-border-default-error-hover);
+        color: var(--formcontrol-content-default-error-hover);
+        background-color: var(--formcontrol-surface-default-error-hover);
+      }
+
+      &:has(.kro-kcheckable-input:focus-visible) .kro-kcheckable-box {
+        border-color: var(--formcontrol-border-default-error-focus);
+        color: var(--formcontrol-content-default-error-focus);
+        background-color: var(--formcontrol-surface-default-error-focus);
+      }
+
+      &[data-p-checked='true'],
+      &[data-p-highlight='true'] {
+        .kro-kcheckable-box {
+          border-color: var(--formcontrol-border-selected-error-default);
+          color: var(--formcontrol-content-selected-error-default);
+          background-color: var(--formcontrol-surface-selected-error-default);
+        }
+
+        &:has(.kro-kcheckable-input:hover) .kro-kcheckable-box {
+          border-color: var(--formcontrol-border-selected-error-hover);
+          color: var(--formcontrol-content-selected-error-hover);
+          background-color: var(--formcontrol-surface-selected-error-hover);
+        }
+
+        &:has(.kro-kcheckable-input:focus-visible) .kro-kcheckable-box {
+          border-color: var(--formcontrol-border-selected-error-focus);
+          color: var(--formcontrol-content-selected-error-focus);
+          background-color: var(--formcontrol-surface-selected-error-focus);
+        }
+      }
+    }
+
+    &.kro-disabled,
+    &.kro-disabled:has(.kro-kcheckable-input:hover),
+    &.kro-disabled:has(.kro-kcheckable-input:focus-visible) {
+      .kro-kcheckable-box {
+        border-color: var(--formcontrol-border-default-disabled);
+        color: var(--formcontrol-content-default-disabled);
+        background-color: var(--formcontrol-surface-default-disabled);
+      }
+
+      &[data-p-checked='true'],
+      &[data-p-highlight='true'] {
+        .kro-kcheckable-box {
+          border-color: var(--formcontrol-border-selected-disabled);
+          color: var(--formcontrol-content-selected-disabled);
+          background-color: var(--formcontrol-surface-selected-disabled);
+        }
+      }
+
+      &.kro-invalid {
+        .kro-kcheckable-box {
+          border-color: var(--formcontrol-border-default-error-disabled);
+          color: var(--formcontrol-content-default-error-disabled);
+          background-color: var(--formcontrol-surface-default-error-disabled);
+        }
+
+        &[data-p-checked='true'],
+        &[data-p-highlight='true'] {
+          .kro-kcheckable-box {
+            border-color: var(--formcontrol-border-selected-error-disabled);
+            color: var(--formcontrol-content-selected-error-disabled);
+            background-color: var(
+              --formcontrol-surface-selected-error-disabled
+            );
+          }
+        }
+      }
+    }
+  }
+}

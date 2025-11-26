@@ -1,0 +1,60 @@
+## Confirm Dialog
+
+### Overview
+
+A **Confirm Dialog** is a modal-like component that prompts users to confirm or cancel an action before proceeding. It is used for critical actions where user acknowledgment is required, such as deleting data, overwriting settings, or submitting irreversible changes.
+
+* * * * *
+
+### When to Use It
+
+-   When a user needs to explicitly confirm an action before proceeding.
+
+-   When an action is destructive or irreversible (e.g., deleting an account).
+
+-   When the system requires user consent for security or legal purposes.
+
+#### **Avoid using a Confirm Dialog when:**
+
+-   The action is not critical, and an undo option is available.
+
+-   A simple notification or inline message would be more appropriate.
+
+-   The user should not be interrupted in their workflow (use a less intrusive method).
+
+* * * * *
+
+### Live Preview
+
+#### **[Try this component out here](/docs/components-overlay-kconfirmdialog--docs)**
+
+* * * * *
+
+### Features
+
+-   **Optional Icon:** Can be included to visually represent the action (e.g., warning, information, or confirmation).
+
+-   **Optional Headline:** A short, bold title summarizing the purpose of the confirmation request.
+
+-   **Action Buttons:** Call-to-action (CTA) buttons, typically for primary and secondary actions.
+
+    -   **Primary Button:** Confirms the action (e.g., "Delete", "Confirm", "Proceed").
+
+    -   **Secondary Button:** Cancels the action (e.g., "Cancel", "Go Back").
+
+* * * * *
+
+### Dos and Don'ts
+
+#### **Dos:**
+
+✔ Use a clear, concise headline that explains the action being confirmed.\
+✔ Provide descriptive button labels instead of generic "Yes" or "No" (e.g., "Delete File" instead of "Yes").\
+✔ Include an icon only when necessary, such as a warning or alert.\
+✔ Ensure the primary action button is visually distinct from the cancel button.
+
+#### **Don'ts:**
+
+✘ Don't use a confirm dialog for non-critical actions---avoid unnecessary friction in the user experience.\
+✘ Don't rely only on color to differentiate between "Confirm" and "Cancel" buttons (use clear labels).\
+✘ Don't overload the dialog with too much text---keep the message short and actionable.

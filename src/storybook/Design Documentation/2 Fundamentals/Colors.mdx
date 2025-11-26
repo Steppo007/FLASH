@@ -1,0 +1,169 @@
+import { badgeStyles, ColorPalette } from '../../utils';
+
+# Colors
+
+<blockquote style={{backgroundColor: 'var(--surface-layer)', paddingTop: 'var(--space-2)', paddingBottom: 'var(--space-2)', borderColor: '#357de8'}}>
+Use color intentionally. It's not decoration. Color is supposed to be functional.
+</blockquote>
+
+-   [Introduction](#intorduction)
+    -   [Use sparingly and intentionally](#use-sparingly-and-intentionally)
+    -   [Utilize color roles](#utilize-color-roles)
+    -   [Make it accessible](#make-it-accessible)
+-   [Applying colors to interface](#applying-colors-to-interface)
+-   [Layering model](#layering-model)
+-   [Color semantics](#color-semantics)
+    -   [Background & foreground colors (Surface & Content)](#background--foreground-colors-surface--content)
+    -   [Interactive colors](#interactive-colors)
+    -   [Actionable colors](#actionable-colors)
+-   [Color applications](#color-applications)
+    -   [Text colors](#text-colors)
+    -   [Interaction colors](#interaction-colors)
+    -   [Navigation colors](#navigation-colors)
+    -   [Border colors](#border-colors)
+    -   [Status colors](#status-colors)
+    -   [Button colors](#button-colors)
+    -   [Icon colors](#icon-colors)
+-   [KRONES.digital Main Color Palettes](#kronesdigital-main-color-palettes)
+
+## Introduction
+
+The KRONES.digital design system uses a color system to guide our users, create a branded look-and-feel, draw attention to important information, and bring a unified and recognizable consistency to KRONES' array of digital products and interfaces. This consistency is grounded in a set of well-defined rules about how to work with the K.dDS component library in the context of dark and light themes.
+
+-   All of our colors are also defined as design tokens, so non-K.dDS components can use K.dDS colors directly and they don't need to define colors again in their local codebase.
+
+### Use sparingly and intentionally
+
+The KRONES.digital Design System uses functional coloring that supports products designed to be run on various industry devices. Color is used to communicate not to decorate. We use color sparingly and intentionally in order to emphasize important information. The color system facilitates all-day use while minimizing visual fatigue.
+
+### Utilize color roles
+
+We offer a curated palette of colors that are intended for specific roles within K.dDS. For example, we apply consistent coloring to components such as text, status, buttons, inputs, controls and navigation. This helps users to identify a component and understand its relationship to its environment.
+
+### Make it accessible
+
+When the color system is applied, it will be in compliance with color [accessibility standards](https://nordhealth.design/accessibility-checklist/). We support [WCAG 2.1](https://www.w3.org/TR/WCAG21/#distinguishable) level AA which requires 4.5:1 contrast for text. We never rely solely on color for communication. Accessibility ensures that our product works for people with visual impairments and improves legibility for all users.
+
+## Applying colors to interface
+
+The KRONES.digital Design System uses common patterns of color application to create consistency and convey meaning. The below sections explain in detail how to use and apply [K.dDS colors](https://krones-digital.atlassian.net/wiki/spaces/DEV/pages/32315565) in different contexts.
+
+## Layering model
+
+Colors in the neutral grey palette are layered on top of each other to create depth and spatial associations. The layering model defines the logic of how colors stack on top of each other in a UI when using the K.dDS themes. Aspects of the layering model are built directly into the themes, color tokens, and components.
+
+The layering model differs between the *light* and *dark* themes.
+
+-   In the light themes, layers alternate between White [<span style={{...badgeStyles, backgroundColor: '#b3df72'}}>surface.default</span>] and subtle Grey [<span style={{...badgeStyles, backgroundColor: '#b3df72'}}>surface.subdued</span> / <span style={{...badgeStyles, backgroundColor: '#b3df72'}}>surface.accented</span>] with each added layer.
+
+-   In the dark themes, layers become one step lighter with each added layer.
+
+<img src="/images/colors/layering_model.webp" style={{maxWidth: '80%', margin: 'auto'}}/>
+
+## Color semantics
+
+### Background & foreground colors (Surface & Content)
+
+We use four main colors for backgrounds:
+
+<table>
+  <tbody>
+    <tr>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#b3df72'}}>surface.default</span></p></td>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#b3df72'}}>surface.page</span></p></td>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#b3df72'}}>surface.subdued</span></p></td>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#b3df72'}}>surface.accented</span></p></td>
+    </tr>
+    <tr>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#dddee1'}}>grey-0</span> (white)</p></td>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#dddee1'}}>grey-100</span></p></td>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#dddee1'}}>Neutral-50</span></p></td>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#dddee1'}}>neutral-75</span></p></td>
+    </tr>
+  </tbody>
+</table>
+
+And four colors to create status backgrounds:
+
+<table>
+  <tbody>
+    <tr>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#b3df72'}}>surface.success</span></p></td>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#b3df72'}}>surface.warning</span></p></td>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#b3df72'}}>surface.critical</span></p></td>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#b3df72'}}>surface.brand</span></p></td>
+    </tr>
+    <tr>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#dddee1'}}>success-75</span></p></td>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#dddee1'}}>warning-75</span></p></td>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#dddee1'}}>critical-75</span></p></td>
+      <td><p><span style={{...badgeStyles, backgroundColor: '#dddee1'}}>brand-75</span></p></td>
+    </tr>
+  </tbody>
+</table>
+
+These are mostly used for backgrounds or components. These colors are accessible with dark foreground colors and change automatically when switching to dark theme.
+
+### Interactive colors
+
+Interactive colors are used in components with some indication of state that do **not** move you forward in the flow or redirect you to another page. This mostly means *hover, focus, selected, active, pressed*, and *drag* states.
+
+### Actionable colors
+
+Actionable colors are used in components that include an action (such as moving you forward in the flow). This means the [Button](/docs/design-documentation-3-components-button-basic-button--docs), [IconButton](/docs/design-documentation-3-components-button-icon-button--docs), [SelectButton](/docs/design-documentation-3-components-form-select-button--docs) and [LinkButton](/docs/design-documentation-3-components-button-link-button--docs) components.
+
+For the actionable and interactive color, we use the KRONES Stammblau (**blue-500** and related semantic tokens for interactive elements). Elements that aren't actionable shouldn't be in this color.
+
+<img src="images/colors/actionable_colors.webp" style={{maxWidth: '80%', margin: 'auto'}}/>
+
+## Color applications
+
+### Text colors
+
+Text always appears on a surface and contains modifiers to indicate hierarchy, status, and importance.
+
+<img src="images/colors/text_colors.webp" style={{maxWidth: '80%', margin: 'auto'}}/>
+
+### Interaction colors
+
+This is the accent color for a design. It is used as primary button background, most interactive and actionable states as well as selected elements.
+
+<img src="images/colors/interaction_colors.webp" style={{maxWidth: '80%', margin: 'auto'}}/>
+
+### Navigation colors
+
+This is the color for sidebar navigation. The sidebar color helps to distinguish navigation from other surfaces.
+
+<img src="images/colors/navigation_colors.webp" style={{maxWidth: '80%', margin: 'auto'}}/>
+
+### Border colors
+
+Borders can define the edges of a component or separate content areas.
+
+<img src="images/colors/border_colors.webp" style={{maxWidth: '80%', margin: 'auto'}}/>
+
+### Status colors
+
+Color can be used to highlight important information by giving it a status. For example the green success status indicates a strong positive state.
+
+<img src="images/colors/status_colors.webp" style={{maxWidth: '80%', margin: 'auto'}}/>
+
+### Button colors
+
+Button colors are used to define our 6 button variants and 5 states in K.dDS.
+
+<img src="images/colors/button_colors_variants.webp" style={{maxWidth: '70%', marginLeft: 'auto', marginRight: 'auto', marginBottom: 'var(--space-4)'}}/>
+
+<img src="images/colors/button_colors_states.webp" style={{maxWidth: '70%', margin: 'auto'}}/>
+
+### Icon colors
+
+Icon colors should be used when an icon is placed on a surface. If an icon appears on the accent color, use the text-on-accent color in place of the default icon color.
+
+<img src="images/colors/icon_colors.webp" style={{maxWidth: '80%', margin: 'auto'}}/>
+
+## KRONES.digital Main Color Palettes
+
+The color palette contains every one of the colors we use in our designs.
+
+<ColorPalette />

@@ -1,0 +1,31 @@
+@layer krones-library {
+  .kro-kinputtext {
+    width: 100%;
+
+    &::placeholder {
+      color: var(--input-content-default-default);
+    }
+
+    &.kro-disabled::placeholder {
+      color: var(--input-content-default-disabled);
+    }
+  }
+
+  .kro-kinputcontainer:has(.kro-kinteractiveicon) {
+    /* 
+    Layout, font size, and input height, based 
+    on size attribute
+    */
+    .kro-kinputtext.kro-size-small {
+      padding: 0 var(--space-8) 0 var(--space-3);
+    }
+
+    .kro-kinputtext.kro-size-default {
+      padding: 0 var(--space-9) 0 var(--space-3);
+    }
+
+    .kro-kinputtext.kro-size-large {
+      padding: 0 var(--space-10) 0 var(--space-3);
+    }
+  }
+}

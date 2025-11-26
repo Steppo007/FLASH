@@ -1,0 +1,81 @@
+## Calendar
+
+### Overview
+
+An **Calendar** (Input Date Field) allows users to enter and select dates using a text field combined with a date picker. This component is commonly used in forms where users need to provide date information, such as booking systems, event scheduling, and data entry.
+
+* * * * *
+
+### When to Use It
+
+-   To allow users to input a specific date.
+
+-   To provide a user-friendly way to select dates without navigating a full calendar.
+
+-   To ensure date input follows a specific format.
+
+#### **Avoid using a Calendar when:**
+
+-   The user needs to select a date range (consider using a date range picker instead).
+
+-   The interface requires a more visual representation of dates (use a calendar component).
+
+* * * * *
+
+### Live Preview
+
+#### **[Try this component out here](/docs/components-form-kcalendar--docs)**
+
+* * * * *
+
+### Variants
+
+-   **Calendar day**: Allows users to select a single day from a calendar view.
+
+-   **Calendar Date Range**: Allows users to select a start and end date within a single field.
+
+-   **Month**: Allows users to select a specific month and year.
+
+-   **Time 12h:** Allows users to select a time in a 12-hour format (AM/PM).
+
+-   **Time 24hr:** Allows users to select a time in a 24-hour format.
+
+-   **Calendar and time 12h:** Combines a calendar view for selecting a date with a 12-hour time picker.
+
+-   **Calendar and time 24h:** Combines a calendar view for selecting a date with a 24-hour time picker.
+
+* * * * *
+
+### Behavior
+
+-   **Hover**: The input field changes color of border to indicate it is interactive and can be clicked.
+
+-   **Focus**: A visible outline of border color appears to indicate the field is active and ready for input.
+
+-   **Active:** The input field shows a visual indication to indicate it is being clicked or interacted with.
+
+-   **Filled in:** The input field displays the entered date, showing that the user has provided input.
+
+-   **Disabled**: The input field appears grayed out and is non-interactive, preventing user input.
+
+-   **Disabled + Filled in:** The input field appears grayed out but still displays the previously entered date.
+
+-   **Error State**: The border changes to indicate an error.
+
+-   **Date Picker**: Clicking the input field opens a date picker, allowing users to select a date from a calendar.
+
+* * * * *
+
+### Dos and Don'ts
+
+#### **Dos:**
+
+✔ Use clear and concise placeholder text to guide users on the expected date format.\
+✔ Validate user input to ensure it follows the correct date format.\
+✔ Provide helpful error messages if the input is invalid.
+
+#### **Don'ts:**
+
+✘ Don't use date input fields for selecting date ranges (use a date range picker).\
+✘ Don't leave the input field without a label or placeholder text.\
+✘ Don't rely solely on color to indicate errors---use text or icons as well.

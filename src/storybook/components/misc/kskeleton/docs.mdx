@@ -1,0 +1,54 @@
+import { Meta, Title, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';  
+import Example from './example'
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Uses: [PrimeReact Skeleton](https://primereact.org/skeleton)
+
+The KSkeleton should be used as a placeholder when the data you would like to show has not yet loaded.
+
+<Canvas of={metaData.Story} />
+<Controls />
+
+
+## Example Usage 
+
+The KSkeleton can be used exactly like the [PrimeReact Skeleton](https://primereact.org/skeleton); simply replace usages of "Skeleton" with "KSkeleton."
+
+<Example/>
+
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KSkeleton } from '@flash/ui-components/misc/kskeleton';
+import { ExampleWrapper } from '@sbook/utils';
+
+export default function Example() {
+  return (
+    <ExampleWrapper>
+      <div className="mb-4 flex items-center gap-3">
+        <KSkeleton shape="circle" size="4rem" />
+        <div className="flex flex-col justify-evenly gap-1 self-stretch">
+          <KSkeleton
+            shape="rectangle"
+            height="1rem"
+            width="10rem"
+            borderRadius="1rem"
+          />
+          <KSkeleton
+            shape="rectangle"
+            height="1rem"
+            width="15rem"
+            borderRadius="1rem"
+          />
+        </div>
+      </div>
+      <KSkeleton shape="rectangle" height="4rem" borderRadius="1rem" />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

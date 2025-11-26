@@ -1,0 +1,265 @@
+import { compLibVersion, primeReactVersion } from '../versions.autogen';
+
+# FLASH UI Component Library
+
+## Table of Contents
+
+- [Versioning](#versioning)
+- [Introduction](#introduction)
+- [How to set up your app](#how-to-set-up-your-app)
+  - [React](#react)
+  - [Krones Component Library](#krones-component-library)
+  - [Font](#font)
+  - [Primereact](#primereact)
+  - [TailwindCSS](#tailwindcss)
+- [What's Next?](#whats-next)
+- [Troubleshooting](#troubleshooting)
+  - [component colors not applied](#component-colors)
+  - [css variables / design tokens are not defined](#design-tokens)
+  - [ts: cannot find module or type declarations](#svgr-type-declarations)
+  - [vite: nested css was detected](#nested-css)
+
+## Versioning
+
+FLASH UI Component Library: {compLibVersion}
+
+PrimeReact: {primeReactVersion}
+
+## Introduction
+
+The FLASH UI Component library is
+
+- **What?** a set of components and helper functions
+- **How?** designed to be used in conjunction with the [PrimeReact](https://primereact.org) component library
+- **Why?** so that newly developed [React](https://react.dev) frontends in the Krones Ecosystem can implement the Krones Design System.
+
+## How to set up your app
+
+### React
+
+Set up a project in React, using a build environment of your choice. We recommend [Vite](https://vitejs.dev/).
+
+### Krones Component Library
+
+Install the Krones Component Library with
+```shell
+npm install @flash/ui-components
+```
+
+> Note: this requires access to the Syskron (NOT Krones.Digital) JFrog repository.
+
+### Font
+
+Install the `Roboto` font with `npm install @fontsource/roboto.` Import the font in your React app with
+
+```typescript
+// main.tsx
+import '@fontsource/roboto';
+import '@fontsource/roboto/latin-100-italic.css'
+import '@fontsource/roboto/latin-100.css'
+import '@fontsource/roboto/latin-300-italic.css'
+import '@fontsource/roboto/latin-300.css'
+import '@fontsource/roboto/latin-400-italic.css'
+import '@fontsource/roboto/latin-400.css'
+import '@fontsource/roboto/latin-500-italic.css'
+import '@fontsource/roboto/latin-500.css'
+import '@fontsource/roboto/latin-700-italic.css'
+import '@fontsource/roboto/latin-700.css'
+import '@fontsource/roboto/latin-900-italic.css'
+import '@fontsource/roboto/latin-900.css'
+```
+
+### PrimeReact
+
+Install [PrimeReact](https://primereact.org) with `npm install primereact`.
+
+#### PrimeReact localization
+
+This library provides Krones' localization of labels exposed by PrimeReact for their components.
+
+Use `addKronesComponentLocales` to load all custom localizations defined by Krones (should be done once in the application lifetime).
+
+Use `setKronesComponentsLocale` to safely change the locale for PrimeReact-based components application-wide.
+Use `getKronesComponentsLocaleBestMatch` to transform the locale string into one that could be safely passed to a PrimeReact-based component.
+Prefer setting the locale for PrimeReact globally (with `setKronesComponentsLocale`).
+
+The list of currently available localizations can be found in the `src/components/utils/prime-react-locale/` folder of the component library repository.
+If you need to introduce a new localization / change an existing one, please create a PR for the component library.
+
+### TailwindCSS
+
+- You are required to use TailwindCSS in your project. Install [TailwindCSS](https://tailwindcss.com/docs/installation),
+  referring to their setup guide. There are various options for how to integrate Tailwind
+  into your project, depending on the build environment you use.
+
+#### V4
+
+##### Import css
+
+- With the new css-first configuration, import our UI library tailwind-related stylesheet and styles into index.css or tailwind.css
+
+```css
+/* index.css - Correct import order */
+@import '@flash/ui-components/tailwind.css';
+@import '@flash/ui-components/flash.css';
+
+/* Import TailwindCSS directives AFTER the component library tailwind.css import */
+@import 'tailwindcss';
+```
+
+##### Web Component Shadow DOM Compatibility
+
+When deploying your application as a web component with Shadow DOM encapsulation, you may encounter styling issues with TailwindCSS border utilities and other CSS custom properties.
+This is a known limitation documented in the [TailwindCSS GitHub issue #15005](https://github.com/tailwindlabs/tailwindcss/issues/15005#issuecomment-3257589151).
+
+**Symptoms of this issue:** Border styles not rendering correctly in Shadow DOM
+
+**Solution:** Add the following CSS custom property declarations to your main CSS file to ensure TailwindCSS variables are properly initialized within the Shadow DOM context:
+
+```css
+/* Shadow DOM TailwindCSS compatibility fix */
+:host {
+    /* Layout and positioning variables */
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-translate-z: 0;
+    --tw-rotate-x: rotateX(0);
+    --tw-rotate-y: rotateY(0);
+    --tw-rotate-z: rotateZ(0);
+    --tw-skew-x: skewX(0);
+    --tw-skew-y: skewY(0);
+
+    /* Border and divider variables */
+    --tw-divide-y-reverse: 0;
+    --tw-border-style: solid;
+    --tw-space-x-reverse: 0;
+
+    /* Typography variables */
+    --tw-font-weight: initial;
+    --tw-tracking: initial;
+
+    /* Gradient variables */
+    --tw-gradient-position: initial;
+    --tw-gradient-from: #0000;
+    --tw-gradient-via: #0000;
+    --tw-gradient-to: #0000;
+    --tw-gradient-stops: initial;
+    --tw-gradient-via-stops: initial;
+    --tw-gradient-from-position: 0%;
+    --tw-gradient-via-position: 50%;
+    --tw-gradient-to-position: 100%;
+
+    /* Shadow and ring variables */
+    --tw-shadow: 0 0 #0000;
+    --tw-shadow-color: initial;
+    --tw-inset-shadow: 0 0 #0000;
+    --tw-inset-shadow-color: initial;
+    --tw-ring-color: initial;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-inset-ring-color: initial;
+    --tw-inset-ring-shadow: 0 0 #0000;
+    --tw-ring-inset: initial;
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-offset-shadow: 0 0 #0000;
+
+    /* Filter effect variables */
+    --tw-blur: initial;
+    --tw-brightness: initial;
+    --tw-contrast: initial;
+    --tw-grayscale: initial;
+    --tw-hue-rotate: initial;
+    --tw-invert: initial;
+    --tw-opacity: initial;
+    --tw-saturate: initial;
+    --tw-sepia: initial;
+    --tw-drop-shadow: initial;
+
+    /* Animation variables */
+    --tw-duration: initial;
+    --tw-ease: initial;
+}
+```
+
+**When to apply this fix:**
+- Only needed when building web components with Shadow DOM and the hosting application hasn't migrated yet to Tailwind4
+- Apply this fix if you notice border or styling inconsistencies in the web-component
+
+#### V3
+
+- Set up your Tailwind configuration to use the Krones configuration:
+
+  ```js
+  // tailwind.config.js
+  export { default } from '@flash/ui-components/tailwind.config';
+    ```
+
+- Since nested CSS is used in `flash.css` you also need to configure Tailwind to properly handle nested CSS by
+installing and configuring the nesting plugin:
+
+  ```shell
+  npm install -D @tailwindcss/nesting
+    ```
+
+- Make sure to register this plugin
+
+  ```js
+  // postcss.config.js
+  export default {
+    plugins: {
+      'tailwindcss/nesting': {},
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  };
+    ```
+
+- Reference tailwind
+
+  ```css
+  /* index.css */
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+    ```
+- Import our custom stylesheet into your React App with
+
+  ```typescript
+  // main.tsx
+  import '@flash/ui-components/flash.css';
+    ```
+
+
+## What's Next?
+
+Continue through the set-up guide. Next up: [Using Components](/docs/general-2-using-components--docs).
+
+## Troubleshooting
+
+<a name="component-colors"></a> ***Issue: Colors of components are not applied.***
+
+> Solution: Make sure that the theme is set correctly. See the section on [theme change](//docs/general-3-using-colors--docs#implementation-of-theme-change) for details.
+
+<a name="design-tokens"></a> ***Issue: CSS variables or design tokens are not defined.*** 
+
+There is an error in your dev tools that says, e.g. `--button-border-primary-default` is not defined.
+
+> Solution: Make sure that the theme is set correctly. See the section on [theme change](//docs/general-3-using-colors--docs#implementation-of-theme-change) for details.
+
+<a name="svgr-type-declarations"></a> ***Issue: You get typescript errors when trying to import an `svg` file.*** 
+
+The error is something like
+```
+ts(2307) - Cannot find module @flash/ui-components/assets/svgs/icons/someImage.svg?react or its corresponding type declarations.
+```
+
+> Solution: Install the `vite-plugin-svgr` plugin and adjust the vite declaration file. See [Using SVGs](/docs/general-5-using-svgs--docs) for details.
+
+<a name="nested-css"></a> ***Issue: Vite complains about Tailwind and nested CSS.*** 
+
+The error is something like
+```
+[vite:css] Nested CSS was detected, but CSS nesting has not been configured correctly.
+```
+
+> Solution: Install and configure the `@tailwindcss/nesting` plugin as a dev dependency. See [TailwindCSS](#tailwindcss) for details.

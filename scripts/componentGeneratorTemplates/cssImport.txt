@@ -1,0 +1,1 @@
+@import url('@complib/$category/$component/styles.css');

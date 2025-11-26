@@ -1,0 +1,95 @@
+# Migration Guide
+## Migrate From Version 2 To Version 3
+
+### Library Modernization
+- New Package Name: @flash/ui-components (dropped -dev suffix)
+- Full compatibility with Tailwind CSS v4
+- All component styles wrapped in krones-library CSS layer
+- Enhanced theming system with Krones design tokens
+- Cleanup: Deprecated design tokens removed
+
+#### Removed tokens
+_Basic_
+- `--colors-grey-0: #ffffff`
+- `--colors-grey-1000: #000000`
+
+_Component layer_
+- `--border-primary-*` are replaced with `border-interactive-primary-*`
+- `--surface-emphasized-*` are replaced with `--surface-highlight-*`
+
+- `--button-border-ghost-*` are replaced with `--button-border-subdued-*`
+- `--button-border-outlined-*` are replaced with `--button-border-default-*`
+
+- `--button-content-ghost-*` are replaced with `--button-content-subdued-*`
+- `--button-content-outlined-*` are replaced with `--button-content-default-*`
+
+- `--button-surface-ghost-*` are replaced with `--button-surface-subdued-*`
+- `--button-surface-outlined-*` are replaced with `--button-surface-default-*`
+
+- `--button-outline-focus: var(--colors-blue-100)`
+- `--formcontrol-outline-focus: var(--colors-blue-100)`
+
+
+### Component Updates
+KButton: `ghost` variant renamed to `subdued`
+
+### Tailwind setup
+
+Instruction can be found in [the Tailwind basic setup chapter](?path=/docs/developer-documentation-1-basic-setup--docs#v4)
+
+## Migrate From Version 1 To Version 2
+
+### New Interface for KButton
+
+We had a small change in the interface for the `KButton` component.
+Previously, the `KButton` accepted a parameter called `variant` which could take the values
+`"primary" | "outlined" | "ghost" | "critical"`. In the new version, the `variant` property can only take the values
+`"primary" | "outlined" | "ghost"` and there is a separate `boolean` property called `critical`, resulting
+in a total of six possible types of button.
+
+This means, if you ever used `variant="critical"` previously, you will want to replace this with `variant="outlined", critical="true"`.
+Failure to do so will result in typescript errors during build.
+
+### Changes in Size for KButton
+
+The styles for the KButton changed, affecting the sizes. Previously, there were two sizes: `small` and `default`.
+Now there are four: `small`, `default`, `large` and `xlarge`. Of course, this will not break the
+typsecript compilation; however, if you want the buttons in your application to appear as
+they did before, you will need to replace usages of `small` with `default` (or leave unspecified)
+and usages of `default` with `large`. Note, KButtons with previously unspecified sizes do not need any changes.
+
+### New Color Tokens
+
+In Version 2 there have been some updates to the color tokens. Some tokens have been added
+while others have been removed. In case teams still use old token names, their application
+may fail silently.
+
+For example, the token `content-on-dark-bg` no longer exists, so if you previously were using
+the tailwind class `text-content-on-dark-bg` in order to apply a text color, this will no longer work
+and will fail silently.
+
+Below you will find a list of the tokens that were removed, and some valid tokens which can be used
+as a replacement:
+
+- `border-inversed` -> `border-inverse-default`
+- `content-on-dark-bg` -> `content-inverse-default`
+- `content-on-light-bg` -> `content-inverse-default`
+
+There were also some component-specific tokens that were affected. These technically
+should not have been used, but the replacement tokens are described anyways:
+
+- `button-[*]-default-[*]` -> `button-[*]-outlined-[*]`
+- `button-[*]-subdued-[*]` -> `button-[*]-ghost-[*]`
+- `button-[*]-critical-[*]` -> `button-[*]-critical-primary/ghost/outlined-[*]`
+
+The following tokens should also not have been used in normal FLASH applications, but
+in case they were, they will need replacements of your own choosing.
+
+- `colors-blue-300-hmi`
+- `colors-blue-500-hmi`
+- `colors-grey-300-hmi`
+- `colors-grey-400-hmi`
+- `colors-neutral-200-hmi`
+- `colors-neutral-500-hmi`
+- `colors-success-500-hmi`
+- `mode-switch`

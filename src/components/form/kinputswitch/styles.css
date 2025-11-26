@@ -1,0 +1,130 @@
+@layer krones-library {
+  .kro-kcheckable.kro-kinputswitch {
+    position: relative;
+    display: inline-block;
+
+    /* entire switch */
+    .kro-kcheckable-box {
+      transition-duration: 0.2s;
+      border-radius: var(--size-8);
+      cursor: pointer;
+      border: var(--size-px) solid transparent;
+    }
+
+    /* slider, which goes back and forth */
+    .kro-kcheckable-box:before {
+      position: absolute;
+      content: '';
+      border-radius: 50%;
+      transition-duration: 0.2s;
+    }
+
+    /* position of slider */
+    &[data-p-highlight='true'] .kro-kcheckable-box:before {
+      /* when selected, slider 2px from right edge */
+      left: calc(100%);
+      transform: translate(calc(-100% - var(--size-0_5)));
+    }
+
+    &[data-p-highlight='false'] .kro-kcheckable-box:before {
+      /* when not selected, slider 2px from left edge */
+      left: var(--size-0_5);
+    }
+
+    /* size of inputswitch and slider */
+    &.kro-size-small {
+      &,
+      .kro-kcheckable-box {
+        width: var(--size-10);
+        height: var(--size-5);
+      }
+
+      .kro-kcheckable-box:before {
+        width: var(--size-4);
+        height: var(--size-4);
+      }
+    }
+
+    &.kro-size-default {
+      .kro-kcheckable-box {
+        width: var(--size-10);
+        height: var(--size-6);
+      }
+
+      .kro-kcheckable-box:before {
+        width: var(--size-5);
+        height: var(--size-5);
+      }
+    }
+
+    /* colors for normal input switch, including selected/hover states */
+    .kro-kcheckable-box {
+      border-color: var(--border-interactive-default);
+      background-color: var(--surface-interactive-neutral-default);
+    }
+
+    &:has(.kro-kcheckable-input:hover) .kro-kcheckable-box {
+      border-color: var(--border-interactive-hover);
+      background: var(--surface-interactive-neutral-hover);
+    }
+
+    &[data-p-highlight='true'] {
+      .kro-kcheckable-box {
+        border-color: var(--formcontrol-border-selected-default);
+        background-color: var(--formcontrol-surface-selected-default);
+      }
+
+      &:has(.kro-kcheckable-input:hover) .kro-kcheckable-box {
+        border-color: var(--formcontrol-border-selected-hover);
+        background-color: var(--formcontrol-surface-selected-hover);
+      }
+    }
+
+    /* colors for invalid input switch, including selected/hover states */
+    &.kro-invalid {
+      .kro-kcheckable-box {
+        border-color: var(--border-critical-default);
+        background-color: var(--surface-critical-default);
+      }
+
+      &:has(.kro-kcheckable-input:hover) .kro-kcheckable-box {
+        border-color: var(--border-critical-hover);
+        background-color: var(--surface-critical-default);
+      }
+
+      &[data-p-highlight='true'] {
+        .kro-kcheckable-box {
+          border-color: var(--border-critical-default);
+          background-color: var(--surface-interactive-critical-default);
+        }
+
+        &:has(.kro-kcheckable-input:hover) .kro-kcheckable-box {
+          border-color: var(--border-critical-hover);
+          background-color: var(--surface-interactive-critical-hover);
+        }
+      }
+    }
+
+    /* When disabled, always same colors. Selected/hover state don't matter. */
+    &.kro-disabled {
+      &,
+      &[data-p-highlight='true'],
+      &:has(.kro-kcheckable-input:hover),
+      &[data-p-highlight='true']:has(.kro-kcheckable-input:hover) {
+        .kro-kcheckable-box {
+          background-color: var(--surface-interactive-primary-disabled);
+          border-color: var(--border-interactive-disabled);
+        }
+      }
+    }
+
+    /* colors for slider inside switch */
+    .kro-kcheckable-box:before {
+      background-color: var(--content-interactive-primary-default);
+    }
+
+    &.kro-disabled .kro-kcheckable-box:before {
+      background-color: var(--content-disabled);
+    }
+  }
+}

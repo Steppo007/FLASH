@@ -1,0 +1,111 @@
+import { Meta, Description, Canvas, Controls, Story, Title } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import { LanguageRadioGroup } from './groupExample.tsx';
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Uses: [PrimeReact RadioButton](https://primereact.org/radiobutton)
+
+The radio button is a simple form element which allows users to 
+select at most one option from a given group.
+
+<Canvas of={metaData.Story} />
+
+Note: the ability to 'untoggle' the radio button above is purely for 
+demonstration purposes, and does not reflect the real behavior of the component. 
+See below for examples of radio groups.
+
+<Controls />
+
+## Example Usage
+
+The Radio Button component is a very thin wrapper of the React component `<input type="radio">`.
+It allows for additional customisation through the `variant` and `size` attributes. Apart from this,
+it should be [used](https://react.dev/reference/react-dom/components/input) exactly as recommended by React.
+
+[comment]: # (START WRITE ./singleExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KRadioButton } from '@flash/ui-components/form/kradiobutton';
+
+export function SingleExample() {
+  return (
+    <KRadioButton
+      name="language"
+      value={'spanish'}
+      inputId={'language-spanish'}
+      label={'Spanish'}
+      invalid={false}
+      size={'default'}
+    />
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## Building Radio Groups 
+
+Again, when using the KRadioButton in radio group, it should be used as suggested in
+the primereact [documentation](https://primereact.org/radiobutton)
+
+### Radio Group
+<LanguageRadioGroup/>
+
+[comment]: # (START WRITE ./groupExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KRadioButton } from '@flash/ui-components/form/kradiobutton';
+import { KInputContainer } from '@flash/ui-components/form/kinputcontainer';
+import KHelperText from '@flash/ui-components/misc/khelpertext';
+import { ExampleWrapper } from '@sbook/utils';
+import { useState } from 'react';
+
+interface Language {
+  label: string;
+  key: string;
+}
+
+const languages: Language[] = [
+  { label: 'English', key: 'en' },
+  { label: 'German', key: 'de' },
+  { label: 'Spanish', key: 'es' },
+  { label: 'French', key: 'fr' },
+];
+
+export function LanguageRadioGroup() {
+  const [value, setValue] = useState<string>('');
+
+  const invalid = value === 'fr';
+  const helperText = invalid ? 'Invalid selection' : 'Make a selection';
+
+  return (
+    <ExampleWrapper>
+      <KInputContainer>
+        <div className="flex gap-12">
+          {languages.map((language) => {
+            const name = 'language';
+            return (
+              <KRadioButton
+                key={language.key}
+                name={name}
+                value={language.key}
+                checked={value === language.key}
+                onChange={(e) => {
+                  setValue(e.target.value);
+                }}
+                id={name + '-' + language.key}
+                invalid={invalid}
+                label={language.label}
+              />
+            );
+          })}
+        </div>
+        <KHelperText className="mt-2">{helperText}</KHelperText>
+      </KInputContainer>
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

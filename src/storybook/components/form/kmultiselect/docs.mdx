@@ -1,0 +1,71 @@
+import { Meta, Description, Canvas, Controls, Story, Title} from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import { Example } from './example.tsx';
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Uses: [PrimeReact MultiSelect](https://primereact.org/multiselect/)
+
+MultiSelect is used to select multiple items from a collection.
+
+<Canvas of={metaData.Story} />
+
+Experiment with changing the attributes below. Some of them are custom attributes, and some come directly from PrimeReact.
+
+<Controls />
+
+## Example Usage with PrimeReact
+
+The KMultiSelect should be used exactly as recommended in the Primereact [documentation](https://primereact.org/multiselect).
+Select 'Rome' in the example below to see how the error state and helper text can be used.
+
+<Example />
+
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KMultiSelect } from '@flash/ui-components/form/kmultiselect';
+import { KText } from '@flash/ui-components/misc/ktext';
+import { ExampleWrapper } from '@sbook/utils';
+import { MultiSelectChangeEvent } from 'primereact/multiselect';
+import { useState } from 'react';
+
+export function Example() {
+  interface City {
+    name: string;
+    code: string;
+  }
+  const [selectedCities, setSelectedCities] = useState<City[]>([]);
+
+  const cities: City[] = [
+    { name: 'Rome', code: 'RM' },
+    { name: 'London', code: 'LDN' },
+    { name: 'Paris', code: 'PRS' },
+    { name: 'Munich', code: 'MUN' },
+    { name: 'Budapest', code: 'BP' },
+  ];
+
+  const isRomeSelected = selectedCities.some((c) => c.name === 'Rome');
+  const selectedCitiesLabel = selectedCities?.map((c) => c.name).join(', ');
+
+  return (
+    <ExampleWrapper className="flex flex-col items-center gap-8">
+      <KMultiSelect
+        value={selectedCities}
+        onChange={(e: MultiSelectChangeEvent) => setSelectedCities(e.value)}
+        display="chip"
+        options={cities}
+        optionLabel="name"
+        placeholder="Select Cities"
+        className="w-64"
+        invalid={isRomeSelected}
+        helperText={isRomeSelected ? 'Do not select Rome' : ''}
+      />
+      <KText type="text">{`Selected cities: ${selectedCitiesLabel}`}</KText>
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

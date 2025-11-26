@@ -1,0 +1,322 @@
+import { Meta, Description, Canvas, Controls, Story, Title } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import { ExampleMegaMenu } from './example.tsx';
+
+<Meta of={metaData} />
+
+<Title/>
+
+The KMegaMenu is a navigation component that displays submenus together.
+
+# Example Usage
+
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { ExampleWrapper } from '@sbook/utils';
+import { KMegaMenu, KMegaMenuProps } from '@flash/ui-components/menu/kmegamenu';
+import { menuItems } from '@sbook/components/menu/kmegamenu/example-model';
+import { useState } from 'react';
+import KronesLogo from '@flash/ui-components/assets/svgs/other/kronesLogo.svg?react';
+import { MenuItem } from 'primereact/menuitem';
+
+export function ExampleMegaMenu(props?: Omit<KMegaMenuProps, 'model'>) {
+  const [activeId, setActiveId] = useState(props?.activeId);
+  const command: NonNullable<MenuItem['command']> = (item) => {
+    if (!item.item.disabled) {
+      setActiveId(item.item.id);
+    }
+  };
+  const breakpoint = props?.breakpoint ?? '1024px';
+
+  const topMenuHeader = (
+    <h2
+      data-testid="krones-logo"
+      className="kro-knavitem-colors main-logo"
+      onClick={() => setActiveId(undefined)}
+    >
+      <KronesLogo />
+    </h2>
+  );
+
+  return (
+    <ExampleWrapper className="wrapper flex justify-center">
+      <KMegaMenu
+        {...props}
+        model={menuItems(command)}
+        activeId={activeId}
+        topMenuHeader={topMenuHeader}
+        breakpoint={breakpoint}
+      ></KMegaMenu>
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+<ExampleMegaMenu />
+
+### KMegaMenu Views
+
+There is 2 types to display the menus' content: simple and tabbed.
+There is an option to add a top level button that doesn't show any sub-menus.
+
+### KMegaMenu Example
+The KMegaMenu example demonstrates the component. The following attributes are available for the component:
+
++ the data model
++ breakpoint: the specific pixel width at which the mobile layout replaces the desktop version
++ activeId: highlights the currently selected item
++ linkPreventDefault: prevents default behaviour of anchors for the KMegaMenu leaf links
++ minColumnWidthDesktop: the submenu column min width value for desktop view (in px)
++ maxColumnWidthDesktop: the submenu column max width value for desktop view (in px)
++ topMenuHeader: header that appears on the mobile topMenu view
++ className: class names attached to a wrapper for both the desktop and mobile version
+
+### Megamenu links
+The default Primereact's behavior is to use the default anchor behavior.
+Because we develop single-page apps, for us the desirable way would be to use our framework's routing.
+That's why `linkPreventDefault` is set to true by default and the integrator (developer) should specify
+the way to navigate programmatically via the command property of `MenuItem`.
+To preserve the ability of copying the url link of an item, set the `url` property.
+
+### Mobile Responsiveness
+The KMegaMenu is responsive on mobile.
+
+The menu tab panels' width is calculated by the component based of how many categories are present in the submenu (simple view).
+
+## Constructing a menu model
+
+The menu model is based on the PrimeReact `MenuItem` object, which, simply put, is an object
+with a label, an icon, and an `items` object, which should be of type `MenuItem[]` (<strong>No lists of lists are expected</strong>).
+
+Construct a menu model for the megamenu as follows. First, construct a list of menus,
+each menu having type `MenuItem`. Each menu should then have an `items` object of type
+`MenuItems[]`. It's desirable that every node has its own id; it is expected that the top and leaf nodes
+have ids, otherwise an error render will appear (expected only for developers to be seen).
+
+<i>Disabled state</i>: Setting disabled: true on a MenuItem will render it grayed out with a not-allowed cursor (leaf items and category links).
+
+By default, the simple view is chosen for display. The tabbed view can be chosen by configuring the top-most item
+to have the data.ktabbed object (see example below, the "Games" menu, as well you could refer to our custom TabbedMenuItem type)
+
+The KMegaMenu above use the following menu model:
+
+
+[comment]: # (START WRITE ./example-model.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import Folder from '@flash/ui-components/assets/svgs/icons/folder.svg?react';
+import AccountFigure from '@flash/ui-components/assets/svgs/icons/accountFigure.svg?react';
+import BarChart from '@flash/ui-components/assets/svgs/icons/barChart.svg?react';
+import { MenuItem, MenuItemCommandEvent } from 'primereact/menuitem';
+
+export const menuItems = (command: NonNullable<MenuItem['command']>) =>
+  populateTemplateWithIds(menuTemplate(), command);
+
+function populateTemplateWithIds(
+  template: MenuItem[],
+  command: NonNullable<MenuItem['command']>
+): MenuItem[] {
+  return template?.map((item: MenuItem) => {
+    return {
+      ...item,
+      id:
+        item.id ??
+        (item.label || '')
+          .toLowerCase()
+          .trim()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/[\s_-]+/g, '-')
+          .replace(/^-+|-+$/g, ''),
+      command: !item.items || item.items.length === 0 ? command : item.command,
+      items: item.items
+        ? populateTemplateWithIds(item.items as MenuItem[], command)
+        : undefined,
+    };
+  });
+}
+
+const categoryCommand = (event: MenuItemCommandEvent) => {
+  console.log('Link for category ' + event.item.label);
+};
+
+function menuTemplate(): MenuItem[] {
+  return [
+    {
+      label: 'Videos',
+      icon: <Folder />,
+      items: [
+        {
+          label: 'Video 1',
+          icon: <Folder />,
+          items: [
+            {
+              label: 'Video 1.1 production',
+              icon: <Folder />,
+              id: 'active-video',
+              url: '/videos',
+            },
+            { label: 'Video 1.2' },
+          ],
+        },
+        {
+          label: 'Video 2 management',
+          items: [
+            {
+              label:
+                'This Video Label Is sooo Long, it should be wrapped into a couple of rows',
+              icon: <Folder />,
+            },
+            { label: 'Video 2.2' },
+          ],
+        },
+        {
+          label: 'Video 3',
+          items: [{ label: 'Video 3.1' }, { label: 'Video 3.2' }],
+        },
+        {
+          label: 'Video 4',
+          items: [{ label: 'Video 4.1' }, { label: 'Video 4.2' }],
+        },
+      ],
+    },
+    {
+      label: 'Users',
+      icon: <AccountFigure />,
+      items: [
+        {
+          label: 'User 1 and user management',
+          items: [{ label: 'User 1.1' }, { label: 'User 1.2' }],
+        },
+        {
+          label: 'User 2',
+          items: [{ label: 'User 2.1' }, { label: 'User 2.2' }],
+        },
+        {
+          label: 'User 3',
+          items: [{ label: 'User 3.1' }, { label: 'User 3.2' }],
+        },
+        {
+          label: 'User 4',
+          items: [{ label: 'User 4.1' }, { label: 'User 4.2' }],
+        },
+        {
+          label: 'User 5',
+          items: [{ label: 'User 5.1' }, { label: 'User 5.2' }],
+        },
+        {
+          label: 'User 6',
+          items: [{ label: 'User 6.1' }, { label: 'User 6.2' }],
+        },
+        {
+          label: 'User 7',
+          items: [{ label: 'User 7.1' }, { label: 'User 7.2' }],
+        },
+      ],
+    },
+    {
+      label: 'Games',
+      icon: <BarChart />,
+      data: {
+        ktabbed: {
+          categoryLinkLabel: 'Game level overview',
+          categoryControlLabel: 'Game direct access',
+          categoryControlLabelMobile: 'Game selected',
+          categorySelectorHeaderMobile: 'Choose the game',
+          categorySelectorHintMobile: 'Tap the item',
+        },
+      },
+      items: [
+        {
+          label: 'Game 1',
+          command: categoryCommand,
+          icon: <Folder />,
+          items: [
+            {
+              label: 'Level 1.1',
+              items: [
+                { label: 'Level 1.1.1', icon: <BarChart /> },
+                { label: 'Level 1.1.2', icon: <BarChart /> },
+              ],
+            },
+            {
+              label: 'Level 1.2',
+              items: [
+                { label: 'Level 1.2.1', icon: <BarChart /> },
+                { label: 'Level 1.2.2', icon: <BarChart /> },
+                { label: 'Level 1.2.3', icon: <BarChart /> },
+              ],
+            },
+            {
+              label: 'Level 1.3',
+              items: [
+                { label: 'Level 1.3.1', icon: <BarChart /> },
+                { label: 'Level 1.3.2', icon: <BarChart /> },
+                { label: 'Level 1.3.3', icon: <BarChart /> },
+                { label: 'Level 1.3.4', icon: <BarChart /> },
+              ],
+            },
+            {
+              label: 'Level 1.4',
+              items: [
+                { label: 'Level 1.4.1', icon: <BarChart /> },
+                { label: 'Level 1.4.2', icon: <BarChart /> },
+                { label: 'Level 1.4.3', icon: <BarChart /> },
+              ],
+            },
+            {
+              label: 'Level 1.5',
+              items: [
+                { label: 'Level 1.5.1', icon: <BarChart /> },
+                { label: 'Level 1.5.2', icon: <BarChart /> },
+                { label: 'Level 1.5.3', icon: <BarChart /> },
+              ],
+            },
+            {
+              label: 'Level 1.6',
+              items: [
+                { label: 'Level 1.6.1', icon: <BarChart /> },
+                { label: 'Level 1.6.2', icon: <BarChart /> },
+              ],
+            },
+            {
+              label: 'Level 1.7',
+              items: [
+                { label: 'Level 1.7.1', icon: <BarChart /> },
+                { label: 'Level 1.7.2', icon: <BarChart /> },
+                { label: 'Level 1.7.3', icon: <BarChart /> },
+                { label: 'Level 1.7.4', icon: <BarChart /> },
+              ],
+            },
+          ],
+        },
+        {
+          label: 'Game 2',
+          command: categoryCommand,
+          icon: <AccountFigure />,
+          disabled: true,
+          items: [
+            { label: 'Level 2.1', icon: <BarChart />, disabled: true },
+            { label: 'Level 2.2', icon: <BarChart /> },
+            { label: 'Level 2.3', icon: <BarChart /> },
+            { label: 'Level 2.4', icon: <BarChart /> },
+            { label: 'Level 2.5', icon: <BarChart /> },
+            { label: 'Level 2.6', icon: <BarChart /> },
+            { label: 'Level 2.7', icon: <BarChart /> },
+            { label: 'Level 2.8', icon: <BarChart /> },
+            { label: 'Level 2.9', icon: <BarChart /> },
+            { label: 'Level 2.10', icon: <BarChart /> },
+            { label: 'Level 2.11', icon: <BarChart /> },
+            { label: 'Level 2.12', icon: <BarChart /> },
+          ],
+        },
+      ],
+    },
+    {
+      label: 'Simple button',
+    },
+  ];
+}
+```
+[comment]: # (END WRITE)

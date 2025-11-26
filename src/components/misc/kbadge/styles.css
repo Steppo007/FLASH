@@ -1,0 +1,50 @@
+@layer krones-library {
+  .kro-kbadge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--size-5);
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.25rem;
+    letter-spacing: 0.0125rem;
+    user-select: none;
+    color: var(--content-inverse-default);
+
+    &.size-xsmall {
+      width: var(--size-2);
+      height: var(--size-2);
+      font-size: 0rem;
+    }
+
+    &.size-small {
+      min-width: var(--size-3);
+      height: var(--size-3);
+      font-size: 0.5rem;
+      padding: var(--space-0) var(--space-0_75);
+    }
+
+    &.size-large {
+      min-width: var(--size-5);
+      height: var(--size-5);
+      font-size: 0.75rem;
+      padding: var(--space-0) var(--space-1_5);
+    }
+
+    &.variant-outlined {
+      border: var(--size-px) solid var(--border-inverse-default);
+    }
+
+    &.severity-danger {
+      background-color: var(--surface-critical-accented);
+    }
+
+    &.severity-warning {
+      background-color: var(--surface-warning-accented);
+    }
+
+    &.severity-subdued {
+      background-color: var(--surface-highlight-accented);
+    }
+  }
+}

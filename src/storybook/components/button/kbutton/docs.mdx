@@ -1,0 +1,97 @@
+import { Meta, Title, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import { TooltipExample } from './tooltipExample'
+import { Example } from './example'
+import { BadgeExample } from './badgeExample'
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Uses: [PrimeReact Button](https://primereact.org/button)
+
+The button component is a UI element that can be used to trigger an 
+action, navigate to a new screen, or submit a form.
+
+<Canvas of={metaData.Story} />
+<Controls />
+
+## Example: Basic 
+
+<Example/>
+
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KButton } from '@flash/ui-components/button/kbutton';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+
+// this imports works with vite and vite-plugin-svgr
+import LanguageGlobe from '@flash/ui-components/assets/svgs/icons/languageGlobe.svg?react';
+
+export function Example() {
+  return (
+    <ExampleWrapper className="flex justify-center">
+      <KButton label="Krones" icon={<LanguageGlobe />} />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## Example: Tooltip 
+
+
+To add a tooltip, simply pass `tooltip` and `tooltipOptions`. 
+
+<TooltipExample/>
+
+[comment]: # (START WRITE ./tooltipExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KButton } from '@flash/ui-components/button/kbutton';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+
+export function TooltipExample() {
+  return (
+    <ExampleWrapper className="flex justify-center">
+      <KButton
+        tooltip="Tooltip text"
+        label={'Hover and Wait'}
+        tooltipOptions={{ position: 'top', showDelay: 1000 }}
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## Example: Badge 
+
+<BadgeExample/>
+
+[comment]: # (START WRITE ./badgeExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KButton } from '@flash/ui-components/button/kbutton';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+
+export function BadgeExample() {
+  /*
+    badgeClassName: "kro-kbadge" AND
+    "severity-(danger | warning | subdued)" AND
+    "size-(xsmall | small | large)" AND 
+    (optionally) "variant-outlined"
+    */
+  return (
+    <ExampleWrapper className="flex justify-center">
+      <KButton
+        label="Krones"
+        badge="3"
+        badgeClassName="kro-kbadge severity-danger size-large"
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

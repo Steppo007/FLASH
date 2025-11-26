@@ -1,0 +1,74 @@
+import { Meta, Title, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories'; 
+import BasicExample from './basicExample'
+import AdvancedExample from './advancedExample'
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Custom component
+
+The KInputTextarea component is used to enter text information and 
+gives feedback on the feasibility of the content with error states.
+
+<Canvas of={metaData.Story} />
+<Controls />
+
+## Example: Basic 
+
+<BasicExample/>
+
+[comment]: # (START WRITE ./basicExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KInputTextarea } from '@flash/ui-components/form/kinputtextarea';
+import { ExampleWrapper } from '@sbook/utils';
+import { useState } from 'react';
+
+export default function BasicExample() {
+  const [value, setValue] = useState('');
+  return (
+    <ExampleWrapper className="flex items-center justify-center">
+      <KInputTextarea
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## Example: Advanced
+
+<AdvancedExample/>
+
+[comment]: # (START WRITE ./advancedExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import KInputTextarea from '@flash/ui-components/form/kinputtextarea';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import { useState } from 'react';
+
+export default function AdvancedExample() {
+  const [value, setValue] = useState('');
+  const valid = /^[a-zA-Z .@\n]*$/.test(value);
+
+  return (
+    <ExampleWrapper className="flex justify-center">
+      <KInputTextarea
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        floatLabel="Name and e-mail address"
+        helperText="Allowed characters: a-z, A-Z, space, ., @, newline"
+        invalid={!valid}
+        disabled={false}
+        rows={3}
+        cols={36}
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

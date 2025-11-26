@@ -1,0 +1,60 @@
+@layer krones-library {
+  .kro-kbutton {
+    min-width: var(--size-24);
+    letter-spacing: 0.0125rem;
+    font-weight: 500;
+    padding: var(--space-0) var(--space-4);
+
+    [data-pc-section='label'] {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      text-align: center;
+    }
+
+    &.kro-size-small {
+      height: var(--size-6);
+      font-size: var(--size-3);
+      line-height: var(--size-4);
+
+      svg {
+        width: var(--size-4);
+        height: var(--size-4);
+      }
+    }
+
+    &.kro-size-default {
+      height: var(--size-8);
+      font-size: var(--size-3);
+      line-height: var(--size-4);
+
+      svg {
+        width: var(--size-4);
+        height: var(--size-4);
+      }
+    }
+
+    &.kro-size-large {
+      height: var(--size-10);
+      font-size: var(--size-3_5);
+      line-height: var(--size-5);
+
+      svg {
+        width: var(--size-4_5);
+        height: var(--size-4_5);
+      }
+    }
+
+    &.kro-size-xlarge {
+      height: var(--size-12);
+      font-size: var(--size-3_5);
+      line-height: var(--size-5);
+
+      svg {
+        width: var(--size-4_5);
+        height: var(--size-4_5);
+      }
+    }
+  }
+}

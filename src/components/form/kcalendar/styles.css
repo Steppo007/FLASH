@@ -1,0 +1,283 @@
+@layer krones-library {
+  /* the actual calendar popup */
+  .kro-kcalendar {
+    background-color: var(--surface-flyout);
+    box-shadow: var(--box-shadow-thick);
+    padding: var(--space-2);
+
+    /* default font properties for children */
+    color: var(--content-bodytext);
+    font-size: 0.875rem;
+    line-height: 130%;
+    user-select: none;
+
+    /* transition of the popup */
+    transition:
+      transform 0.2s,
+      opacity 0.2s;
+    transform: scale(1, 0);
+    opacity: 0;
+
+    &.enter-active,
+    &.enter-done {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    /* text and background styling for navigation element */
+    [data-pc-section='daylabel'],
+    [data-pc-section='previousbutton'],
+    [data-pc-section='nextbutton'],
+    [data-pc-section='incrementbutton'],
+    [data-pc-section='decrementbutton'],
+    [data-pc-section='monthtitle'],
+    [data-pc-section='yeartitle'],
+    [data-pc-section='month'],
+    [data-pc-section='year'],
+    [data-pc-section='buttonbar'] > button {
+      transition:
+        color 0.2s,
+        background-color 0.2s,
+        outline-color 0.2s;
+
+      color: var(--content-interactive-subdued-default);
+      background-color: var(--surface-interactive-default);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--content-interactive-subdued-hover);
+        background-color: var(--surface-interactive-hover);
+      }
+
+      &[data-p-highlight='true'] {
+        background-color: var(--surface-interactive-active);
+        color: var(--content-interactive-subdued-active);
+      }
+
+      &[data-p-disabled='true'] {
+        cursor: default;
+        background-color: var(--surface-interactive-default);
+        color: var(--content-interactive-subdued-disabled);
+      }
+    }
+
+    /* contains multiple months when so configured */
+    [data-pc-section='groupcontainer'] {
+      display: flex;
+    }
+
+    /* conatins month-year header and calendar table */
+    [data-pc-section='group'] {
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
+
+      &:not(:first-child) {
+        border-left: var(--size-px) solid var(--border-default);
+      }
+    }
+
+    /* contains month, year, and arrows */
+    [data-pc-section='header'] {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--size-px) solid var(--border-default);
+      padding: var(--space-2);
+    }
+
+    /* contains month and year */
+    [data-pc-section='title'] {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* month and year */
+    [data-pc-section='monthtitle'],
+    [data-pc-section='yeartitle'],
+    [data-pc-section='decadetitle'],
+    [data-pc-section='buttonbar'] > button {
+      padding: var(--space-2);
+      font-weight: 700;
+      border-radius: var(--size-1_5);
+    }
+
+    /* padding in all table cells */
+    th,
+    td {
+      padding: var(--space-1_5);
+    }
+
+    /* dimensions of all table cell labels */
+    td > span,
+    th > span {
+      width: var(--size-9);
+      height: var(--size-9);
+    }
+
+    /* day cells have regular font */
+    [data-pc-section='day'] {
+      font-weight: 400;
+    }
+
+    /* cells with week info are bolded */
+    [data-pc-section='tableheadercell'],
+    [data-pc-section='weekheader'],
+    [data-pc-section='weeknumber'] {
+      font-weight: 700;
+    }
+
+    /* buttons and table labels are flex-centered */
+    [data-pc-section='previousbutton'],
+    [data-pc-section='nextbutton'],
+    [data-pc-section='incrementbutton'],
+    [data-pc-section='decrementbutton'],
+    th > span,
+    td > span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* buttons and day label are rounded */
+    [data-pc-section='previousbutton'],
+    [data-pc-section='nextbutton'],
+    [data-pc-section='incrementbutton'],
+    [data-pc-section='decrementbutton'],
+    [data-pc-section='daylabel'] {
+      border-radius: 100%;
+    }
+
+    /* size of circular buttons */
+    [data-pc-section='previousbutton'],
+    [data-pc-section='nextbutton'] {
+      width: var(--size-9);
+      height: var(--size-9);
+    }
+
+    /* size of circular buttons */
+    [data-pc-section='incrementbutton'],
+    [data-pc-section='decrementbutton'] {
+      width: var(--size-6);
+      height: var(--size-6);
+    }
+
+    /* today's day should have a ring around it */
+    [data-pc-section='day'][data-p-today='true'] [data-pc-section='daylabel'] {
+      border: var(--size-px) solid var(--border-default);
+    }
+
+    /* grid of years/months */
+    [data-pc-section='monthpicker'],
+    [data-pc-section='yearpicker'] {
+      display: grid;
+      margin: var(--space-2) 0;
+    }
+
+    /* month grid is 3x4 */
+    [data-pc-section='monthpicker'] {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    /* year grid is 2x5 */
+    [data-pc-section='yearpicker'] {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* individual items inside year/month picker */
+    [data-pc-section='month'],
+    [data-pc-section='year'] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-1_5) var(--space-2);
+      border-radius: var(--size-1_5);
+    }
+
+    /* optional - contains buttons for extra options */
+    [data-pc-section='buttonbar'] {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-2);
+    }
+
+    /* optional - allows picking time */
+    [data-pc-section='timepicker'] {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2);
+    }
+
+    [data-pc-section='timepicker'],
+    [data-pc-section='buttonbar'] {
+      &:not(:first-child) {
+        border-top: var(--size-px) solid var(--border-default);
+      }
+    }
+
+    /* contain increment and decrement arrows */
+    [data-pc-section='hourpicker'],
+    [data-pc-section='minutepicker'],
+    [data-pc-section='ampmpicker'],
+    [data-pc-section='secondpicker'],
+    [data-pc-section='millisecondpicker'] {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  /* styles for the input and button, when a calendar icon is shown to the right of the input field */
+  [data-pc-name='calendar'][data-pc-section='root']:has(.kro-hasicon) {
+    display: flex;
+
+    input {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    .kro-kbutton [data-pc-section='label'] {
+      display: none;
+    }
+
+    .kro-kbutton {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      border-bottom-right-radius: var(--size-1_5);
+      border-top-right-radius: var(--size-1_5);
+      min-width: 0;
+
+      svg {
+        flex-shrink: 0;
+      }
+    }
+
+    &:has(.kro-size-default) {
+      .kro-kbutton {
+        height: var(--size-10);
+        width: var(--size-10);
+
+        svg {
+          height: 1.25rem;
+          width: 1.25rem;
+        }
+      }
+    }
+
+    &:has(.kro-size-small) {
+      .kro-kbutton {
+        height: var(--size-8);
+        width: var(--size-8);
+
+        svg {
+          height: 1rem;
+          width: 1rem;
+        }
+      }
+    }
+  }
+}

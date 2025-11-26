@@ -1,0 +1,40 @@
+import { Meta, Title, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories'; 
+import Example from './example'
+
+<Meta of={metaData} />
+
+<Title/>
+
+<Canvas of={metaData.Story} />
+<Controls />
+
+<Example/>
+
+## Example Usage 
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import { KSelectList } from '@flash/ui-components/form/kselectlist';
+import { ExampleWrapper } from '@sbook/utils';
+import { useState } from 'react';
+export default function Example() {
+  const [value, setValue] = useState<string>('en-GB');
+
+  return (
+    <ExampleWrapper className="flex items-center justify-center">
+      <div className="w-80">
+        <KSelectList
+          options={[
+            { label: 'English (UK)', value: 'en-GB' },
+            { label: 'Deutsch', value: 'de-DE' },
+          ]}
+          value={value}
+          onSelect={setValue}
+        />
+      </div>
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)

@@ -1,0 +1,41 @@
+@layer krones-library {
+  /* khelpertext should only be used as a child of kinputcontainer */
+
+  .kro-kinputcontainer {
+    .kro-khelpertext {
+      line-height: 130%;
+      user-select: none;
+      color: var(--content-default);
+      position: absolute;
+    }
+
+    /* colors */
+    &:has(.kro-disabled) .kro-khelpertext {
+      color: var(--content-disabled);
+    }
+
+    &:has(.kro-invalid) .kro-khelpertext {
+      color: var(--content-critical-default);
+    }
+
+    &:has(.kro-invalid.kro-disabled) .kro-khelpertext {
+      color: var(--content-critical-disabled);
+    }
+
+    /* sizes */
+    &:has(.kro-size-small) .kro-khelpertext {
+      padding-top: var(--space-0_75);
+      font-size: 0.625rem;
+    }
+
+    &:has(.kro-size-default) .kro-khelpertext {
+      padding-top: var(--space-1);
+      font-size: 0.75rem;
+    }
+
+    &:has(.kro-size-large) .kro-khelpertext {
+      padding-top: var(--space-1_25);
+      font-size: 0.875rem;
+    }
+  }
+}

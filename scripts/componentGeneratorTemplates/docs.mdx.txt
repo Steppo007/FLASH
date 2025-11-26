@@ -1,0 +1,18 @@
+import { Meta, Title, Canvas, Controls, Story } from '@storybook/blocks';
+import * as metaData from './comp.stories'; 
+import Example from './example'
+
+<Meta of={metaData} />
+
+<Title/>
+
+### Uses: [Insert PrimeReact Component With Link](https://primereact.org)
+
+<Canvas of={metaData.Story} />
+<Controls />
+
+<Example/>
+
+## Example Usage 
+[comment]: # (START WRITE ./example.tsx)
+[comment]: # (END WRITE)

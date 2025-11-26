@@ -1,0 +1,114 @@
+@layer krones-library {
+  .kro-kinputsearch {
+    svg {
+      flex-shrink: 0;
+    }
+
+    & .kro-kinput {
+      padding: 0 var(--space-7);
+      width: 100%;
+    }
+  }
+
+  .kro-kinputsearch .kro-kinputsearch-loader {
+    /* todo: position loader */
+    display: none;
+  }
+
+  .kro-kinputsearch-panel {
+    box-shadow: var(--box-shadow-thick);
+    background-color: var(--surface-flyout);
+    border-radius: var(--space-1_5);
+
+    /* transition of the popup */
+    transition:
+      transform 0.2s,
+      opacity 0.2s;
+    transform: scale(1, 0);
+    opacity: 0;
+
+    &.enter-active,
+    &.enter-done {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    /* where the dropdown items appear */
+    & > [data-pc-section='listwrapper'] {
+      padding: var(--space-2);
+      overflow-y: auto;
+    }
+
+    .p-virtualscroller-content {
+      padding: var(--space-2);
+    }
+
+    [data-pc-section='item'] {
+      border-radius: var(--size-1_5);
+      cursor: pointer;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    [data-pc-section='emptymessage'] {
+      color: var(--input-content-default-default);
+    }
+
+    [data-pc-section='item'],
+    [data-pc-section='emptymessage'] {
+      user-select: none;
+      padding: var(--space-2_5) var(--space-4);
+    }
+  }
+
+  /* If appendTo="self" is set */
+  .kro-kinputsearch .kro-kinputsearch-panel {
+    width: 100%;
+  }
+
+  .kro-kinputcontainer .kro-kclearicon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--input-content-default-default);
+
+    &.kro-size-small svg {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+
+    &.kro-size-default svg {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    &.kro-size-large svg {
+      width: 1.125rem;
+      height: 1.125rem;
+    }
+  }
+
+  .kro-kinputcontainer .kro-ksearchicon {
+    position: absolute;
+    left: var(--space-4);
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--input-content-default-default);
+
+    &.kro-size-small svg {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+
+    &.kro-size-default svg {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    &.kro-size-large svg {
+      width: 1.125rem;
+      height: 1.125rem;
+    }
+  }
+}

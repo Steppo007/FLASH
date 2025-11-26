@@ -1,0 +1,117 @@
+@layer krones-library {
+  .kro-kinput {
+    /* border */
+    border-radius: var(--size-1_5);
+    border-style: solid;
+    border-width: var(--size-px);
+
+    /* typography */
+    font-weight: 400;
+    line-height: 130%;
+
+    /* layout */
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 0 var(--space-3);
+
+    /* cursor */
+    cursor: auto;
+    user-select: none;
+
+    &.kro-disabled {
+      &,
+      & > [role='button'] {
+        cursor: not-allowed;
+      }
+    }
+
+    /* outline */
+    outline: var(--size-0_75) solid transparent;
+
+    &:focus,
+    &[data-p-focus='true'],
+    &.p-focus {
+      outline-color: var(--outline-focus);
+    }
+
+    /* transition */
+    transition:
+      outline-color 0.2s,
+      border-color 0.2s;
+
+    /* 
+      Layout, font size, and input height, based 
+      on size attribute
+      */
+    &.kro-size-small {
+      height: var(--size-8);
+      font-size: 0.75rem;
+    }
+
+    &.kro-size-default {
+      height: var(--size-10);
+      font-size: 0.875rem;
+    }
+
+    &.kro-size-large {
+      height: var(--size-12);
+      font-size: 1rem;
+    }
+
+    /* 
+      color of text, border, and background based on
+      1) validity of input
+      2) whether input is disabled
+      3) state of input, including hover and focus
+      */
+    color: var(--input-content-default-default);
+    border-color: var(--input-border-default-default);
+    background-color: var(--input-surface-default-default);
+
+    &:hover {
+      color: var(--input-content-default-hover);
+      border-color: var(--input-border-default-hover);
+      background-color: var(--input-surface-default-hover);
+    }
+
+    &[data-p-focus='true'],
+    &:focus,
+    &.p-focus {
+      color: var(--input-content-default-focus);
+      border-color: var(--input-border-default-focus);
+      background-color: var(--input-surface-default-focus);
+    }
+
+    &.kro-disabled {
+      color: var(--input-content-default-disabled);
+      border-color: var(--input-border-default-disabled);
+      background-color: var(--input-surface-default-disabled);
+    }
+
+    &.kro-invalid {
+      color: var(--input-content-error-default);
+      border-color: var(--input-border-error-default);
+      background-color: var(--input-surface-error-default);
+
+      &:hover {
+        color: var(--input-content-error-hover);
+        border-color: var(--input-border-error-hover);
+        background-color: var(--input-surface-error-hover);
+      }
+
+      &[data-p-focus='true'],
+      &:focus {
+        color: var(--input-content-error-focus);
+        border-color: var(--input-border-error-focus);
+        background-color: var(--input-surface-error-focus);
+      }
+    }
+
+    &.kro-invalid.kro-disabled {
+      color: var(--input-content-error-disabled);
+      border-color: var(--input-border-error-disabled);
+      background-color: var(--input-surface-error-disabled);
+    }
+  }
+}

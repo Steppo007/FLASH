@@ -1,0 +1,72 @@
+import { Meta, Description, Canvas, Controls, Story, Title } from '@storybook/addon-docs/blocks';
+import * as metaData from './comp.stories';
+import { AdvancedExample } from './advancedExample'
+import { BasicExample } from './basicExample'
+
+<Meta of={metaData} />
+
+<Title />
+
+### Custom Component
+
+The KInputText component is used to enter text information and 
+gives feedback on the feasibility of the content with error states.
+
+<Canvas of={metaData.Story} />
+<Controls />
+
+## Example: Basic
+
+<BasicExample/>
+
+[comment]: # (START WRITE ./basicExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import KInputText from '@flash/ui-components/form/kinputtext';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import { useState } from 'react';
+
+export function BasicExample() {
+  const [value, setValue] = useState('');
+  return (
+    <ExampleWrapper className="flex justify-center">
+      <KInputText value={value} onChange={(e) => setValue(e.target.value)} />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
+
+## Example: Advanced
+
+<AdvancedExample/>
+
+[comment]: # (START WRITE ./advancedExample.tsx)
+[comment]: # (DO NOT EDIT: the following has been auto-generated with the command "npm run sync:docs")
+```jsx
+import KInputText from '@flash/ui-components/form/kinputtext';
+import { ExampleWrapper } from '@root/src/storybook/utils';
+import { useState } from 'react';
+
+export function AdvancedExample() {
+  const [value, setValue] = useState('');
+  const valid = /^[a-zA-Z ]*$/.test(value);
+
+  return (
+    <ExampleWrapper className="flex justify-center">
+      <KInputText
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        floatLabel="Enter your name"
+        helperText="Allowed characters: a-z, A-Z, space"
+        tooltipLabel="This should be your full legal name"
+        tooltipPosition="right"
+        invalid={!valid}
+        disabled={false}
+        className="w-72"
+      />
+    </ExampleWrapper>
+  );
+}
+```
+[comment]: # (END WRITE)
